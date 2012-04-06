@@ -1,0 +1,23 @@
+[web]
+cacerts = /etc/ssl/certs/ca-certificates.crt
+
+[ui]
+username = jptomo <quickness.net@gmail.com>
+verbose = True
+ssh = ssh -C
+merge = diff3
+ignore = ~/.hgignore
+
+[merge-tools]
+diff3.args = -m $local $base $other > $output
+
+[extensions]
+color =
+info = /home/nakamura/src/MercurialInfoExtension.py
+eol =
+graphlog = 
+mq =
+
+
+
+

@@ -1,0 +1,61 @@
+export EDITOR=vim
+export PAGER=lv
+export LANG=en_US.UTF-8
+#export LANG=C
+export LANGUAGE=${LANG}
+export LC_CTYPE=${LANG}
+export LC_MESSAGES=${LANG}
+export LC_ALL=${LANG}
+export PIP_DOWNLOAD_CACHE=~/.pip/cache
+
+### for ruby
+export PATH=${HOME}/local/bin:${PATH}
+export PATH=${HOME}/local/lib/gems/1.8/bin:${PATH}
+export RUBYOPT='-Ke -rkconv'
+export RUBYLIB=${HOME}/local/lib:/usr/lib/ruby/1.8
+export GEM_HOME=${HOME}/local/lib/gems/1.8
+
+### for python
+export VIRTUALENV_USE_DISTRIBUTE=true
+## for pythonbrew
+source $HOME/.pythonbrew/etc/bashrc
+## for virtualenv
+export WORKON_HOME=$HOME/.virtualenvs
+source `which virtualenvwrapper.sh`
+#for Python 2.7
+workon env27
+#for Python 2.6
+#workon env26
+
+### for jenkins
+#export JENKINS_HOME=$HOME/jenkins
+
+# pip zsh completion start
+function _pip_completion {
+  local words cword
+  read -Ac words
+  read -cn cword
+  reply=( $( COMP_WORDS="$words[*]" \
+             COMP_CWORD=$(( cword-1 )) \
+             PIP_AUTO_COMPLETE=1 $words[1] ) )
+}
+compctl -K _pip_completion pip
+# pip zsh completion end
+
+function git_diff() {
+  git diff --no-ext-diff -w "$@" | vim -R -
+}
+
+# tmuxで現在のディレクトリに移動するような関数
+#function chpwd(){
+#  [ -n $TMUX ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD
+#}
+
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+
+alias ls='ls -F'
+alias ll='ls -l'
+alias la='ls -la'
+

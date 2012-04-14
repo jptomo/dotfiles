@@ -1,3 +1,6 @@
+[user]
+    name = tomohiri nakamura
+    email = quickness.net@gmail.com
 [include]
 	path = ~/.gitconfig.accounts
 [core]

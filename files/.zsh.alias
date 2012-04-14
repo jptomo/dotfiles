@@ -18,7 +18,7 @@ export GEM_HOME=${HOME}/local/lib/gems/1.8
 ### for python
 export VIRTUALENV_USE_DISTRIBUTE=true
 ## for pythonbrew
-source $HOME/.pythonbrew/etc/bashrc
+#source $HOME/.pythonbrew/etc/bashrc
 ## for virtualenv
 export WORKON_HOME=$HOME/.virtualenvs
 source `which virtualenvwrapper.sh`

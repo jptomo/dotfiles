@@ -28,13 +28,3 @@ HOW TO USE
 ::
 
    $ ./setup.sh
-
-5. write own github account
-
-   bellow file set github accounts.
-
-::
-
-   $ vim $HOME/.github.accounts
-
-

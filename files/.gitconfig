@@ -1,8 +1,9 @@
 [user]
-    name = tomohiri nakamura
+    name = Tomohiro Nakamura
     email = quickness.net@gmail.com
-[include]
-	path = ~/.gitconfig.accounts
+[github]
+    name = Tomohiro Nakamura
+    email = quickness.net@gmail.com
 [core]
     symlinks = false
     autocrlf = false

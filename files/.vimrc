@@ -12,6 +12,7 @@ endif
 NeoBundle 'The-NERD-tree'
 NeoBundle 'The-NERD-Commenter'
 NeoBundle 'nvie/vim-flake8'
+NeoBundle 'hallettj/jslint.vim'
 
 filetype plugin indent on
 
@@ -176,7 +177,9 @@ let g:NERDTreeIgnore=['\.svn', '\.pyc']
 autocmd FileType python call SettingForPython()
 autocmd FileType ini call SettingForPython()
 autocmd FileType cfg call SettingForPython()
-autocmd FileType html call SettingForPython()
+autocmd FileType html call SettingForHTML()
+autocmd FileType js call SettingForHTML()
+autocmd FileType css call SettingForHTML()
 autocmd FileType rst call SettingForRST()
 
 function SettingForPython()
@@ -197,6 +200,20 @@ function SettingForPython()
     setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
     setl enc=utf-8
     autocmd BufWritePre * :%s/\s\+$//ge
+endfunction
+
+function SettingForHTML()
+    setl autoindent
+    setl tabstop=2
+    setl softtabstop=2
+    setl shiftwidth=2
+    setl smarttab
+    setl expandtab
+    setl autoindent
+    setl nosmartindent
+    setl encoding=utf-8
+    setl fileencoding=utf-8
+    setl fileformat=unix
 endfunction
 
 function SettingForRST()

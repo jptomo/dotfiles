@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DOT_FILES=( .gitconfig .gitignore .hgrc .hgrc .hgeol .zshrc .zsh.alias \
+DOT_FILES=( .gitconfig .gitignore .hgrc .hgrc .hgeol .hgignore .zshrc .zsh.alias \
 .zsh_profile .zsh.mode .tmux.conf .inputrc .vimrc)
 BAKDIR=backup/`date +%Y%m%d%H%M%S`
 

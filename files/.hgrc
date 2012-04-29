@@ -13,11 +13,17 @@ diff3.args = -m $local $base $other > $output
 
 [extensions]
 color =
-info = /home/nakamura/src/MercurialInfoExtension.py
+;info = /home/nakamura/src/MercurialInfoExtension.py
 eol =
 graphlog = 
-mq =
+;mq =
+pager =
+progress =
+rebase =
+record =
+transplant =
 
-
+[extdiff]
+cmd.cdiff = git_diff_wrapper
 
 

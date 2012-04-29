@@ -185,7 +185,7 @@ function SettingForPython()
     setl foldmethod=indent
     setl foldlevel=99
     " indent
-    setl tabstop=8
+    setl tabstop=4
     setl softtabstop=4
     setl shiftwidth=4
     setl smarttab
@@ -196,6 +196,7 @@ function SettingForPython()
     setl textwidth=80
     setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
     setl enc=utf-8
+    autocmd BufWritePre * :%s/\s\+$//ge
 endfunction
 
 function SettingForRST()
@@ -224,6 +225,10 @@ vnoremap <space> zf
 let g:neocomplcache_enable_at_startup = 1
 
 autocmd FileType * setlocal formatoptions-=ro
+
+"---------------------------------------------------
+" for Unite
+"---------------------------------------------------
 
 " 入力モードで開始する
 "let g:unite_enable_start_insert=1

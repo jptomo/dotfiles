@@ -23,7 +23,7 @@ export VIRTUALENV_USE_DISTRIBUTE=true
 export WORKON_HOME=$HOME/.virtualenvs
 source `which virtualenvwrapper.sh`
 #for Python 2.7
-workon env27
+workon main27
 #for Python 2.6
 #workon env26
 

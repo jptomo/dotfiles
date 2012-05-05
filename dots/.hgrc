@@ -13,7 +13,7 @@ diff3.args = -m $local $base $other > $output
 
 [extensions]
 color =
-#info = /home/nakamura/src/MercurialInfoExtension.py
+info = ~/local/lib/Mercurial/MercurialInfoExtension.py
 eol =
 graphlog = 
 ;mq =

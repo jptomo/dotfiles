@@ -10,6 +10,6 @@ mkdir -p ${CURDIR}/${BAKDIR}
 for file in ${DOT_FILES[@]}
 do
     mv ${HOME}/${file} ${CURDIR}/${BAKDIR} 
-    ln -s ${CURDIR}/files/${file} ${HOME}/${file}
+    ln -s ${CURDIR}/dots/${file} ${HOME}/${file}
 done
 

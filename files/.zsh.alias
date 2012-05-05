@@ -30,6 +30,10 @@ workon main27
 ### for jenkins
 #export JENKINS_HOME=$HOME/jenkins
 
+### for node.js
+setopt no_nomatch
+source ~/.nvm/nvm.sh
+
 # pip zsh completion start
 function _pip_completion {
   local words cword

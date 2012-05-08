@@ -7,13 +7,15 @@ export LC_CTYPE=${LANG}
 export LC_MESSAGES=${LANG}
 export LC_ALL=${LANG}
 export PIP_DOWNLOAD_CACHE=~/.pip/cache
+export PATH=${HOME}/local/bin:${PATH}
 
 ### for ruby
-export PATH=${HOME}/local/bin:${PATH}
-export PATH=${HOME}/local/lib/gems/1.8/bin:${PATH}
+export PATH="${HOME}/.rbenv/bin:${PATH}"
+eval "$(rbenv init -)"
+#export PATH=${HOME}/local/lib/gems/1.8/bin:${PATH}
 export RUBYOPT='-Ke -rkconv'
-export RUBYLIB=${HOME}/local/lib:/usr/lib/ruby/1.8
-export GEM_HOME=${HOME}/local/lib/gems/1.8
+#export RUBYLIB=${HOME}/local/lib:/usr/lib/ruby/1.8
+#export GEM_HOME=${HOME}/local/lib/gems/1.8
 
 ### for python
 export VIRTUALENV_USE_DISTRIBUTE=true

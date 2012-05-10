@@ -176,6 +176,7 @@ let g:NERDTreeIgnore=['\.svn', '\.pyc']
 
 autocmd FileType python call SettingForPython()
 autocmd FileType ruby call SettingForPython()
+autocmd FileType sh call SettingForPython()
 autocmd FileType ini call SettingForPython()
 autocmd FileType cfg call SettingForPython()
 autocmd FileType html call SettingForHTML()

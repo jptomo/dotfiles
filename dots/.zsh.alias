@@ -13,10 +13,10 @@ export SHELL="/usr/bin/zsh"
 export HGENCODING="utf-8"
 
 ### for ruby
-export PATH="${HOME}/.rbenv/bin:${PATH}"
-eval "$(rbenv init -)"
+#export PATH="${HOME}/.rbenv/bin:${PATH}"
+#eval "$(rbenv init -)"
 #export PATH=${HOME}/local/lib/gems/1.8/bin:${PATH}
-export RUBYOPT='-Ke -rkconv'
+#export RUBYOPT='-Ke -rkconv'
 #export RUBYLIB=${HOME}/local/lib:/usr/lib/ruby/1.8
 #export GEM_HOME=${HOME}/local/lib/gems/1.8
 
@@ -28,7 +28,7 @@ export VIRTUALENV_USE_DISTRIBUTE=true
 export WORKON_HOME=$HOME/.virtualenvs
 source `which virtualenvwrapper.sh`
 #for Python 2.7
-workon main27
+#workon bkl27
 #for Python 2.6
 #workon env26
 
@@ -36,8 +36,8 @@ workon main27
 #export JENKINS_HOME=$HOME/jenkins
 
 ### for node.js
-setopt no_nomatch
-source ~/.nvm/nvm.sh
+#setopt no_nomatch
+#source ~/.nvm/nvm.sh
 
 # pip zsh completion start
 function _pip_completion {
@@ -67,4 +67,3 @@ export QT_IM_MODULE=ibus
 alias ls='ls -F'
 alias ll='ls -l'
 alias la='ls -la'
-

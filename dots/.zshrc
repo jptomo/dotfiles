@@ -44,7 +44,4 @@ zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'c
 
 [ -f ~/.zsh.alias ] && source ~/.zsh.alias # 設定ファイルのinclude
 
-#[ -f ~/.zshrc.mode ] && source ~/.zsh.mode # 設定ファイルのinclude
-
 [ -f ~/.zsh.include ] && source ~/.zsh.include # 設定ファイルのinclude
-

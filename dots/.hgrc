@@ -4,6 +4,7 @@ cacerts = /etc/ssl/certs/ca-certificates.crt
 [ui]
 username = jptomo <quickness.net@gmail.com>
 ignore = ~/.hgignore
+style = compact
 
 [merge-tools]
 diff3.args = -m $local $base $other > $output
@@ -13,7 +14,7 @@ color =
 info = ~/local/lib/Mercurial/MercurialInfoExtension.py
 eol =
 graphlog = 
-;mq =
+mq =
 pager =
 progress =
 rebase =

@@ -1,9 +1,6 @@
 [user]
     name = Tomohiro Nakamura
     email = quickness.net@gmail.com
-[github]
-    name = Tomohiro Nakamura
-    email = quickness.net@gmail.com
 [core]
     symlinks = false
     autocrlf = false

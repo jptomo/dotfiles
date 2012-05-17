@@ -175,7 +175,7 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore=['\.svn', '\.pyc']
 
 autocmd FileType python call SettingForPython()
-autocmd FileType ruby call SettingForPython()
+autocmd FileType ruby call SettingForRuby()
 autocmd FileType sh call SettingForPython()
 autocmd FileType ini call SettingForPython()
 autocmd FileType cfg call SettingForPython()
@@ -200,6 +200,24 @@ function SettingForPython()
     setl cindent
     setl textwidth=80
     setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+    setl enc=utf-8
+    autocmd BufWritePre * :%s/\s\+$//ge
+endfunction
+
+function SettingForRuby()
+    " Folding
+    setl foldmethod=indent
+    setl foldlevel=99
+    " indent
+    setl tabstop=2
+    setl softtabstop=2
+    setl shiftwidth=2
+    setl smarttab
+    setl expandtab
+    setl autoindent
+    setl nosmartindent
+    setl cindent
+    setl textwidth=80
     setl enc=utf-8
     autocmd BufWritePre * :%s/\s\+$//ge
 endfunction

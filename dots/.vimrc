@@ -263,6 +263,8 @@ let g:neocomplcache_enable_at_startup = 1
 
 autocmd FileType * setlocal formatoptions-=ro
 
+hi comment gui=none ctermfg=lightblue
+
 "---------------------------------------------------
 " for Unite
 "---------------------------------------------------
@@ -306,5 +308,3 @@ autocmd FileType * setlocal formatoptions-=ro
 
 " ファイル一覧
 "noremap <C-U><C-F> :UniteWithBufferDir -buffer-name=files file<CR>
-
-

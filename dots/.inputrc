@@ -1,6 +1,7 @@
 # viキーバインド
 set editing-mode vi
 set keymap vi-insert
+Control-l: clear-screen
 
 # チルダをタブにより展開
 set expand-tilde on

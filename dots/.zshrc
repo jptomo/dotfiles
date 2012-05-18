@@ -1,5 +1,6 @@
 # locale
 [ -f ~/.zsh.locale ] && source ~/.zsh.locale
+export SHELL="/usr/bin/zsh"
 
 # PROMPT
 PS1="[@${HOST%%.*} %1~]%(!.#.$) " # この辺は好み
@@ -9,9 +10,6 @@ setopt prompt_subst # 便利なプロント
 bindkey -v # viライクなキーバインド
 bindkey "^P" up-line-or-history
 bindkey "^N" down-line-or-history
-
-export LANG=ja_JP.UTF-8 # 日本語環境
-export EDITOR=vim # エディタはvim
 
 autoload -U compinit # 強力な補完機能
 compinit -u # このあたりを使わないとzsh使ってる意味なし

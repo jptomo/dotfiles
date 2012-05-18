@@ -2,8 +2,15 @@ export EDITOR=vim
 export PAGER=lv
 export PIP_DOWNLOAD_CACHE=~/.pip/cache
 export PATH=${HOME}/.local/bin:${PATH}
-export SHELL="/usr/bin/zsh"
 export HGENCODING="utf-8"
+
+function git_diff() {
+    git diff --no-ext-diff -w "$@" | vim -R -
+}
+
+alias ls='ls -F'
+alias ll='ls -l'
+alias la='ls -la'
 
 ### for ruby
 #export PATH="${HOME}/.rbenv/bin:${PATH}"
@@ -22,6 +29,8 @@ export HGENCODING="utf-8"
 #workon main27
 #for Python 2.6
 #workon main26
+# pip bash completion
+#eval "`pip completion --zsh`"
 
 ### for jenkins
 #export JENKINS_HOME=$HOME/jenkins
@@ -34,23 +43,3 @@ export HGENCODING="utf-8"
 #export GTK_IM_MODULE=ibus
 #export XMODIFIERS=@im=ibus
 #export QT_IM_MODULE=ibus
-
-# pip zsh completion start
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$(( cword-1 )) \
-             PIP_AUTO_COMPLETE=1 $words[1] ) )
-}
-compctl -K _pip_completion pip
-# pip zsh completion end
-
-function git_diff() {
-  git diff --no-ext-diff -w "$@" | vim -R -
-}
-
-alias ls='ls -F'
-alias ll='ls -l'
-alias la='ls -la'

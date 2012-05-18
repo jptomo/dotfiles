@@ -1,16 +1,17 @@
 export EDITOR=vim
 export PAGER=lv
-export LANG="ja_JP.UTF-8"
-#export LANG="en_US.UTF-8"
-#export LANG="C"
-export LANGUAGE=${LANG}
-export LC_CTYPE=${LANG}
-export LC_MESSAGES=${LANG}
-export LC_ALL=${LANG}
 export PIP_DOWNLOAD_CACHE=~/.pip/cache
 export PATH=${HOME}/local/bin:${PATH}
 export SHELL="/usr/bin/zsh"
 export HGENCODING="utf-8"
+
+function git_diff() {
+    git diff --no-ext-diff -w "$@" | vim -R -
+}
+
+alias ls='ls -F'
+alias ll='ls -l'
+alias la='ls -la'
 
 ### for ruby
 #export PATH="${HOME}/.rbenv/bin:${PATH}"
@@ -21,49 +22,24 @@ export HGENCODING="utf-8"
 #export GEM_HOME=${HOME}/local/lib/gems/1.8
 
 ### for python
-export VIRTUALENV_USE_DISTRIBUTE=true
-## for pythonbrew
-#source $HOME/.pythonbrew/etc/bashrc
+#export VIRTUALENV_USE_DISTRIBUTE=true
 ## for virtualenv
-export WORKON_HOME=$HOME/.virtualenvs
-source `which virtualenvwrapper.sh`
+#export WORKON_HOME=$HOME/.virtualenvs
+#source `which virtualenvwrapper.sh`
 #for Python 2.7
-#workon bkl27
+#workon main27
 #for Python 2.6
-#workon env26
+#workon main26
+# pip bash completion
+#eval "`pip completion --bash`"
 
 ### for jenkins
 #export JENKINS_HOME=$HOME/jenkins
 
 ### for node.js
-#setopt no_nomatch
 #source ~/.nvm/nvm.sh
 
-# pip zsh completion start
-function _pip_completion {
-  local words cword
-  read -Ac words
-  read -cn cword
-  reply=( $( COMP_WORDS="$words[*]" \
-             COMP_CWORD=$(( cword-1 )) \
-             PIP_AUTO_COMPLETE=1 $words[1] ) )
-}
-compctl -K _pip_completion pip
-# pip zsh completion end
-
-function git_diff() {
-  git diff --no-ext-diff -w "$@" | vim -R -
-}
-
-# tmuxで現在のディレクトリに移動するような関数
-#function chpwd(){
-#  [ -n $TMUX ] && tmux setenv TMUXPWD_$(tmux display -p "#I") $PWD
-#}
-
-export GTK_IM_MODULE=ibus
-export XMODIFIERS=@im=ibus
-export QT_IM_MODULE=ibus
-
-alias ls='ls -F'
-alias ll='ls -l'
-alias la='ls -la'
+# Linux IM
+#export GTK_IM_MODULE=ibus
+#export XMODIFIERS=@im=ibus
+#export QT_IM_MODULE=ibus

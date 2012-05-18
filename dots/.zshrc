@@ -1,6 +1,5 @@
-#if [ $TERM != "screen.mlterm" ] && [ $TERM != "screen" ]; then
-#    exec screen -S main -xRR -t zsh
-#fi
+# locale
+[ -f ~/.zsh.locale ] && source ~/.zsh.locale
 
 # PROMPT
 PS1="[@${HOST%%.*} %1~]%(!.#.$) " # この辺は好み
@@ -42,6 +41,6 @@ bindkey "^N" history-beginning-search-forward-end
 alias ls="ls -G"
 zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
-[ -f ~/.zsh.alias ] && source ~/.zsh.alias # 設定ファイルのinclude
-
-[ -f ~/.zsh.include ] && source ~/.zsh.include # 設定ファイルのinclude
+# 設定ファイルのinclude
+[ -f ~/.zsh.alias ] && source ~/.zsh.alias
+[ -f ~/.zsh.include ] && source ~/.zsh.include

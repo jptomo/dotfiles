@@ -1,0 +1,17 @@
+export LANG="ja_JP.UTF-8"
+#export LANG="en_US.UTF-8"
+#export LANG="C"
+export LANGUAGE=$LANG
+export LC_CTYPE=$LANG
+export LC_NUMERIC=$LANG
+export LC_TIME=$LANG
+export LC_COLLATE=$LANG
+export LC_MONETARY=$LANG
+export LC_MESSAGES=$LANG
+export LC_PAPER=$LANG
+export LC_NAME=$LANG
+export LC_ADDRESS=$LANG
+export LC_TELEPHONE=$LANG
+export LC_MEASUREMENT=$LANG
+export LC_IDENTIFICATION=$LANG
+unset LC_ALL

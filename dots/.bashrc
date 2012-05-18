@@ -41,9 +41,6 @@ shopt -s checkhash
 #setopt share_history # 履歴ファイルを共有
 #setopt EXTENDED_HISTORY # zshの開始終了を記録
 
-# alias
-alias ls="ls -G"
-
 #zstyle ':completion:*' list-colors 'di=34' 'ln=35' 'so=32' 'ex=31' 'bd=46;34' 'cd=43;34'
 
 # if the command-not-found package is installed, use it

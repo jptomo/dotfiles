@@ -1,7 +1,7 @@
 export EDITOR=vim
 export PAGER=lv
 export PIP_DOWNLOAD_CACHE=~/.pip/cache
-export PATH=~/local/bin:${PATH}
+export PATH=~/.local/bin:${PATH}
 export HGENCODING="utf-8"
 
 function git_diff() {

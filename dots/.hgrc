@@ -25,4 +25,5 @@ transplant =
 [extdiff]
 cmd.cdiff = git_diff_wrapper
 
-
+[color]
+mode = auto

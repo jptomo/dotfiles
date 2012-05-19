@@ -15,6 +15,7 @@ info = ~/.local/lib/Mercurial/MercurialInfoExtension.py
 eol =
 graphlog = 
 mq =
+hgshelve = ~/.local/lib/Mercurial/MercurialShelveExtension.py
 pager =
 progress =
 rebase =

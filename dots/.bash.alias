@@ -2,6 +2,9 @@ export EDITOR=vim
 export PAGER=lv
 export PIP_DOWNLOAD_CACHE=~/.pip/cache
 export PATH=~/.local/bin:${PATH}
+export BASH_COMPLETION_DIR=/etc/bash_completion.d
+#source "$BASH_COMPLETION_DIR/git"
+#source "$BASH_COMPLETION_DIR/mercurial"
 export HGENCODING="utf-8"
 
 function git_diff() {
@@ -11,6 +14,8 @@ function git_diff() {
 alias ls='ls -F'
 alias ll='ls -l'
 alias la='ls -la'
+
+stty -ctlecho
 
 ### for ruby
 #export PATH="${HOME}/.rbenv/bin:${PATH}"

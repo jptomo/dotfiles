@@ -22,8 +22,11 @@ rebase =
 record =
 transplant =
 
+[color]
+mode = auto
+
 [extdiff]
 cmd.cdiff = git_diff_wrapper
 
-[color]
-mode = auto
+[mq]
+secret = True

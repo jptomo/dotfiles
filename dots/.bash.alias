@@ -6,6 +6,7 @@ export BASH_COMPLETION_DIR=/etc/bash_completion.d
 #source "$BASH_COMPLETION_DIR/git"
 #source "$BASH_COMPLETION_DIR/mercurial"
 export HGENCODING="utf-8"
+export SHELL=`which bash`
 
 function git_diff() {
     git diff --no-ext-diff -w "$@" | vim -R -

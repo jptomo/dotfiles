@@ -3,6 +3,7 @@ export PAGER=lv
 export PIP_DOWNLOAD_CACHE=~/.pip/cache
 export PATH=~/.local/bin:${PATH}
 export HGENCODING="utf-8"
+export SHELL=`which zsh`
 
 function git_diff() {
     git diff --no-ext-diff -w "$@" | vim -R -

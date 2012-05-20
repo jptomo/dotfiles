@@ -30,3 +30,6 @@ cmd.cdiff = git_diff_wrapper
 
 [mq]
 secret = True
+
+[phases]
+publish = False

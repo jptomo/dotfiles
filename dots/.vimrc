@@ -223,6 +223,10 @@ function SettingForRuby()
 endfunction
 
 function SettingForHTML()
+    " Folding
+    setl foldmethod=indent
+    setl foldlevel=99
+    "
     setl autoindent
     setl tabstop=2
     setl softtabstop=2

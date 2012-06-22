@@ -1,16 +1,13 @@
-export EDITOR=vim
-export PAGER=lv
-export PIP_DOWNLOAD_CACHE=~/.pip/cache
-export PATH=/usr/local/bin:${PATH}
-export BASH_COMPLETION_DIR=/etc/bash_completion.d
-#source "$BASH_COMPLETION_DIR/git"
-#source "$BASH_COMPLETION_DIR/mercurial"
-export HGENCODING="utf-8"
+### PATH の整理
+PATH2="$HOME/.local/bin:$HOME/.local/sbin"
+PATH2="$PATH2:/usr/local/bin:/usr/local/sbin"
+PATH2="$PATH2:/usr/bin:/usr/sbin"
+PATH2="$PATH2:/bin:/sbin"
+export PATH="$PATH2:$PATH"
 export SHELL=`which bash`
 
-function git_diff() {
-    git diff --no-ext-diff -w "$@" | vim -R -
-}
+export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"
+export HGENCODING="utf-8"
 
 alias ls='ls -F'
 alias ll='ls -l'
@@ -18,13 +15,27 @@ alias la='ls -la'
 
 stty -ctlecho
 
+### for variaous environment
+#export EDITOR=vim
+#export PAGER=lv
+
+### for git
+#function git_diff() {
+#    git diff --no-ext-diff -w "$@" | vim -R -
+#}
+
+### for bash completion 
+#export BASH_COMPLETION_DIR=/etc/bash_completion.d
+#source "$BASH_COMPLETION_DIR/git"
+#source "$BASH_COMPLETION_DIR/mercurial"
+
 ### for ruby
-#export PATH="${HOME}/.rbenv/bin:${PATH}"
+#export PATH="$HOME/.rbenv/bin:${PATH}"
 #eval "$(rbenv init -)"
-#export PATH=${HOME}/local/lib/gems/1.8/bin:${PATH}
+#export PATH=$HOME/local/lib/gems/1.8/bin:${PATH}
 #export RUBYOPT='-Ke -rkconv'
-#export RUBYLIB=${HOME}/local/lib:/usr/lib/ruby/1.8
-#export GEM_HOME=${HOME}/local/lib/gems/1.8
+#export RUBYLIB=$HOME/local/lib:/usr/lib/ruby/1.8
+#export GEM_HOME=$HOME/local/lib/gems/1.8
 
 ### for python
 #export VIRTUALENV_USE_DISTRIBUTE=true
@@ -33,8 +44,6 @@ stty -ctlecho
 #source `which virtualenvwrapper.sh`
 #for Python 2.7
 #workon main27
-#for Python 2.6
-#workon main26
 # pip bash completion
 #eval "`pip completion --bash`"
 
@@ -42,7 +51,8 @@ stty -ctlecho
 #export JENKINS_HOME=$HOME/jenkins
 
 ### for node.js
-#source ~/.nvm/nvm.sh
+#source "$HOME/.nvm/nvm.sh"
+#source "$HOME/.nvm/bash_completion"
 
 # Linux IM
 #export GTK_IM_MODULE=ibus

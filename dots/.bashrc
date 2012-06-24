@@ -62,3 +62,4 @@ fi
 # 設定ファイルのinclude
 [ -f ~/.bash.alias ] && . ~/.bash.alias
 [ -f ~/.bash.include ] && . ~/.bash.include
+export PATH=".:$PATH"

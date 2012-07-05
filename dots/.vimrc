@@ -175,6 +175,8 @@ let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore=['\.svn', '\.pyc']
 
 autocmd FileType python call SettingForPython()
+autocmd FileType php call SettingForPython()
+autocmd FileType twig call SettingForPython()
 autocmd FileType ruby call SettingForRuby()
 autocmd FileType sh call SettingForPython()
 autocmd FileType ini call SettingForPython()

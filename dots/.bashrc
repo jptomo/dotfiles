@@ -1,5 +1,6 @@
 # locale
 [ -f ~/.bash.locale ] && . ~/.bash.locale
+export TERM="xterm-color"
 export SHELL="/bin/bash"
 
 umask 022

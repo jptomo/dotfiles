@@ -25,14 +25,18 @@ alias la='ls -hla'
 
 stty -ctlecho
 
+settitle() {
+    printf "\033k$1\033\\"
+}
+
+### for git
+function git_diff() {
+    git diff --no-ext-diff -w "$@" | vim -R -
+}
+
 ### for variaous environment
 #export EDITOR=vim
 #export PAGER=lv
-
-### for git
-#function git_diff() {
-#    git diff --no-ext-diff -w "$@" | vim -R -
-#}
 
 ### for bash completion 
 #export BASH_COMPLETION_DIR=/etc/bash_completion.d

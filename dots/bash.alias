@@ -29,19 +29,31 @@ settitle() {
     printf "\033k$1\033\\"
 }
 
-### for git
-function git_diff() {
-    git diff --no-ext-diff -w "$@" | vim -R -
+hg_branch() {
+    hg branch 2> /dev/null | awk '{print "(hg:" $1 ")"}'
 }
 
-### for variaous environment
-#export EDITOR=vim
-#export PAGER=lv
+git_branch() {
+    __git_ps1 '(git:%s)'
+}
 
 ### for bash completion 
 #export BASH_COMPLETION_DIR=/etc/bash_completion.d
 #source "$BASH_COMPLETION_DIR/git"
 #source "$BASH_COMPLETION_DIR/mercurial"
+### 作業ブランチの表示
+#if [ -f $BASH_COMPLETION_DIR/git ]; then
+#    PS1="\$(git_branch)\$(hg_branch)[@\h \W]\$ "
+#fi
+
+### for variaous environment
+#export EDITOR=vim
+#export PAGER=lv
+
+### for git
+#function git_diff() {
+#    git diff --no-ext-diff -w "$@" | vim -R -
+#}
 
 ### for ruby
 #export PATH="$HOME/.rbenv/bin:${PATH}"

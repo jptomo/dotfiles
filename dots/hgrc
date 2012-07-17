@@ -33,3 +33,13 @@ secret = True
 
 [phases]
 publish = False
+
+[extensions]
+hgext.extdiff =
+
+[extdiff]
+cmd.vimdiff =
+
+[alias]
+vi  = vimdiff
+vim = vimdiff

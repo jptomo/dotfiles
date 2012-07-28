@@ -19,6 +19,7 @@ export SHELL=$(which bash)
 export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"
 export PIP_RESPECT_VIRTUALENV=true
 export HGENCODING="utf-8"
+export GREP_OPTIONS="--binary-files=without-match --color=auto"
 
 alias ls='ls -hF'
 alias ll='ls -hl'

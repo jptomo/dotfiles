@@ -12,7 +12,9 @@ endif
 NeoBundle 'The-NERD-tree'
 NeoBundle 'The-NERD-Commenter'
 NeoBundle 'nvie/vim-flake8'
-NeoBundle 'hallettj/jslint.vim'
+NeoBundle 'JavaScript-syntax'
+NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'altercation/vim-colors-solarized'
 
 filetype plugin indent on
 
@@ -172,7 +174,7 @@ au BufEnter * exec ':lcd %:p:h'
 
 nmap <silent> <C-O> :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden = 1
-let g:NERDTreeIgnore=['\.svn', '\.pyc']
+let g:NERDTreeIgnore=['\.svn', '\.pyc', '\.hg', '\.git']
 
 autocmd FileType python call SettingForPython()
 autocmd FileType php call SettingForPython()
@@ -182,7 +184,9 @@ autocmd FileType sh call SettingForPython()
 autocmd FileType ini call SettingForPython()
 autocmd FileType cfg call SettingForPython()
 autocmd FileType html call SettingForHTML()
-autocmd FileType js call SettingForHTML()
+autocmd FileType javascript call SettingForHTML()
+autocmd FileType javascript :compiler gjslint
+autocmd QuickfixCmdPost make copen
 autocmd FileType css call SettingForHTML()
 autocmd FileType rst call SettingForRST()
 
@@ -269,7 +273,10 @@ let g:neocomplcache_enable_at_startup = 1
 
 autocmd FileType * setlocal formatoptions-=ro
 
-hi comment gui=none ctermfg=lightblue
+syntax enable
+"set background=dark
+set background=light
+colorscheme solarized
 
 "---------------------------------------------------
 " for Unite

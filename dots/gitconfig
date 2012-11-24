@@ -29,3 +29,6 @@
     generic = G move-last-line
     generic = ^F move-page-down
     generic = ^B move-page-up
+[alias]
+    ci = commit
+    st = status

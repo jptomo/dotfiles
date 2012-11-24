@@ -5,6 +5,7 @@ cacerts = /etc/ssl/certs/ca-certificates.crt
 username = Tomohiro Nakamura <quickness.net@gmail.com>
 ignore = ~/.hgignore
 style = compact
+ssh = ssh -C
 
 [merge-tools]
 diff3.args = -m $local $base $other > $output

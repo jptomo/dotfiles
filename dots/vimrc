@@ -15,6 +15,8 @@ NeoBundle 'nvie/vim-flake8'
 NeoBundle 'JavaScript-syntax'
 NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'altercation/vim-colors-solarized'
+NeoBundle 'kchmck/vim-coffee-script'
+NeoBundle 'nathanaelkane/vim-indent-guides'
 
 filetype plugin indent on
 
@@ -176,6 +178,9 @@ nmap <silent> <C-O> :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden = 1
 let g:NERDTreeIgnore=['\.svn', '\.pyc', '\.hg', '\.git']
 
+" register filetype
+au BufRead,BufNewFile *.coffee set filetype=coffee
+
 autocmd FileType python call SettingForPython()
 autocmd FileType php call SettingForPython()
 autocmd FileType twig call SettingForPython()
@@ -189,6 +194,7 @@ autocmd FileType javascript :compiler gjslint
 autocmd QuickfixCmdPost make copen
 autocmd FileType css call SettingForHTML()
 autocmd FileType rst call SettingForRST()
+autocmd FileType coffee call SettingForHTML()
 
 function SettingForPython()
     " PEP 8 Indent rule
@@ -274,8 +280,9 @@ let g:neocomplcache_enable_at_startup = 1
 autocmd FileType * setlocal formatoptions-=ro
 
 syntax enable
-"set background=dark
-set background=light
+set background=dark
+"set background=light
+let g:solarized_termcolors=256
 colorscheme solarized
 
 "---------------------------------------------------

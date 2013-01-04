@@ -1,22 +1,28 @@
 "---------------------------------------------------
 " neobundle.vim
 "---------------------------------------------------
-set nocompatible
 filetype plugin indent off
+set nocompatible
 
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
-  call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 
+call neobundle#rc(expand('~/.vim/bundle/'))
+
+" Let NeoBundle manage NeoBundle
+NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundle 'Shougo/vimproc'
+
+" my bundle
 NeoBundle 'The-NERD-tree'
 NeoBundle 'The-NERD-Commenter'
-NeoBundle 'nvie/vim-flake8'
-NeoBundle 'JavaScript-syntax'
-NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'altercation/vim-colors-solarized'
-NeoBundle 'kchmck/vim-coffee-script'
 NeoBundle 'nathanaelkane/vim-indent-guides'
+NeoBundleLazy 'nvie/vim-flake8', {'autoload': {'filetypes': ['python']}}
+NeoBundleLazy 'JavaScript-syntax', {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}}
 
 filetype plugin indent on
 
@@ -189,6 +195,7 @@ autocmd FileType sh call SettingForPython()
 autocmd FileType ini call SettingForPython()
 autocmd FileType cfg call SettingForPython()
 autocmd FileType html call SettingForHTML()
+autocmd FileType xml call SettingForHTML()
 autocmd FileType javascript call SettingForHTML()
 autocmd FileType javascript :compiler gjslint
 autocmd QuickfixCmdPost make copen

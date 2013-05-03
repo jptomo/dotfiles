@@ -1,16 +1,22 @@
 #!/usr/bin/env bash
 
-DOT_FILES=( gitconfig gitignore hgrc hgeol hgignore zshrc zsh.alias \
- zsh_profile zsh.mode zsh.locale tmux.conf inputrc vimrc gemrc \
- bashrc bash.alias bash.locale )
-BAKDIR=backup/`date +%Y%m%d%H%M%S`
+# 対象のファイル一覧
+DOT_FILES=( \
+  gitconfig gitignore \
+  hgrc hgeol hgignore \
+  zshrc zsh.alias \
+  zsh_profile zsh.mode zsh.locale \
+  tmux.conf inputrc vimrc gemrc \
+  gvimrc bashrc bash.alias bash.locale \
+)
 
+# バックアップディレクトリの作成
 CURDIR=$(cd $(dirname $0); pwd)
-mkdir -p ${CURDIR}/${BAKDIR}
+BAKDIR="backup/$(date +%Y%m%d%H%M%S)"
+mkdir -p "$CURDIR/$BAKDIR"
 
-for file in ${DOT_FILES[@]}
-do
-    mv ${HOME}/.${file} ${CURDIR}/${BAKDIR} 
-    ln -s ${CURDIR}/dots/${file} ${HOME}/.${file}
+# ファイルの移動
+for file in "${DOT_FILES[@]}"; do
+  mv "$HOME/.$file" "$CURDIR/$BAKDIR"
+  ln -s "$CURDIR/dots/$file" "$HOME/.$file"
 done
-

@@ -6,3 +6,6 @@ syntax: glob
 .git
 .svn
 .DS_Store
+
+syntax: regexp
+^local/

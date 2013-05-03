@@ -32,10 +32,16 @@ for file in "${DOT_FILES[@]}" ; do
         # 存在しない場合
         printf "指定された $file は \$HOME に"
         echo   "存在するため、コピーされませんでした。"
+    elif [ $INCLUDE_FLG -eq 0 ] ; then
+        # ファイル名が include で終わる
+        # ファイルについてはシンボリックリンク
+        # ではなくファイルコピーとする
+        cp "$CURDIR/dots/$file" "$HOME/.$file"
+        echo "$file を \$HOME にコピーしました。"
     else
         # その他の場合はファイルをコピーする
         mv "$HOME/.$file" "$CURDIR/$BAKDIR"
         ln -s "$CURDIR/dots/$file" "$HOME/.$file"
-        echo "$file を \$HOME にコピーしました。"
+        echo "$file を \$HOME にリンクしました。"
     fi
 done

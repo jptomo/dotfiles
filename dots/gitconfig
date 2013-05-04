@@ -1,6 +1,5 @@
-[user]
-name = Tomohiro Nakamura
-email = quickness.net@gmail.com
+[include]
+path = ~/.gitconfig.include
 
 [core]
 symlinks = false
@@ -18,14 +17,6 @@ packSizeLimit = 2g
 
 [help]
 format = html
-
-[http]
-;sslCAinfo = /usr/share/ca-certificates/cacert.org/cacert.org.crt
-sslCAinfo = /etc/ssl/certs/ca-certificates.crt
-
-[sendemail]
-;smtpserver = /usr/bin/msmtp.exe
-smtpserver = /usr/bin/msmtp
 
 [diff]
 external = git_diff_wrapper

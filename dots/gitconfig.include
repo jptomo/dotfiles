@@ -1,0 +1,13 @@
+[user]
+name = Tomohiro Nakamura
+email = quickness.net@gmail.com
+
+[http]
+; windows:    /usr/share/ca-certificates/cacert.org/cacert.org.crt
+; linux mint: /etc/ssl/certs/ca-certificates.crt
+sslCAinfo = /etc/ssl/certs/ca-certificates.crt
+
+[sendemail]
+; windows:    /usr/bin/msmtp.exe
+; linux mint: /usr/bin/msmtp
+smtpserver = /usr/bin/msmtp

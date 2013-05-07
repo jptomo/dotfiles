@@ -45,4 +45,7 @@ cmd.vimdiff =
 vi  = vimdiff
 vim = vimdiff
 
+[hooks]
+update = find . -name "*.pyc" -delete
+
 %include ~/.hgrc.include

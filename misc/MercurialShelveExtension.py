@@ -8,10 +8,17 @@
 
 '''interactive change selection to set aside that may be restored later'''
 
+import copy
+import cStringIO
+import errno
+import operator
+import os
+import re
+import shutil
+import tempfile
 from mercurial.i18n import _
-from mercurial import cmdutil, commands, cmdutil, hg, mdiff, patch, revlog
+from mercurial import cmdutil, commands, hg, mdiff, patch
 from mercurial import util, fancyopts, extensions
-import copy, cStringIO, errno, operator, os, re, shutil, tempfile
 
 lines_re = re.compile(r'@@ -(\d+),(\d+) \+(\d+),(\d+) @@\s*(.*)')
 

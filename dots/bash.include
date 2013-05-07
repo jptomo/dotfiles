@@ -1,0 +1,47 @@
+### for bash completion 
+#export BASH_COMPLETION_DIR=/etc/bash_completion.d
+#source "$BASH_COMPLETION_DIR/git"
+#source "$BASH_COMPLETION_DIR/mercurial"
+### 作業ブランチの表示
+#if [ -f $BASH_COMPLETION_DIR/git ]; then
+#    PS1="\$(git_branch)\$(hg_branch)[@\h \W]\$ "
+#fi
+
+### for variaous environment
+#export EDITOR=vim
+#export PAGER=lv
+
+### for git
+#function git_diff() {
+#    git diff --no-ext-diff -w "$@" | vim -R -
+#}
+
+### for ruby
+#export PATH="$HOME/.rbenv/bin:${PATH}"
+#eval "$(rbenv init -)"
+#export PATH=$HOME/local/lib/gems/1.8/bin:${PATH}
+#export RUBYOPT='-Ke -rkconv'
+#export RUBYLIB=$HOME/local/lib:/usr/lib/ruby/1.8
+#export GEM_HOME=$HOME/local/lib/gems/1.8
+
+### for python
+#export VIRTUALENV_USE_DISTRIBUTE=true
+## for virtualenv
+#export WORKON_HOME=$HOME/.virtualenvs
+#source `which virtualenvwrapper.sh`
+#for Python 2.7
+#workon main27
+# pip bash completion
+#eval "`pip completion --bash`"
+
+### for jenkins
+#export JENKINS_HOME=$HOME/jenkins
+
+### for node.js
+#source "$HOME/.nvm/nvm.sh"
+#source "$HOME/.nvm/bash_completion"
+
+# Linux IM
+#export GTK_IM_MODULE=ibus
+#export XMODIFIERS=@im=ibus
+#export QT_IM_MODULE=ibus

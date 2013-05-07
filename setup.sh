@@ -7,8 +7,10 @@ DOT_FILES=( \
     hgrc hgeol hgignore hgrc.include\
     zshrc zsh.alias \
     zsh_profile zsh.mode zsh.locale \
-    tmux.conf inputrc vimrc gemrc \
-    gvimrc bashrc bash.alias bash.locale \
+    tmux.conf inputrc vimrc gvimrc \
+    gemrc \
+    bashrc bash.alias \
+    bash.locale bash.include \
 )
 
 # バックアップディレクトリの作成

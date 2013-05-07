@@ -1,2 +1,11 @@
-" 行番号非表示
-set nonumber
+se showtabline=2 " タブを常に表示
+se imdisable     " IMを無効化
+se nonumber      " 行番号非表示
+
+if has('gui_macvim')
+    "se transparency=10      " 透明度を指定
+    se antialias
+    se guifont=Ricty:h14
+    "colorscheme macvim
+    se clipboard=unnamed
+endif

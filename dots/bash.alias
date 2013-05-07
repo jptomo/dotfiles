@@ -1,3 +1,6 @@
+# ^C が残る対策
+stty -ctlecho
+
 ### PATH の整理
 UNAME=`uname`
 PATH2="$HOME/.local/bin:$HOME/.local/sbin"
@@ -14,75 +17,36 @@ if [ ${UNAME:0:5} = "MINGW" ] ; then
     PATH2="$PATH2:/c/Program Files/Mercurial"
 fi
 export PATH="$PATH2:$PATH"
-export SHELL=$(which bash)
 
+# other settings
+export SHELL=$(which bash)
+export EDITOR=vim
+export PAGER=lessr
+export GREP_OPTIONS="-nr --binary-files=without-match --color=always"
+export PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
+#export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"
 export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"
 export PIP_RESPECT_VIRTUALENV=true
 export HGENCODING="utf-8"
-export GREP_OPTIONS="--binary-files=without-match --color=auto"
 
 alias ls='ls -hF'
 alias ll='ls -hl'
 alias la='ls -hla'
+alias hgc='hg --color always'
+alias lessr='less -R'
+alias lv='less'
 
-stty -ctlecho
-
+# tmux のタイトルを設定する
 settitle() {
     printf "\033k$1\033\\"
 }
 
+# 現在のディレクトリの mercurial のブランチ名を取得し返す
 hg_branch() {
     hg branch 2> /dev/null | awk '{print "(hg:" $1 ")"}'
 }
 
+# 現在のディレクトリの mercurial のブランチ名を取得し返す
 git_branch() {
     __git_ps1 '(git:%s)'
 }
-
-### for bash completion 
-#export BASH_COMPLETION_DIR=/etc/bash_completion.d
-#source "$BASH_COMPLETION_DIR/git"
-#source "$BASH_COMPLETION_DIR/mercurial"
-### 作業ブランチの表示
-#if [ -f $BASH_COMPLETION_DIR/git ]; then
-#    PS1="\$(git_branch)\$(hg_branch)[@\h \W]\$ "
-#fi
-
-### for variaous environment
-#export EDITOR=vim
-#export PAGER=lv
-
-### for git
-#function git_diff() {
-#    git diff --no-ext-diff -w "$@" | vim -R -
-#}
-
-### for ruby
-#export PATH="$HOME/.rbenv/bin:${PATH}"
-#eval "$(rbenv init -)"
-#export PATH=$HOME/local/lib/gems/1.8/bin:${PATH}
-#export RUBYOPT='-Ke -rkconv'
-#export RUBYLIB=$HOME/local/lib:/usr/lib/ruby/1.8
-#export GEM_HOME=$HOME/local/lib/gems/1.8
-
-### for python
-#export VIRTUALENV_USE_DISTRIBUTE=true
-## for virtualenv
-#export WORKON_HOME=$HOME/.virtualenvs
-#source `which virtualenvwrapper.sh`
-#for Python 2.7
-#workon main27
-# pip bash completion
-#eval "`pip completion --bash`"
-
-### for jenkins
-#export JENKINS_HOME=$HOME/jenkins
-
-### for node.js
-#source "$HOME/.nvm/nvm.sh"
-#source "$HOME/.nvm/bash_completion"
-
-# Linux IM
-#export GTK_IM_MODULE=ibus
-#export XMODIFIERS=@im=ibus
-#export QT_IM_MODULE=ibus

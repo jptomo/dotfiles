@@ -18,7 +18,6 @@ NeoBundle 'Shougo/vimproc'
 " my bundle
 NeoBundle 'The-NERD-tree'
 NeoBundle 'The-NERD-Commenter'
-NeoBundle 'altercation/vim-colors-solarized'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundleLazy 'nvie/vim-flake8', {'autoload': {'filetypes': ['python']}}
 NeoBundleLazy 'JavaScript-syntax', {'autoload': {'filetypes': ['javascript']}}
@@ -232,10 +231,10 @@ au FileType coffee call SettingForHTML()
 au FileType * se formatoptions-=ro
 
 " ### color ###
-set background=dark
+"set background=dark
 "set background=light
-let g:solarized_termcolors=256
-colorscheme solarized
+"let g:solarized_termcolors=256
+"colorscheme solarized
 
 " ### Nerdtree ###
 " 編集中のファイルのあるディレクトリに移動

@@ -58,13 +58,13 @@ se statusline=%<%F\ %r%h%w%y%{'['.(&fenc!=''?&fenc:&enc).']['.&ff.']'}%=%4v(ASCI
 se foldmethod=indent  " indent でfold
 se foldlevel=99       " hoge
 " indent
-se autoindent
 se tabstop=4 shiftwidth=4 softtabstop=4
 se smarttab
 se expandtab
 se autoindent
-se nosmartindent
+se smartindent
 se cindent
+se formatoptions=q
 se textwidth=80
 se enc=utf-8
 

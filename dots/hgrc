@@ -2,7 +2,6 @@
 cacerts = /etc/ssl/certs/ca-certificates.crt
 
 [ui]
-username = Tomohiro Nakamura <quickness.net@gmail.com>
 ignore = ~/.hgignore
 style = default
 ssh = ssh -C

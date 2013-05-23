@@ -20,8 +20,8 @@ export PATH="$PATH2:$PATH"
 
 # other settings
 export SHELL=$(which bash)
-export EDITOR=vim
-export PAGER=lessr
+export EDITOR=$(which vim)
+export PAGER=$(which less)
 export GREP_OPTIONS="-nr --binary-files=without-match --color=always"
 export PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
 #export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"
@@ -34,7 +34,7 @@ alias ll='ls -hl'
 alias la='ls -hla'
 alias hgc='hg --color always'
 alias lessr='less -R'
-alias lv='less'
+alias lv='lessr'
 
 # tmux のタイトルを設定する
 settitle() {

@@ -36,3 +36,5 @@ generic = ^B move-page-up
 [alias]
 ci = commit
 st = status
+gl = log --graph --all --pretty=format:"%h%x09%d%x20%s"
+id = log -1 HEAD^ --pretty=format:"%H"

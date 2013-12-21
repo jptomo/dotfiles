@@ -13,7 +13,7 @@ dock() {(
         echo ""
         echo "Commands:"
         echo "list            - list up docker containers"
-        echo "ip              - list up docker container\'s ip"
+        echo "ip              - list up docker container's ip"
         echo "env             - show target environment variables"
         echo "delete-stops    - remove stoped containers"
         echo "delete-olds     - remove old containers (one week)"

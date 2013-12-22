@@ -67,7 +67,7 @@ dock() {(
         _get_ids() { docker ps | awk 'NR != 1 { print $1 }' ; }
 
         # 処理中の conatainer の数を取得
-        _ps_count=$(expr $(_get_ids | wc -l) - 1)
+        _ps_count=$(_get_ids | wc -l)
 
         # 処理中の container が有れば、全て落とす
         if [[ $_ps_count != 0 ]] ; then

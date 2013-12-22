@@ -15,6 +15,7 @@ dock() {(
         echo "list            - list up docker containers"
         echo "ip              - list up docker container's ip"
         echo "env             - show target environment variables"
+        echo "killall         - kill running all containers"
         echo "delete-stops    - remove stoped containers"
         echo "delete-olds     - remove old containers (one week)"
         return 0
@@ -57,6 +58,27 @@ dock() {(
     }
 
     # delete stoped containers
+    _dock_killall_help() {
+        echo 'Not Implemented'
+        return 1
+    }
+    _dock_killall() {
+        # 処理が進んでいる container の id を取得
+        _get_ids() { docker ps | awk 'NR != 1 { print $1 }' ; }
+
+        # 処理中の conatainer の数を取得
+        _ps_count=$(expr $(_get_ids | wc -l) - 1)
+
+        # 処理中の container が有れば、全て落とす
+        if [[ $_ps_count != 0 ]] ; then
+            _get_ids | xargs docker kill
+        else
+            echo 'docker container is not running.'
+        fi
+        return 0
+    }
+
+    # delete stoped containers
     _dock_delete_stops_help() {
         echo 'Not Implemented'
         return 1
@@ -80,8 +102,9 @@ dock() {(
             'list') _dock_list_help ;;
             'ip') _dock_ip_help ;;
             'env') _dock_env_help ;;
-            'delete-stops') _delete_stops_help ;;
-            'delete-olds') _delete-olds_help ;;
+            'killall') _dock_killall_help ;;
+            'delete-stops') _dock_delete_stops_help ;;
+            'delete-olds') _dock_delete-olds_help ;;
             *) _usage ;;
         esac
         return 0
@@ -91,6 +114,7 @@ dock() {(
         'list') _dock_list ;;
         'ip') _dock_ip ;;
         'env') _dock_env "${2}" ;;
+        'killall') _dock_killall ;;
         'delete-stops') _dock_delete_stops ;;
         'delete-olds') _dock_delete_olds ;;
         # dependencies)
@@ -106,7 +130,7 @@ _dock() {
     cur=${COMP_WORDS[COMP_CWORD]}
     prev=${COMP_WORDS[COMP_CWORD-1]}
     if [[ $COMP_CWORD -eq 1 ]] ; then
-        COMPREPLY=( $( compgen -W 'list ip env delete-stops delete-olds help' $cur ) )
+        COMPREPLY=( $( compgen -W 'list ip env killall delete-stops delete-olds help' $cur ) )
     fi
 }
 complete -F _dock dock

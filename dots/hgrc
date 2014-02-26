@@ -38,8 +38,7 @@ hgext.extdiff =
 cmd.vimdiff =
 
 [alias]
-vi  = vimdiff
-vim = vimdiff
+qser = qser -s
 
 [hooks]
 update = find . -name "*.pyc" -delete

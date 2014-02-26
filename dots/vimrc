@@ -274,7 +274,7 @@ let g:NERDTreeIgnore=[
         \]
 
 " ### flake8 ###
-let g:flake8_ignore='E501'
+let g:flake8_ignore='E501,E241'
 
 " ### neocomplete ###
 let g:neocomplcache_enable_at_startup = 1

@@ -41,6 +41,7 @@
     generic = ^B move-page-up
 
 [alias]
+    co = checkout
     ci = commit
     st = status
     id = log -1 HEAD^ --pretty=format:"%H"

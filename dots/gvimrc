@@ -1,6 +1,9 @@
 se showtabline=2 " タブを常に表示
-se imdisable     " IMを無効化
 se nonumber      " 行番号非表示
+
+se guifont=Migu\ 2M\ 10
+se guifontwide=Migu\ 2M\ 10
+se clipboard=unnamedplus
 
 if has('gui_macvim')
     "se transparency=10      " 透明度を指定

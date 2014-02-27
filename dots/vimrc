@@ -25,11 +25,13 @@ NeoBundle 'Shougo/vimproc', {'build': {
 " my bundle
 NeoBundle 'The-NERD-tree'
 NeoBundle 'The-NERD-Commenter'
+NeoBundle 'jonathanfilip/vim-lucius'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundleLazy 'nvie/vim-flake8', {'autoload': {'filetypes': ['python']}}
 NeoBundleLazy 'JavaScript-syntax', {'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}}
+NeoBundleLazy 'oscarh/vimerl', {'autoload': {'filetypes': ['erlang']}}
 
 filetype plugin indent on
 syntax enable
@@ -256,9 +258,12 @@ au FileType * se formatoptions-=ro
 
 
 " ### color ###
-let g:solarized_termcolors=256
 se background=light
-colo delek
+if has('win32')
+    colo blue
+else
+    colo lucius
+endif
 
 " ### Nerdtree ###
 nmap <silent> <C-O> :NERDTreeToggle<CR>
@@ -269,7 +274,7 @@ let g:NERDTreeIgnore=[
         \]
 
 " ### flake8 ###
-let g:flake8_ignore='E501'
+let g:flake8_ignore='E501,E241'
 
 " ### neocomplete ###
 let g:neocomplcache_enable_at_startup = 1

@@ -8,6 +8,8 @@ diff3.args = -m $local $base $other > $output
 
 [extensions]
 color =
+;pip install diff-highlight
+diff_highlight =
 info = ~/.local/lib/Mercurial/MercurialInfoExtension.py
 eol =
 graphlog = 

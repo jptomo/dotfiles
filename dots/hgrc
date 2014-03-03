@@ -32,6 +32,7 @@ secret = True
 
 [phases]
 publish = False
+new-commit = secret
 
 [extensions]
 hgext.extdiff =

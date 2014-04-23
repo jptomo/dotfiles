@@ -43,6 +43,7 @@ syntax enable
 " SWP BAK ファイル
 se noswapfile   " SWF ファイルなし
 se nobackup     " BAK ファイルなし
+se undodir="~/.local/var/vim/undo"
 "se backupdir=$VIM\_vim\backups
 "se directory=$VIM\_vim\swaps
 

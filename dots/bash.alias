@@ -22,7 +22,7 @@ export PATH="$PATH2:$PATH"
 export SHELL=$(which bash)
 export EDITOR=$(which vim)
 export PAGER=$(which less)
-export GREP_OPTIONS="-nr --binary-files=without-match --color=always"
+export GREP_OPTIONS="-r --binary-files=without-match"
 export PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
 #export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"
 export PIP_DOWNLOAD_CACHE="$HOME/.pip/cache"

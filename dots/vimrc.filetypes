@@ -1,0 +1,25 @@
+" vim:se ft=vim fdm=marker foldlevel=-1:
+" register filetype
+au BufRead,BufNewFile *.coffee se filetype=coffee
+
+" some filetype settings
+au QuickfixCmdPost make copen
+
+au FileType python call SettingForPython()
+au FileType php call SettingForPython()
+au FileType twig call SettingForPython()
+au FileType ruby call SettingForRuby()
+au FileType sh call SettingForPython()
+au FileType ini call SettingForPython()
+au FileType cfg call SettingForPython()
+au FileType html call SettingForHTML()
+au FileType htmldjango call SettingForHTML()
+au FileType xml call SettingForHTML()
+au FileType xspf call SettingForHTML()
+au FileType javascript call SettingForHTML()
+au FileType javascript :compiler gjslint
+au FileType css call SettingForHTML()
+au FileType rst call SettingForRST()
+au FileType coffee call SettingForHTML()
+
+au FileType * se formatoptions-=ro

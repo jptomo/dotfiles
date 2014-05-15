@@ -7,7 +7,9 @@ DOT_FILES=( \
     hgrc hgeol hgignore hgrc.include\
     zshrc zsh.alias \
     zsh_profile zsh.mode zsh.locale \
-    tmux.conf inputrc vimrc gvimrc \
+    tmux.conf inputrc \
+    vimrc gvimrc vimrc.completion vimrc.bundle vimrc.encodings \
+    vimrc.basis vimrc.completion vimrc.filetypes \
     gemrc \
     bashrc bash.alias \
     bash.locale bash.include \

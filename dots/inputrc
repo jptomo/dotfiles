@@ -9,6 +9,7 @@ set expand-tilde on
 # 日本語関係
 set input-meta on
 set convert-meta off
+set meta-flag on
 set output-meta on
 
 # タブ補完時、大文字小文字無視

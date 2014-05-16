@@ -1,6 +1,6 @@
-" vim:se ft=vim fdm=marker foldlevel=-1:
-source ~/.vimrc.bundle
-source ~/.vimrc.encodings
-source ~/.vimrc.filetypes
-source ~/.vimrc.basis
-source ~/.vimrc.completion
+" vim:se ft=vim:
+so ~/.vimrc.bundle
+so ~/.vimrc.encodings
+so ~/.vimrc.filetypes
+so ~/.vimrc.basis
+so ~/.vimrc.completion

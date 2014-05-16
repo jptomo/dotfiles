@@ -1,4 +1,4 @@
-" vim:se ft=vim fdm=marker foldlevel=-1:
+" vim:se ft=vim:
 if &encoding !=# 'utf-8'
   se encoding=japan
   se fileencoding=japan

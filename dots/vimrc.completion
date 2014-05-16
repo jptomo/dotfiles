@@ -1,4 +1,4 @@
-" vim:se ft=vim fdm=marker foldlevel=-1:
+" vim:se ft=vim:
 "Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
 " Disable AutoComplPop.
 let g:acp_enableAtStartup = 0

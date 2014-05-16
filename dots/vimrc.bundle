@@ -1,4 +1,4 @@
-" vim:se ft=vim fdm=marker foldlevel=-1:
+" vim:se ft=vim:
 filetype plugin indent off
 
 " golang
@@ -11,8 +11,6 @@ endif
 
 call neobundle#rc(expand('~/.vim/bundle/'))
 
-NeoBundleFetch 'Shougo/neobundle.vim'
-
 " Let NeoBundle manage NeoBundle
 NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle 'Shougo/vimproc', {'build': {
@@ -21,16 +19,33 @@ NeoBundle 'Shougo/vimproc', {'build': {
 \           'mac' : 'make -f make_mac.mak',
 \           'unix' : 'make -f make_unix.mak'}}
 
-" my bundle
+" NERD tree
 NeoBundle 'The-NERD-tree'
 NeoBundle 'The-NERD-Commenter'
+
+" color scheme
 NeoBundle 'jonathanfilip/vim-lucius'
+
+" indent
 NeoBundle 'nathanaelkane/vim-indent-guides'
+
+" completion
 NeoBundle 'Shougo/neocomplcache'
+
+" reStructuredText
+NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}
+
+" Python
 NeoBundleLazy 'nvie/vim-flake8', {'autoload': {'filetypes': ['python']}}
+
+" JavaScript
 NeoBundleLazy 'JavaScript-syntax', {'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
+
+" CoffeeScript
 NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}}
+
+" Erlang
 NeoBundleLazy 'oscarh/vimerl', {'autoload': {'filetypes': ['erlang']}}
 
 filetype plugin indent on

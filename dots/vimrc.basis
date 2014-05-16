@@ -1,3 +1,4 @@
+" vim:se ft=vim:
 " 文字色／背景色
 se background=light
 if has('win32')

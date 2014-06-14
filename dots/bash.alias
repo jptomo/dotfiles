@@ -34,7 +34,7 @@ alias ll='ls -hl'
 alias la='ls -hla'
 alias hgc='hg --color always'
 alias lessr='less -R'
-alias lv='lessr'
+alias lv='less -R'
 
 # tmux のタイトルを設定する
 settitle() {

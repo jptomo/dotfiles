@@ -4,9 +4,9 @@ se nonumber      " 行番号非表示
 se guifont=Migu\ 2M\ 10
 se guifontwide=Migu\ 2M\ 10
 se clipboard=unnamedplus
+se guioptions-=T
 
 if has('gui_macvim')
-    "se transparency=10      " 透明度を指定
     se antialias
     se guifont=Ricty:h14
     "colorscheme macvim

@@ -37,6 +37,7 @@ NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}
 
 " Python
 NeoBundleLazy 'nvie/vim-flake8', {'autoload': {'filetypes': ['python']}}
+NeoBundleLazy 'keitheis/vim-plim', {'autoload': {'filetypes': ['plim']}}
 
 " JavaScript
 NeoBundleLazy 'JavaScript-syntax', {'autoload': {'filetypes': ['javascript']}}

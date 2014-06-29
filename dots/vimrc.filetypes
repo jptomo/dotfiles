@@ -1,6 +1,7 @@
 " vim:se ft=vim:
 " register filetype
 au BufRead,BufNewFile *.coffee se filetype=coffee
+au BufRead,BufNewFile *.plm se filetype=plim
 
 " some filetype settings
 au QuickfixCmdPost make copen

@@ -113,20 +113,3 @@ func! String2Dec(str)
   endwhile
   return out
 endfunc
-
-" some filetype configuration functions
-" 各種関数はファイルを開く際毎度呼ばれる見たいなので setl で設定する
-function SettingForPython()
-  setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-  autocmd BufWritePre * :%s/\s\+$//ge
-endfunction
-function SettingForRuby()
-  setl tabstop=2 shiftwidth=2 softtabstop=2
-  autocmd BufWritePre * :%s/\s\+$//ge
-endfunction
-function SettingForHTML()
-  setl tabstop=2 shiftwidth=2 softtabstop=2
-endfunction
-function SettingForRST()
-  setl tabstop=3 expandtab shiftwidth=3 softtabstop=3
-endfunction

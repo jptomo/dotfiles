@@ -1,4 +1,25 @@
 " vim:se ft=vim:
+
+" some filetype configuration functions
+" 各種関数はファイルを開く際毎度呼ばれる見たいなので setl で設定する
+function SettingForPython()
+  setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+  autocmd BufWritePre * :%s/\s\+$//ge
+endfunction
+function SettingForRuby()
+  setl tabstop=2 shiftwidth=2 softtabstop=2
+  autocmd BufWritePre * :%s/\s\+$//ge
+endfunction
+function SettingForHTML()
+  setl tabstop=2 shiftwidth=2 softtabstop=2
+endfunction
+function SettingForRST()
+  setl tabstop=3 expandtab shiftwidth=3 softtabstop=3
+endfunction
+function SettingForPLIM()
+  setl tabstop=2 expandtab shiftwidth=2 softtabstop=2
+endfunction
+
 " register filetype
 au BufRead,BufNewFile *.coffee se filetype=coffee
 au BufRead,BufNewFile *.plm se filetype=plim
@@ -7,6 +28,7 @@ au BufRead,BufNewFile *.plm se filetype=plim
 au QuickfixCmdPost make copen
 
 au FileType python call SettingForPython()
+au FileType plim call SettingForPLIM()
 au FileType php call SettingForPython()
 au FileType twig call SettingForPython()
 au FileType ruby call SettingForRuby()

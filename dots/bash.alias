@@ -30,7 +30,7 @@ alias lv='less -R'
 # other settings
 export SHELL=$(which bash)
 export EDITOR="vim"
-export PAGER="lessr"
+export PAGER="less"
 export GREP_OPTIONS="-r --binary-files=without-match"
 export PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
 #export JAVA_TOOL_OPTIONS="-Dfile.encoding=UTF-8"

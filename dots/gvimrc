@@ -1,8 +1,8 @@
 se showtabline=2 " タブを常に表示
 se nonumber      " 行番号非表示
 
-se guifont=Migu\ 2M\ 10
-se guifontwide=Migu\ 2M\ 10
+se guifont=Migu\ 2M\ 11
+se guifontwide=Migu\ 2M\ 11
 se clipboard=unnamedplus
 se guioptions-=T
 

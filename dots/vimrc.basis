@@ -1,14 +1,6 @@
 " vim:se ft=vim:
 " 文字色／背景色
-se background=light
-if has('win32')
-    colo blue
-elseif filereadable(expand("~/.vim.no-lusius"))
-    " lucius で白文字に成ってしまう対応
-    colo default
-else
-    colo lucius
-endif
+colo default
 
 " ウィンドウ表示関係
 se number       " 行番号表示

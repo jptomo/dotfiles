@@ -1,6 +1,6 @@
 ### for bash completion 
-source /etc/bash_completion
-source /etc/bash_completion.d/git-prompt
+#source /etc/bash_completion
+#source /etc/bash_completion.d/git-prompt
 
 ### 作業ブランチの表示
 #PS1="\$(git_branch)\$(hg_branch)[@\h \W]\$ "

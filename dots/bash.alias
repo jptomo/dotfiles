@@ -1,3 +1,4 @@
+#! /bin/sh
 # ^C が残る対策
 stty -ctlecho
 
@@ -24,7 +25,7 @@ alias lessr='less -R'
 alias lv='less -R'
 
 # other settings
-export SHELL=$(which bash)
+export SHELL="bash"
 export EDITOR="vim"
 export PAGER="less"
 export GREP_OPTIONS="-r --binary-files=without-match"

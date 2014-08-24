@@ -30,7 +30,7 @@ NeoBundle 'nathanaelkane/vim-indent-guides'
 NeoBundle 'Shougo/neocomplcache'
 
 " reStructuredText
-NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}
+"NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}
 
 " Python
 NeoBundleLazy 'nvie/vim-flake8', {'autoload': {'filetypes': ['python']}}

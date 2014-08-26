@@ -6,6 +6,7 @@
     autocrlf = false
     attributesfile = ~/.gitattributes
     excludesfile = ~/.gitignore
+	pager = 
 
 [color]
     ui = auto
@@ -27,9 +28,6 @@
 [diff]
     color-words = true
     ; external = git_diff_wrapper
-
-;[pager]
-    ;diff = true
 
 [http]
     sslVerify = false

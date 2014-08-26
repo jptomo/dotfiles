@@ -1,4 +1,4 @@
-" vim:se ft=vim:
+" vim: ft=vim:
 so ~/.vimrc.bundle
 so ~/.vimrc.encodings
 so ~/.vimrc.filetypes

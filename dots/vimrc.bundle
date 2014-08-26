@@ -27,7 +27,7 @@ NeoBundle 'The-NERD-Commenter'
 NeoBundle 'nathanaelkane/vim-indent-guides'
 
 " completion
-NeoBundle 'Shougo/neocomplcache'
+NeoBundle 'Shougo/neocomplete.vim'
 
 " reStructuredText
 "NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}

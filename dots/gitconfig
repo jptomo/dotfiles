@@ -1,47 +1,47 @@
 [include]
-    path = ~/.gitconfig.include
+	path = ~/.gitconfig.include
 
 [core]
-    symlinks = false
-    autocrlf = false
-    attributesfile = ~/.gitattributes
-    excludesfile = ~/.gitignore
+	symlinks = false
+	autocrlf = false
+	attributesfile = ~/.gitattributes
+	excludesfile = ~/.gitignore
 	pager = 
 
 [color]
-    ui = auto
-    diff = auto
-    status = auto
-    diff = auto
-    branche = auto
+	ui = auto
+	diff = auto
+	status = auto
+	diff = auto
+	branche = auto
 
 [status]
-    short = true
-    branch = true
+	short = true
+	branch = true
 
 [pack]
-    packSizeLimit = 2g
+	packSizeLimit = 2g
 
 [help]
-    format = html
+	format = html
 
 [diff]
-    color-words = true
-    ; external = git_diff_wrapper
+	color-words = true
+	; external = git_diff_wrapper
 
 [http]
-    sslVerify = false
+	sslVerify = false
 
 [tig "bind"]
-    generic = g move-first-line
-    generic = G move-last-line
-    generic = ^F move-page-down
-    generic = ^B move-page-up
+	generic = g move-first-line
+	generic = G move-last-line
+	generic = ^F move-page-down
+	generic = ^B move-page-up
 
 [alias]
-    co = checkout
-    ci = commit
-    st = status
-    id = log -1 HEAD^ --pretty=format:"%H"
-    wdiff = diff --color-words
-    graph = log --graph --decorate --oneline
+	co = checkout
+	ci = commit
+	st = status
+	id = log -1 HEAD^ --pretty=format:"%H"
+	wdiff = diff --color-words
+	graph = log --graph --decorate --oneline

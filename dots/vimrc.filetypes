@@ -44,5 +44,6 @@ au FileType javascript :compiler gjslint
 au FileType css call SettingForHTML()
 au FileType rst call SettingForRST()
 au FileType coffee call SettingForHTML()
+au FileType go compiler go
 
 au FileType * se formatoptions-=ro

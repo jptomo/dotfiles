@@ -46,5 +46,8 @@ NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}
 " Erlang
 NeoBundleLazy 'oscarh/vimerl', {'autoload': {'filetypes': ['erlang']}}
 
+" ps1 / PowerShell
+NeoBundleLazy 'PProvost/vim-ps1', {'autoload': {'filetypes': ['ps1']}}
+
 filetype plugin indent on
 syntax enable

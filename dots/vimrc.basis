@@ -109,4 +109,4 @@ let g:NERDTreeIgnore=[
 \]
 
 " ### flake8 ###
-let g:flake8_ignore='E501,E241'
+"let g:flake8_ignore='E501,E241'

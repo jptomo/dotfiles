@@ -17,10 +17,6 @@ call neobundle#begin(expand('~/.vim/bundle/'))
 " Required:
 NeoBundleFetch 'Shougo/neobundle.vim'
 
-" golang
-se rtp+=$GOROOT/misc/vim
-se nocompatible
-
 " Let NeoBundle manage NeoBundle
 NeoBundle 'Shougo/vimproc', {'build': {
 \           'windows' : 'echo "Sorry, cannot update vimproc binary file in Windows."',
@@ -57,6 +53,9 @@ NeoBundleLazy 'oscarh/vimerl', {'autoload': {'filetypes': ['erlang']}}
 
 " ps1 / PowerShell
 NeoBundleLazy 'PProvost/vim-ps1', {'autoload': {'filetypes': ['ps1']}}
+
+" Golang
+NeoBundleLazy 'fatih/vim-go', {'autoload': {'filetypes': ['go']}}
 
 " Required:
 call neobundle#end()

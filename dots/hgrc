@@ -12,7 +12,6 @@ color =
 diff_highlight =
 info = ~/.local/lib/Mercurial/MercurialInfoExtension.py
 eol =
-graphlog = 
 mq =
 hgshelve = ~/.local/lib/Mercurial/MercurialShelveExtension.py
 ;pager =
@@ -42,6 +41,7 @@ cmd.vimdiff =
 
 [alias]
 qser = qser -s
+gl = log -G
 
 [hooks]
 update = find . -name "*.pyc" -delete

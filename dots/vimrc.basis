@@ -79,7 +79,6 @@ se smartindent
 se cindent
 se formatoptions=q
 se textwidth=80
-se enc=utf-8
 
 " Folding
 se foldmethod=indent  " indent でfold

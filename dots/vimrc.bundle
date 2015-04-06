@@ -25,14 +25,15 @@ NeoBundle 'Shougo/vimproc', {'build': {
 \           'unix' : 'make -f make_unix.mak'}}
 
 " NERD tree
-NeoBundle 'The-NERD-tree'
-NeoBundle 'The-NERD-Commenter'
+NeoBundle 'scrooloose/nerdtree'
+NeoBundle 'scrooloose/nerdcommenter'
 
 " indent
 NeoBundle 'nathanaelkane/vim-indent-guides'
 
 " completion
 NeoBundle 'Shougo/neocomplete.vim'
+NeoBundle 'haya14busa/vim-migemo'
 
 " reStructuredText
 "NeoBundleLazy 'Rykka/riv.vim', {'autoload': {'filetypes': ['rst']}}

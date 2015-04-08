@@ -32,7 +32,7 @@
 	color-words = true
 
 [format]
-	pretty = format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s
+	pretty = format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s%n
 
 [http]
 	sslVerify = false

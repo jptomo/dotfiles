@@ -45,4 +45,5 @@
 	id = log -1 HEAD^ --pretty=format:"%H%n"
 	wdiff = diff --color-words
 	graph = log --graph --decorate --oneline
+	gl = log --graph --decorate --oneline
 	mergeff = merge --ff --ff-only

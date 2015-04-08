@@ -23,11 +23,16 @@
 	packSizeLimit = 2g
 
 [help]
-	format = html
+	format = man
+
+[log]
+	date = iso
 
 [diff]
 	color-words = true
-	; external = git_diff_wrapper
+
+[format]
+	pretty = format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s
 
 [http]
 	sslVerify = false
@@ -43,7 +48,6 @@
 	ci = commit
 	st = status
 	id = log -1 HEAD^ --pretty=format:"%H%n"
-	wdiff = diff --color-words
-	graph = log --graph --decorate --oneline
-	gl = log --graph --decorate --oneline
-	mergeff = merge --ff --ff-only
+	diffw = diff --color-words
+	gl = log --graph
+	graph = log --graph

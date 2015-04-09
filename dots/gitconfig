@@ -6,15 +6,11 @@
 	autocrlf = false
 	attributesfile = ~/.gitattributes
 	excludesfile = ~/.gitignore
-	pager = 
+	pager =
 	abbrev = 12
 
 [color]
-	ui = auto
-	diff = auto
-	status = auto
-	diff = auto
-	branche = auto
+	ui = true
 
 [status]
 	short = true
@@ -32,14 +28,11 @@
 [log]
 	date = iso
 
-[diff]
-	color-words = true
-
 [format]
 	pretty = format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s%n
 
 [http]
-	sslVerify = false
+	sslVerify = true
 
 [tig "bind"]
 	generic = g move-first-line
@@ -52,6 +45,7 @@
 	ci = commit
 	st = status
 	id = log -1 HEAD^ --pretty=format:"%H%n"
+	di = diff --color-words
 	diffw = diff --color-words
 	gl = log --graph
 	graph = log --graph

@@ -1,27 +1,17 @@
-### for bash completion 
-#source /etc/bash_completion
-#source /etc/bash_completion.d/git-prompt
-
 ### 作業ブランチの表示
 #PS1="\$(git_branch)\$(hg_branch)[@\h \W]\$ "
 
-# vim
-#_vim="/opt/vim/v7-4-347"
-#export VIM="$_vim/bin"$
+### vim
+#mkdir -p ~/.vim/bundle
+#git clone git://github.com/Shougo/neobundle.vim.git ~/.vim/bundle/neobundle.vim
+#_vim="/opt/vim/v7-4-692"
+#export VIM="$_vim/bin"
 #export VIMRUNTIME="$_vim/share/vim/vim74/"
 #export PATH="$VIM:$PATH"
 #unset _vim
 
-### for git with vimdiff
-#function git_diff() {
-#    git diff --no-ext-diff -w "$@" | vim -R -
-#}
-
 ### for python
 #export PATH="/opt/Python/2.7.8/bin:$PATH"
-#export WORKON_HOME=$HOME/.virtualenvs
-#source `which virtualenvwrapper.sh`
-#workon main27
 #eval "`pip completion --bash`"
 
 ### for ruby

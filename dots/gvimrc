@@ -8,7 +8,8 @@ se guioptions-=T
 if has('gui_macvim')
     se backspace=indent,eol,start
     se antialias
-    se guifont=Migu\ 2M:h13
+    se guifont=Migu\ 2M:h12
     se ambiwidth=double
     se clipboard=unnamed
+    se columns=205 lines=55
 endif

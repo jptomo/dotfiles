@@ -27,6 +27,9 @@ au BufRead,BufNewFile *.plm se filetype=plim
 " some filetype settings
 au QuickfixCmdPost make copen
 
+" force use htmldjango in smarty tpl file
+au FileType smarty se ft=htmldjango
+
 au FileType python call SettingForPython()
 au FileType plim call SettingForPLIM()
 au FileType php call SettingForPython()

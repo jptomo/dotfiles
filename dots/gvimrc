@@ -2,13 +2,13 @@ se showtabline=2 " タブを常に表示
 se nonumber      " 行番号非表示
 
 se guifont=Migu\ 2M\ 11
-se guifontwide=Migu\ 2M\ 11
 se clipboard=unnamedplus
 se guioptions-=T
 
 if has('gui_macvim')
+    se backspace=indent,eol,start
     se antialias
-    se guifont=Ricty:h14
-    "colorscheme macvim
+    se guifont=Migu\ 2M:h13
+    se ambiwidth=double
     se clipboard=unnamed
 endif

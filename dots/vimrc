@@ -1,4 +1,15 @@
 " vim: ft=vim:
+
+if has('mac')
+    let hb_opt = expand("~/.homebrew/opt/")
+    let $PERL_DLL = hb_opt . "perl/lib/5.20.1/darwin-thread-multi-2level/CORE/libperl.dylib"
+    let $PYTHON_DLL = hb_opt . "python/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib"
+    let $PYTHON3_DLL = hb_opt . "python3/Frameworks/Python.framework/Versions/3.4/lib/libpython3.4.dylib"
+    let $RUBY_DLL = hb_opt . "ruby/lib/libruby.2.2.0.dylib"
+    let $LUA_DLL = hb_opt . "lua/lib/liblua.5.2.3.dylib"
+    unlet hb_opt
+endif
+
 so ~/.vimrc.bundle
 so ~/.vimrc.encodings
 so ~/.vimrc.filetypes

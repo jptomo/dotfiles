@@ -12,4 +12,5 @@ if has('gui_macvim')
     se ambiwidth=double
     se clipboard=unnamed
     se columns=205 lines=55
+    se imdisable
 endif

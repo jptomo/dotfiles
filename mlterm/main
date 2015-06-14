@@ -9,7 +9,7 @@ geometry=80x27
 # デフォルトフォントサイズ
 fontsize = 16
 # xcore フォントか xft フォントのいずれを使用するかを指定する。
-type_engine = xft
+type_engine = cairo
 #
 receive_string_via_ucs = true
 # Unicode記号文字幅を半角2文字にする。
@@ -24,8 +24,6 @@ only_use_unicode_font=false
 iso88591_font_for_usascii=false
 # DEC_SPECIAL フォントの罫線文字のグリフを動的に合成
 compose_dec_special_font=false
-# インプッドメソッドの設定
-input_method = ibus
 # タブ幅
 tabsize = 4
 # ログの行数 

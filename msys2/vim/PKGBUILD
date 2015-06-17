@@ -2,8 +2,8 @@
 
 pkgname=vim
 _topver=7.4
-_patchlevel=728
-__hgrev=9782a8aa2d7f
+_patchlevel=738
+__hgrev=8730db0c187b
 _versiondir="${pkgname}${_topver//./}"
 pkgver=${_topver}.${_patchlevel}
 pkgrel=1
@@ -15,15 +15,13 @@ groups=('editors')
 makedepends=('gawk' 'perl' 'python2' 'python3' 'ruby' 'mercurial' 'libiconv')
 source=(#"${pkgname}-${pkgver}"::"hg+http://vim.googlecode.com/hg/vim#tag=v${pkgver//./-}"
         "${pkgname}-${pkgver}.tar.xz"
-        "${pkgname}-${pkgver}.tar.xz.sig"
         'dot.vimrc'
         '7.3-cygwin-mouse.patch'
         '7.3-virc.patch'
         '7.3-cygwin-python-dyn.patch'
         'pretend-cygwin-msys.patch'
         'vim-completion')
-md5sums=('08715146b06102ad59d8b4d05b09ceed'
-         'SKIP'
+md5sums=('SKIP'
          'b18bd005832117243727e9fef1b45691'
          '82e8c2ae0821d3a453c808e98916c4b8'
          'e776f485d8f027050ff040120acb8a86'
@@ -53,11 +51,6 @@ mksource() {
   rm ${pkgname}-${pkgver}/{.hgignore,.hgtags}
   tar -cJf ${pkgname}-${pkgver}.tar.xz ${pkgname}-${pkgver}/*
   rm -r ${pkgname}-${pkgver}
-
-  gpg --detach-sign ${pkgname}-${pkgver}.tar.xz
-
-  #scp ${pkgname}-${pkgver}.tar.xz nym:/srv/ftp/other/vim/
-  #scp ${pkgname}-${pkgver}.tar.xz.sig nym:/srv/ftp/other/vim/
 }
 
 prepare() {
@@ -71,38 +64,12 @@ prepare() {
   patch -p2 -i ${srcdir}/7.3-cygwin-python-dyn.patch
   patch -p1 -i ${srcdir}/pretend-cygwin-msys.patch
 
-  # define the place for the global (g)vimrc file (set to /etc/vimrc)
-  #sed -i 's|^.*\(#define SYS_.*VIMRC_FILE.*"\) .*$|\1|' \
-  #  vim-build/src/feature.h
-  #sed -i 's|^.*\(#define VIMRC_FILE.*"\) .*$|\1|' \
-  #  vim-build/src/feature.h
-
   cd src
   autoconf
 }
 
 build() {
   cd ${srcdir}/${pkgname}-${pkgver}
-
-  # ./configure \
-    # --prefix=/usr \
-    # --build=${CHOST} \
-    # --with-features=small \
-    # --with-tlib=ncursesw \
-    # --enable-multibyte \
-    # --disable-luainterp \
-    # --disable-perlinterp \
-    # --disable-pythoninterp \
-    # --disable-python3interp \
-    # --disable-rubyinterp \
-    # --disable-tclinterp \
-    # --disable-gpm --disable-sysmouse \
-    # --disable-gui --without-x \
-    # --with-compiledby="<alexpux@gmail.com>"
-  # make auto/osdef.h
-  # make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/vim${slot/\.} || die "make 2 fail"
-  # mv vim.exe vi.exe
-  # make distclean
 
   ./configure \
     --prefix=/usr \
@@ -111,12 +78,10 @@ build() {
     --with-tlib=ncursesw \
     --enable-cscope \
     --enable-multibyte \
-    --enable-luainterp=dynamic \
-    --enable-perlinterp=dynamic \
+    --enable-luainterp=yes \
+    --with-lua-prefix=/opt/lua/5.3.0 \
     --enable-pythoninterp=dynamic \
     --enable-python3interp=dynamic \
-    --enable-rubyinterp=dynamic \
-    --disable-tclinterp \
     --disable-gpm --disable-sysmouse \
     --disable-gui --without-x \
     CPPFLAGS="${CPPFLAGS} -I/usr/include/ncursesw" \
@@ -142,11 +107,6 @@ package() {
     VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/vim${_topver/\.} \
     STRIP=: INSTALL_DATA="cp -L" INSTALL_DATA_R="cp -Lr" \
     DESTDIR="${pkgdir}"
-
-  #for x in ex rvi vi.exe
-  #do
-  #  cp -f vi.exe ${pkgdir}/usr/bin/${x}
-  #done
 
   for y in vimdiff view rview rvim
   do

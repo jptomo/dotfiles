@@ -1,0 +1,9 @@
+msys2/**/*.tar.xz
+msys2/**/*.tar.gz
+msys2/**/*.tar.bz2
+msys2/**/*.tgz
+msys2/**/*.zip
+msys2/**/*.rar
+msys2/**/*.sig
+msys2/**/*/src/
+msys2/**/*/pkg/

@@ -5,5 +5,6 @@ msys2/**/*.tgz
 msys2/**/*.zip
 msys2/**/*.rar
 msys2/**/*.sig
+msys2/**/*/*.log*
 msys2/**/*/src/
 msys2/**/*/pkg/

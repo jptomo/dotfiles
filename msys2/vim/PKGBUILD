@@ -15,12 +15,14 @@ source=('dot.vimrc'
         '7.3-virc.patch'
         '7.3-cygwin-python-dyn.patch'
         'pretend-cygwin-msys.patch'
+        '7.4-output_osdef_h.patch'
         'vim-completion')
 md5sums=('b18bd005832117243727e9fef1b45691'
          '82e8c2ae0821d3a453c808e98916c4b8'
          'e776f485d8f027050ff040120acb8a86'
          '88ab80d81af8e88cf80d21b2796ec94d'
          'a5d13302787cd004ae188b69e353035d'
+         'f22f36abf096aaea18320c309cef5c45'
          '87fe7821e180647f3bf48ed099a22b83')
 
 # update pkgver
@@ -31,11 +33,8 @@ _latest=`git ls-remote --tags ${_repourl} \
     | sed -e 's/refs\/tags\///' \
     | grep 'v[0-9]-[0-9]-[0-9]\+' | sort -r | head -n 1`
 pkgver=`printf ${_latest} | sed -e 's/v//' | sed -e 's/-/./g'`
-
-_versiondir() {
-  printf ${pkgname}`printf $pkgver | sed -e 's/.[0-9]\+$//' \
-    | sed -e 's/v//' | sed -e 's/.//'`
-}
+_versiondir="${pkgname}`printf $pkgver | sed -e 's/.[0-9]\+$//' \
+    | sed -e 's/v//' | sed -e 's/.//'`"
 
 prepare() {
   if [ ! -d ${pkgname}-${pkgver} ] ; then
@@ -61,6 +60,8 @@ prepare() {
     patch -p2 -i ${srcdir}/7.3-virc.patch
     patch -p2 -i ${srcdir}/7.3-cygwin-python-dyn.patch
     patch -p1 -i ${srcdir}/pretend-cygwin-msys.patch
+    patch -p1 -i ${srcdir}/7.4-output_osdef_h.patch
+
   fi
 
   cd ${srcdir}/${pkgname}-${pkgver}/src
@@ -68,7 +69,7 @@ prepare() {
 }
 
 build() {
-  cd ${srcdir}/${pkgname}-${pkgver}
+  cd ${srcdir}/${pkgname}-${pkgver}/src
 
   ./configure \
     --prefix=/usr \
@@ -87,8 +88,8 @@ build() {
     --with-compiledby="<alexpux@gmail.com>"
 
   # make auto/osdef.h
-  make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/`_versiondir` clean
-  make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/`_versiondir`
+  make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/${_versiondir} output_osdef_h
+  make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/${_versiondir}
 }
 
 check() {
@@ -104,7 +105,7 @@ package() {
   make -j1 VIMRCLOC=/etc DESTDIR="${pkgdir}" install
 
   make install -j1 \
-    VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/`_versiondir` \
+    VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/${_versiondir} \
     STRIP=: INSTALL_DATA="cp -L" INSTALL_DATA_R="cp -Lr" \
     DESTDIR="${pkgdir}"
 
@@ -125,7 +126,6 @@ package() {
   done
 
   # fix FS#17216
-  _versiondir=${pkgname}`printf $pkgver | sed -e 's/-[0-9]\+$//' | sed -e 's/v//' | sed -e 's/-//'`
   sed -i 's|messages,/var|messages,/var/log/messages.log,/var|' \
     "${pkgdir}"/usr/share/vim/${_versiondir}/filetype.vim
 

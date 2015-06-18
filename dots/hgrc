@@ -19,6 +19,7 @@ progress =
 rebase =
 record =
 transplant =
+histedit =
 
 [color]
 mode = auto

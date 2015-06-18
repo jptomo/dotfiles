@@ -2,7 +2,7 @@
 # vim:ts=2 sw=2 sts=2:
 
 pkgname=vim
-pkgver=7.4.738
+pkgver=0.0.0
 pkgrel=1
 arch=('i686' 'x86_64')
 license=('custom:vim')
@@ -23,19 +23,14 @@ md5sums=('b18bd005832117243727e9fef1b45691'
          'a5d13302787cd004ae188b69e353035d'
          '87fe7821e180647f3bf48ed099a22b83')
 
+# update pkgver
 _repourl='git://github.com/vim/vim.git'
-
-_latest() {
-  git ls-remote --tags ${_repourl} \
+_latest=`git ls-remote --tags ${_repourl} \
     | sed -e 's/.\+\t//g' \
     | grep 'refs/tags' \
     | sed -e 's/refs\/tags\///' \
-    | grep 'v[0-9]-[0-9]-[0-9]\+' | sort -r | head -n 1
-}
-
-pkgver() {
-  printf `_latest` | sed -e 's/v//' | sed -e 's/-/./g'
-}
+    | grep 'v[0-9]-[0-9]-[0-9]\+' | sort -r | head -n 1`
+pkgver=`printf ${_latest} | sed -e 's/v//' | sed -e 's/-/./g'`
 
 _versiondir() {
   printf ${pkgname}`printf $pkgver | sed -e 's/.[0-9]\+$//' \
@@ -44,33 +39,31 @@ _versiondir() {
 
 prepare() {
   if [ ! -d ${pkgname}-${pkgver} ] ; then
-    git clone -q --depth 30 ${_repourl} vim
-    pushd vim
-    git reset -q --hard `_latest`
+    git clone -q --depth 30 ${_repourl} ${pkgname}-${pkgver}
+
+    pushd ${pkgname}-${pkgver}
+    git reset -q --hard ${_latest}
     popd
 
-    mv vim ${pkgname}-${pkgver}
+    if [ -d ${pkgname}-${pkgver}/.git ] ; then
+      rm -fr ${pkgname}-${pkgver}/.git
+    fi
+    if [ -f ${pkgname}-${pkgver}/.gitignore ] ; then
+      rm ${pkgname}-${pkgver}/.gitignore
+    fi
+
+    cd ${srcdir}/${pkgname}-${pkgver}
+
+    iconv -f ISO-8859-1 -t UTF-8 runtime/doc/eval.txt \
+      > runtime/doc/eval.tmp && mv -f runtime/doc/eval.{tmp,txt}
+
+    patch -p2 -i ${srcdir}/7.3-cygwin-mouse.patch
+    patch -p2 -i ${srcdir}/7.3-virc.patch
+    patch -p2 -i ${srcdir}/7.3-cygwin-python-dyn.patch
+    patch -p1 -i ${srcdir}/pretend-cygwin-msys.patch
   fi
 
-  find ${pkgname}-${pkgver} -depth -type d -name .git -exec rm -rf {} \;
-  if [ -d ${pkgname}-${pkgver}/.git ] ; then
-    rm -fr ${pkgname}-${pkgver}/.git
-  fi
-  if [ -f ${pkgname}-${pkgver}/.gitignore ] ; then
-    rm ${pkgname}-${pkgver}/.gitignore
-  fi
-
-  cd ${srcdir}/${pkgname}-${pkgver}
-
-  iconv -f ISO-8859-1 -t UTF-8 runtime/doc/eval.txt \
-    > runtime/doc/eval.tmp && mv -f runtime/doc/eval.{tmp,txt}
-
-  patch -p2 -i ${srcdir}/7.3-cygwin-mouse.patch
-  patch -p2 -i ${srcdir}/7.3-virc.patch
-  patch -p2 -i ${srcdir}/7.3-cygwin-python-dyn.patch
-  patch -p1 -i ${srcdir}/pretend-cygwin-msys.patch
-
-  cd src
+  cd ${srcdir}/${pkgname}-${pkgver}/src
   make autoconf
 }
 
@@ -94,7 +87,7 @@ build() {
     --with-compiledby="<alexpux@gmail.com>"
 
   # make auto/osdef.h
-  make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/`_versiondir` auto/osdef.h
+  make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/`_versiondir` clean
   make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/`_versiondir`
 }
 

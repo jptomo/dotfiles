@@ -2,6 +2,7 @@
 # vim:ts=2 sw=2 sts=2:
 
 # update pkgver
+pkgname=vim
 _repourl='git://github.com/vim/vim.git'
 _latest=`git ls-remote --tags ${_repourl} \
     | sed -e 's/.\+\t//g' \
@@ -9,18 +10,16 @@ _latest=`git ls-remote --tags ${_repourl} \
     | sed -e 's/refs\/tags\///' \
     | grep 'v[0-9]-[0-9]-[0-9]\+' | sort -r | head -n 1`
 pkgver=`printf ${_latest} | sed -e 's/v//' | sed -e 's/-/./g'`
-_versiondir="${pkgname}`printf $pkgver | sed -e 's/.[0-9]\+$//' \
-    | sed -e 's/v//' | sed -e 's/.//'`"
+_versiondir="${pkgname}`printf $pkgver | sed -e 's/.[0-9]\+$//' | sed -e 's/\.//'`"
 
 # main settings
-pkgname=vim
 pkgrel=1
 arch=('i686' 'x86_64')
 license=('custom:vim')
 url="http://www.vim.org"
 depends=('ncurses')
 groups=('editors')
-makedepends=('git' 'autoconf' 'gawk' 'perl' 'python2' 'python3' 'mingw-w64-x86_64-lua' 'mingw-w64-x86_64-python3' 'libiconv')
+makedepends=('git' 'autoconf' 'gawk' 'perl' 'python2' 'python3' 'libiconv')
 source=('dot.vimrc'
         '7.3-cygwin-mouse.patch'
         '7.3-virc.patch'
@@ -79,7 +78,7 @@ build() {
     --enable-cscope \
     --enable-multibyte \
     --enable-luainterp=yes \
-    --with-lua-prefix=/mingw64 \
+    --with-lua-prefix=/opt/lua/5.3.0 \
     --enable-pythoninterp=dynamic \
     --disable-gpm --disable-sysmouse \
     --disable-gui --without-x \

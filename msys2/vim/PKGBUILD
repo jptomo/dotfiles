@@ -1,15 +1,26 @@
 # Maintainer: Alexey Pavlov <alexpux@gmail.com>
 # vim:ts=2 sw=2 sts=2:
 
+# update pkgver
+_repourl='git://github.com/vim/vim.git'
+_latest=`git ls-remote --tags ${_repourl} \
+    | sed -e 's/.\+\t//g' \
+    | grep 'refs/tags' \
+    | sed -e 's/refs\/tags\///' \
+    | grep 'v[0-9]-[0-9]-[0-9]\+' | sort -r | head -n 1`
+pkgver=`printf ${_latest} | sed -e 's/v//' | sed -e 's/-/./g'`
+_versiondir="${pkgname}`printf $pkgver | sed -e 's/.[0-9]\+$//' \
+    | sed -e 's/v//' | sed -e 's/.//'`"
+
+# main settings
 pkgname=vim
-pkgver=0.0.0
 pkgrel=1
 arch=('i686' 'x86_64')
 license=('custom:vim')
 url="http://www.vim.org"
 depends=('ncurses')
 groups=('editors')
-makedepends=('git' 'autoconf' 'gawk' 'perl' 'python2' 'python3' 'mingw-w64-x86_64-lua' 'libiconv')
+makedepends=('git' 'autoconf' 'gawk' 'perl' 'python2' 'python3' 'mingw-w64-x86_64-lua' 'mingw-w64-x86_64-python3' 'libiconv')
 source=('dot.vimrc'
         '7.3-cygwin-mouse.patch'
         '7.3-virc.patch'
@@ -24,17 +35,6 @@ md5sums=('b18bd005832117243727e9fef1b45691'
          'a5d13302787cd004ae188b69e353035d'
          'f22f36abf096aaea18320c309cef5c45'
          '87fe7821e180647f3bf48ed099a22b83')
-
-# update pkgver
-_repourl='git://github.com/vim/vim.git'
-_latest=`git ls-remote --tags ${_repourl} \
-    | sed -e 's/.\+\t//g' \
-    | grep 'refs/tags' \
-    | sed -e 's/refs\/tags\///' \
-    | grep 'v[0-9]-[0-9]-[0-9]\+' | sort -r | head -n 1`
-pkgver=`printf ${_latest} | sed -e 's/v//' | sed -e 's/-/./g'`
-_versiondir="${pkgname}`printf $pkgver | sed -e 's/.[0-9]\+$//' \
-    | sed -e 's/v//' | sed -e 's/.//'`"
 
 prepare() {
   if [ ! -d ${pkgname}-${pkgver} ] ; then
@@ -81,14 +81,14 @@ build() {
     --enable-luainterp=yes \
     --with-lua-prefix=/mingw64 \
     --enable-pythoninterp=dynamic \
-    --enable-python3interp=dynamic \
     --disable-gpm --disable-sysmouse \
     --disable-gui --without-x \
     CPPFLAGS="${CPPFLAGS} -I/usr/include/ncursesw" \
-    --with-compiledby="<alexpux@gmail.com>"
+    --with-compiledby="<alexpux@gmail.com>" \
+    --enable-fail-if-missing
 
   # make auto/osdef.h
-  make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/${_versiondir} output_osdef_h
+  make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/${_versiondir} output_auto_osdef_h
   make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/${_versiondir}
 }
 

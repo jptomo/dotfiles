@@ -28,18 +28,15 @@ prepare() {
 build() {
   cd "${srcdir}/${_srcname}"
 
-  _prefix=/opt/erlang/17.5
-  CFLAGS="-lwsock32 -lws2_32" \
-    CPPFLAGS="-lwsock32 -lws2_32" \
-    ./configure \
-    --prefix=$_prefix \
+  ./configure \
+    --prefix=/usr \
     --host=x86_64-unknown-cygwin \
     --build=x86_64-unknown-cygwin \
     --disable-hipe \
     --without-javac \
     --without-odbc \
     --without-wx \
-    --with-ssl=/mingw64 \
+    --with-ssl=/usr \
     --with-libatomic_ops=/usr \
     --enable-m64-build
 

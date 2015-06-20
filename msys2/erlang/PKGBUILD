@@ -1,0 +1,61 @@
+# Maintainer: Alexey Pavlov <alexpux@gmail.com>
+# vim:ts=2 sw=2 sts=2:
+
+# main settings
+pkgname=erlang
+pkgver=17.5
+pkgrel=1
+arch='x86_64'
+license=('erlang')  # TODO
+url='http://www.erlang.org/'
+depends=('openssl' 'libatomic_ops-devel')
+groups=('erlang')  # TODO
+makedepends=('autoconf')
+_srcname="otp_src_${pkgver}"
+source=(#'http://www.erlang.org/download/${_srcname}.tar.gz'
+        "${_srcname}.tar.gz")
+noextract=("${_srcname}.tar.gz")
+md5sums=('346dd0136bf1cc28cebc140e505206bb')
+
+prepare() {
+  _workdir="${srcdir}/${_srcname}"
+  if [ -d ${_workdir} -a ${_workdir} != / ] ; then
+    mv ${_workdir} ${_workdir}_`date +%Y`_`date +%m%d`_`date +%H%M`_`date +%S`
+  fi
+  tar xf "${srcdir}/${_srcname}".tar.gz
+}
+
+build() {
+  cd "${srcdir}/${_srcname}"
+
+  _prefix=/opt/erlang/17.5
+  CFLAGS="-lwsock32 -lws2_32" \
+    CPPFLAGS="-lwsock32 -lws2_32" \
+    ./configure \
+    --prefix=$_prefix \
+    --host=x86_64-unknown-cygwin \
+    --build=x86_64-unknown-cygwin \
+    --disable-hipe \
+    --without-javac \
+    --without-odbc \
+    --without-wx \
+    --with-ssl=/mingw64 \
+    --with-libatomic_ops=/usr \
+    --enable-m64-build
+
+  eval `./otp_build env_win32`
+
+  _corecount=`cat /proc/cpuinfo | grep processor | wc -l`
+  _jobcount=`expr ${_corecount} \* 2 - 1`
+  make -j${_jobcount}
+}
+
+check() {
+  cd "${srcdir}/${_srcname}"
+}
+
+package() {
+  cd "${srcdir}/${_srcname}"
+
+  make DESTDIR="$pkgdir/" install
+}

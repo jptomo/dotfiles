@@ -107,8 +107,10 @@ build() {
     --enable-fail-if-missing
 
   # make auto/osdef.h
+  _corecount=`cat /proc/cpuinfo | grep processor | wc -l`
+  _jobcount=`expr ${_corecount} \* 2 - 1`
   make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/${_versiondir} output_auto_osdef_h
-  make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/${_versiondir}
+  make VIMRCLOC=/etc VIMRUNTIMEDIR=/usr/share/vim/${_versiondir} -j${_jobcount}
 }
 
 check() {

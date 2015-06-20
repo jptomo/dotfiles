@@ -26,44 +26,64 @@ source=('dot.vimrc'
         '7.3-cygwin-python-dyn.patch'
         'pretend-cygwin-msys.patch'
         '7.4-output_osdef_h.patch'
-        'vim-completion')
+        'vim-completion'
+        'http://www.lua.org/ftp/lua-5.3.1.tar.gz')
 md5sums=('b18bd005832117243727e9fef1b45691'
          '82e8c2ae0821d3a453c808e98916c4b8'
          'e776f485d8f027050ff040120acb8a86'
          '88ab80d81af8e88cf80d21b2796ec94d'
          'a5d13302787cd004ae188b69e353035d'
          'f22f36abf096aaea18320c309cef5c45'
-         '87fe7821e180647f3bf48ed099a22b83')
+         '87fe7821e180647f3bf48ed099a22b83'
+         '797adacada8d85761c079390ff1d9961')
+_luasrcdirbase='lua-5.3.1'
 
 prepare() {
-  if [ ! -d ${pkgname}-${pkgver} ] ; then
-    git clone -q --depth 30 ${_repourl} ${pkgname}-${pkgver}
-
-    pushd ${pkgname}-${pkgver}
-    git reset -q --hard ${_latest}
-    popd
-
-    if [ -d ${pkgname}-${pkgver}/.git ] ; then
-      rm -fr ${pkgname}-${pkgver}/.git
-    fi
-    if [ -f ${pkgname}-${pkgver}/.gitignore ] ; then
-      rm ${pkgname}-${pkgver}/.gitignore
-    fi
-
-    cd ${srcdir}/${pkgname}-${pkgver}
-
-    iconv -f ISO-8859-1 -t UTF-8 runtime/doc/eval.txt \
-      > runtime/doc/eval.tmp && mv -f runtime/doc/eval.{tmp,txt}
-
-    patch -p2 -i ${srcdir}/7.3-cygwin-mouse.patch
-    patch -p2 -i ${srcdir}/7.3-virc.patch
-    patch -p2 -i ${srcdir}/7.3-cygwin-python-dyn.patch
-    patch -p1 -i ${srcdir}/pretend-cygwin-msys.patch
-    patch -p1 -i ${srcdir}/7.4-output_osdef_h.patch
-
+  # get lua and build it
+  _luasrcdir="${srcdir}/${_luasrcdirbase}"
+  if [ -d ${_luasrcdir} -a ${_luasrcdir} != / ] ; then
+    mv ${_luasrcdir} ${_luasrcdir}_`date +%Y`_`date +%m%d`_`date +%H%M`_`date +%S`
   fi
 
-  cd ${srcdir}/${pkgname}-${pkgver}/src
+  tar xf ${_luasrcdir}.tar.gz
+  pushd ${_luasrcdir}
+    sed -ie 's!^PLAT=.*!PLAT= mingw!g' ${_luasrcdir}/Makefile
+    sed -ie 's!^INSTALL_TOP=.*!INSTALL_TOP= '"${_luasrcdir}"'/usr!g' ${_luasrcdir}/Makefile
+    make
+    make install
+  popd
+
+  # initilize vim src
+  _workdir="${srcdir}/${pkgname}-${pkgver}"
+  if [ -d ${_workdir} -a ${_workdir} != / ] ; then
+    mv ${_workdir} ${_workdir}_`date +%Y`_`date +%m%d`_`date +%H%M`_`date +%S`
+  fi
+
+  git clone -q --depth 30 ${_repourl} ${pkgname}-${pkgver}
+
+  pushd ${_workdir}
+    git reset -q --hard ${_latest}
+  popd
+
+  if [ -d ${_workdir}/.git ] ; then
+    rm -fr ${_workdir}/.git
+  fi
+  if [ -f ${pkgname}-${pkgver}/.gitignore ] ; then
+    rm ${pkgname}-${pkgver}/.gitignore
+  fi
+
+  cd ${srcdir}/${pkgname}-${pkgver}
+
+  iconv -f ISO-8859-1 -t UTF-8 runtime/doc/eval.txt \
+    > runtime/doc/eval.tmp && mv -f runtime/doc/eval.{tmp,txt}
+
+  patch -p2 -i ${srcdir}/7.3-cygwin-mouse.patch
+  patch -p2 -i ${srcdir}/7.3-virc.patch
+  patch -p2 -i ${srcdir}/7.3-cygwin-python-dyn.patch
+  patch -p1 -i ${srcdir}/pretend-cygwin-msys.patch
+  patch -p1 -i ${srcdir}/7.4-output_osdef_h.patch
+
+  cd ${_workdir}/src
   make autoconf
 }
 
@@ -78,7 +98,7 @@ build() {
     --enable-cscope \
     --enable-multibyte \
     --enable-luainterp=yes \
-    --with-lua-prefix=/opt/lua/5.3.0 \
+    --with-lua-prefix="${srcdir}/${_luasrcdirbase}/usr" \
     --enable-pythoninterp=dynamic \
     --disable-gpm --disable-sysmouse \
     --disable-gui --without-x \

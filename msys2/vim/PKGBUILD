@@ -59,11 +59,7 @@ prepare() {
     mv ${_workdir} ${_workdir}_`date +%Y`_`date +%m%d`_`date +%H%M`_`date +%S`
   fi
 
-  git clone -q --depth 30 ${_repourl} ${pkgname}-${pkgver}
-
-  pushd ${_workdir}
-    git reset -q --hard ${_latest}
-  popd
+  git clone -q --depth 1 ${_repourl} ${pkgname}-${pkgver}
 
   if [ -d ${_workdir}/.git ] ; then
     rm -fr ${_workdir}/.git

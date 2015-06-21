@@ -42,9 +42,7 @@ build() {
 
   eval `./otp_build env_win32`
 
-  _corecount=`cat /proc/cpuinfo | grep processor | wc -l`
-  _jobcount=`expr ${_corecount} \* 2 - 1`
-  make -j${_jobcount}
+  make
 }
 
 check() {

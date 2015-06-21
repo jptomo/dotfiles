@@ -1,30 +1,54 @@
-=============================
-This is my dotfiles.
-=============================
+========
+dotfiles
+========
 
-HOW TO USE
-=============================
+Quickstart
+==========
 
-1. clone
+first: clone
 
-::
+.. code-block:: console
 
-   $ git clone git://github.com/jptomo/dotfiles.git somewhere
+   $ git clone git@github.com:jptomo/dotfiles.git
+   $ cd dotfiles
 
-2. cd somewhere
+Set up your own shell environment
+---------------------------------
 
-::
+.. code-block:: console
 
-   $ cd somewhere
+   $ bash setup.sh
 
-3. add permission setup.sh to run
+Set up your own mlterm settings
+-------------------------------
 
-::
+.. code-block:: console
 
-   $ chmod 0755 setup.sh
+   $ cp -r mlterm ~/.mlterm
 
-4. run setup.sh
+Directories
+===========
 
-::
+- dots
 
-   $ ./setup.sh
+  contains bash/vim dot files.
+
+- emacs
+
+  contains emacs dot files.
+
+- misc
+
+  contains miscs.
+
+  - brew-Formulas
+
+    contains homebrew fomulas.
+
+- mlterm
+
+  contains mlterm rc files.
+
+- msys2
+
+  contains msys2 build files.

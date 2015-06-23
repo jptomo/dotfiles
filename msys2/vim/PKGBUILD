@@ -1,5 +1,6 @@
 # Maintainer: Alexey Pavlov <alexpux@gmail.com>
 # vim:ts=2 sw=2 sts=2:
+# required=('base-devel' 'binutils')
 
 # update pkgver
 pkgname=vim
@@ -17,9 +18,9 @@ pkgrel=1
 arch=('i686' 'x86_64')
 license=('custom:vim')
 url="http://www.vim.org"
-depends=('ncurses')
+depends=('ncurses-devel')
 groups=('editors')
-makedepends=('git' 'autoconf' 'gawk' 'perl' 'python2' 'python3' 'libiconv')
+makedepends=('git' 'gcc' 'autoconf' 'gawk' 'perl' 'python2' 'libiconv')
 source=('dot.vimrc'
         '7.3-cygwin-mouse.patch'
         '7.3-virc.patch'

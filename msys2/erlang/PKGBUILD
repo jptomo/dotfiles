@@ -9,11 +9,9 @@ arch='x86_64'
 license=('erlang')  # TODO
 url='http://www.erlang.org/'
 depends=('openssl' 'libatomic_ops-devel')
-groups=('erlang')  # TODO
 makedepends=('autoconf')
 _srcname="otp_src_${pkgver}"
-source=(#'http://www.erlang.org/download/${_srcname}.tar.gz'
-        "${_srcname}.tar.gz")
+source=("http://www.erlang.org/download/${_srcname}.tar.gz")
 noextract=("${_srcname}.tar.gz")
 md5sums=('346dd0136bf1cc28cebc140e505206bb')
 

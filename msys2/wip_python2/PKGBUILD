@@ -10,7 +10,8 @@ pkgdesc="A high-level scripting language"
 arch='x86_64'
 license=('PSF')
 url="http://www.python.org/"
-depends=('gdbm' 'libbz2' 'libopenssl' 'zlib' 'libexpat' 'libsqlite' 'libffi' 'ncurses' 'libreadline' 'libcrypt')
+depends=('gdbm' 'libbz2' 'libopenssl' 'zlib' 'libexpat' 'libsqlite' 'libffi'
+         'ncurses' 'libreadline' 'libcrypt')
 makedepends=('libbz2-devel' 'openssl-devel' 'zlib-devel' 'libexpat-devel'
              'libgdbm-devel' 'libsqlite-devel' 'libffi-devel' 'ncurses-devel'
              'libreadline-devel' 'libcrypt-devel')
@@ -32,7 +33,8 @@ source=("http://www.python.org/ftp/python/${pkgver%rc?}/Python-${pkgver}.tar.xz"
         0200-msys2.patch
         0210-reorder-bininstall-ln-symlink-creation.patch
         0250-allow-win-drives-in-os-path-isabs.patch
-        2.7.5-allow-windows-paths-for-executable.patch)
+        2.7.5-allow-windows-paths-for-executable.patch
+        config.guess)
 noextract=("Python-${pkgver}.tar.xz")
 sha1sums=('ee5a50c5562e7448f037d35fdedc18d95c748b9e'
           'ff18e75ffa0351c481ca45065cdcc5cd83857712'
@@ -49,7 +51,8 @@ sha1sums=('ee5a50c5562e7448f037d35fdedc18d95c748b9e'
           'a1806da6956df1860cc23ff3701cd80cbb126b87'
           'e6e13cb541efaaf228355cb1d7d5cd8574757c72'
           '80975639f5ad78fd15b8f81bd98fb460c4ee05c4'
-          'fb78069fadcf5394ba380e26e371ad687d344415')
+          'fb78069fadcf5394ba380e26e371ad687d344415'
+          '873653bf1bd19f3534aa788a3f4cacac973b08c0')
 
 prepare() {
   _workdir="${srcdir}/Python-${pkgver}"
@@ -75,6 +78,8 @@ prepare() {
   patch -p1 -i ${srcdir}/0200-msys2.patch
   patch -p1 -i ${srcdir}/0210-reorder-bininstall-ln-symlink-creation.patch
   patch -p1 -i ${srcdir}/0250-allow-win-drives-in-os-path-isabs.patch
+
+  cp -f "${srcdir}/config.guess" "${srcdir}/Python-${pkgver}/config.guess"
 
   # Incomplete patch from Ray Donnelly
   # patch -p1 -i ${srcdir}/2.7.5-allow-windows-paths-for-executable.patch
@@ -126,6 +131,7 @@ build() {
     --with-system-expat \
     --with-system-ffi \
     --with-threads \
+    --enable-unicode=ucs4 \
     ac_cv_func_bind_textdomain_codeset=yes \
     CPPFLAGS="${CPPFLAGS} -I/usr/include/ncursesw" \
     LDFLAGS="${LDFLAGS} -L."

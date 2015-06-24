@@ -11,9 +11,11 @@ url='http://www.erlang.org/'
 depends=('openssl' 'libatomic_ops-devel')
 makedepends=('autoconf')
 _srcname="otp_src_${pkgver}"
-source=("http://www.erlang.org/download/${_srcname}.tar.gz")
+source=("http://www.erlang.org/download/${_srcname}.tar.gz"
+        config.guess)
 noextract=("${_srcname}.tar.gz")
-md5sums=('346dd0136bf1cc28cebc140e505206bb')
+md5sums=('346dd0136bf1cc28cebc140e505206bb'
+         '2cf26350eb7fa54e68a6d1c6e5be91d1')
 
 prepare() {
   _workdir="${srcdir}/${_srcname}"

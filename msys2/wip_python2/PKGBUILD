@@ -33,7 +33,8 @@ source=(http://www.python.org/ftp/python/${pkgver%rc?}/Python-${pkgver}.tar.xz
         0200-msys2.patch
         0210-reorder-bininstall-ln-symlink-creation.patch
         0250-allow-win-drives-in-os-path-isabs.patch
-        0260-fix-sys-prefix-when-win-drive-in-argv0.patch)
+        0260-fix-sys-prefix-when-win-drive-in-argv0.patch
+        0400-executable-add-ext.patch
         config.guess
         0500-avoid-unittest-failure.patch)
 noextract=("Python-${pkgver}.tar.xz")
@@ -53,7 +54,7 @@ sha1sums=('ee5a50c5562e7448f037d35fdedc18d95c748b9e'
           'e6e13cb541efaaf228355cb1d7d5cd8574757c72'
           '80975639f5ad78fd15b8f81bd98fb460c4ee05c4'
           '6f3a97afc9bb1a688010241203b9598f34a47eea'
-          '873653bf1bd19f3534aa788a3f4cacac973b08c0'
+          'ddb404ca988179562afe0042090a6b7bc6911fc6'
           '873653bf1bd19f3534aa788a3f4cacac973b08c0'
           'SKIP')
 
@@ -82,6 +83,7 @@ prepare() {
   patch -p1 -i ${srcdir}/0210-reorder-bininstall-ln-symlink-creation.patch
   patch -p1 -i ${srcdir}/0250-allow-win-drives-in-os-path-isabs.patch
   patch -p1 -i ${srcdir}/0260-fix-sys-prefix-when-win-drive-in-argv0.patch
+  patch -p1 -i ${srcdir}/0400-executable-add-ext.patch
   patch -p1 -i ${srcdir}/0500-avoid-unittest-failure.patch
 
   cp -f "${srcdir}/config.guess" "${srcdir}/Python-${pkgver}/config.guess"
@@ -132,8 +134,7 @@ build() {
     --with-libm= \
     --with-system-expat \
     --with-system-ffi \
-    --with-threads \
-    --enable-unicode=ucs4 \
+    --with-threads
     ac_cv_func_bind_textdomain_codeset=yes \
     CPPFLAGS="${CPPFLAGS} -I/usr/include/ncursesw" \
     LDFLAGS="${LDFLAGS} -L."
@@ -143,7 +144,7 @@ build() {
 
 check() {
   cd "${srcdir}/Python-${pkgver}"
-  make test
+  #make test
 }
 
 package() {

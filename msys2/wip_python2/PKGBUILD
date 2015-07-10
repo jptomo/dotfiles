@@ -18,7 +18,7 @@ makedepends=('libbz2-devel' 'openssl-devel' 'zlib-devel' 'libexpat-devel'
 #optdepends=('tk: for IDLE')
 conflicts=('python<3')
 options=('!makeflags') # '!strip' 'debug')
-source=("http://www.python.org/ftp/python/${pkgver%rc?}/Python-${pkgver}.tar.xz"
+source=(http://www.python.org/ftp/python/${pkgver%rc?}/Python-${pkgver}.tar.xz
         0010-ctypes-util-find_library.patch
         0020-tkinter-x11.patch
         0030-ssl-threads.patch
@@ -33,7 +33,7 @@ source=("http://www.python.org/ftp/python/${pkgver%rc?}/Python-${pkgver}.tar.xz"
         0200-msys2.patch
         0210-reorder-bininstall-ln-symlink-creation.patch
         0250-allow-win-drives-in-os-path-isabs.patch
-        2.7.5-allow-windows-paths-for-executable.patch
+        0260-fix-sys-prefix-when-win-drive-in-argv0.patch)
         config.guess)
 noextract=("Python-${pkgver}.tar.xz")
 sha1sums=('ee5a50c5562e7448f037d35fdedc18d95c748b9e'
@@ -51,7 +51,7 @@ sha1sums=('ee5a50c5562e7448f037d35fdedc18d95c748b9e'
           'a1806da6956df1860cc23ff3701cd80cbb126b87'
           'e6e13cb541efaaf228355cb1d7d5cd8574757c72'
           '80975639f5ad78fd15b8f81bd98fb460c4ee05c4'
-          'fb78069fadcf5394ba380e26e371ad687d344415'
+          '6f3a97afc9bb1a688010241203b9598f34a47eea'
           '873653bf1bd19f3534aa788a3f4cacac973b08c0')
 
 prepare() {
@@ -78,11 +78,9 @@ prepare() {
   patch -p1 -i ${srcdir}/0200-msys2.patch
   patch -p1 -i ${srcdir}/0210-reorder-bininstall-ln-symlink-creation.patch
   patch -p1 -i ${srcdir}/0250-allow-win-drives-in-os-path-isabs.patch
+  patch -p1 -i ${srcdir}/0260-fix-sys-prefix-when-win-drive-in-argv0.patch
 
   cp -f "${srcdir}/config.guess" "${srcdir}/Python-${pkgver}/config.guess"
-
-  # Incomplete patch from Ray Donnelly
-  # patch -p1 -i ${srcdir}/2.7.5-allow-windows-paths-for-executable.patch
 
   # Temporary workaround for FS#22322
   # See http://bugs.python.org/issue10835 for upstream report

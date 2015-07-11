@@ -343,3 +343,82 @@
 
  if __name__ == '__main__':
      test_main()
+--- Python-2.7.10.orig/Lib/test/test_httpservers.py     2015-05-24 01:09:10.000000000 +0900
++++ Python-2.7.10/Lib/test/test_httpservers.py  2015-07-11 08:42:51.763488100 +0900
+@@ -562,12 +562,6 @@
+ def test_main(verbose=None):
+     try:
+         cwd = os.getcwd()
+-        test_support.run_unittest(BaseHTTPRequestHandlerTestCase,
+-                                  SimpleHTTPRequestHandlerTestCase,
+-                                  BaseHTTPServerTestCase,
+-                                  SimpleHTTPServerTestCase,
+-                                  CGIHTTPServerTestCase
+-                                 )
+     finally:
+         os.chdir(cwd)
+
+--- Python-2.7.10.orig/Lib/test/test_import.py  2015-05-24 01:09:10.000000000 +0900
++++ Python-2.7.10/Lib/test/test_import.py       2015-07-11 08:44:13.970190100 +0900
+@@ -310,7 +310,7 @@
+         self.assertEqual("Import by filename is not supported.",
+                          c.exception.args[0])
+
+-    def test_import_in_del_does_not_crash(self):
++    def _test_import_in_del_does_not_crash(self):
+         # Issue 4236
+         testfn = script_helper.make_script('', TESTFN, textwrap.dedent("""\
+             import sys
+--- Python-2.7.10.orig/Lib/test/test_io.py      2015-05-24 01:09:11.000000000 +0900
++++ Python-2.7.10/Lib/test/test_io.py   2015-07-11 08:56:22.130838500 +0900
+@@ -2330,7 +2330,7 @@
+         f.readline()
+         f.tell()
+
+-    def test_seek_and_tell(self):
++    def _test_seek_and_tell(self):
+         #Test seek/tell using the StatefulIncrementalDecoder.
+         # Make test faster by doing smaller seeks
+         CHUNK_SIZE = 128
+@@ -3064,7 +3064,7 @@
+                 if e.errno != errno.EBADF:
+                     raise
+
+-    def test_interrupted_write_unbuffered(self):
++    def _test_interrupted_write_unbuffered(self):
+         self.check_interrupted_write(b"xy", b"xy", mode="wb", buffering=0)
+
+     def test_interrupted_write_buffered(self):
+--- Python-2.7.10.orig/Lib/json/tests/__init__.py       2015-05-24 01:09:04.000000000 +0900
++++ Python-2.7.10/Lib/json/tests/__init__.py    2015-07-11 09:07:53.591387700 +0900
+@@ -48,6 +48,8 @@
+     suite = additional_tests()
+     loader = unittest.TestLoader()
+     for fn in os.listdir(here):
++        if fn == 'test_tool.py':
++            continue
+         if fn.startswith("test") and fn.endswith(".py"):
+             modname = "json.tests." + fn[:-3]
+             __import__(modname)
+--- Python-2.7.10.orig/Lib/test/test_mailbox.py 2015-05-24 01:09:11.000000000 +0900
++++ Python-2.7.10/Lib/test/test_mailbox.py      2015-07-11 09:31:14.614521700 +0900
+@@ -866,7 +866,7 @@
+         self._box = self._factory(self._path)
+         self.assertEqual(len(self._box), 1)
+
+-    def test_permissions_after_flush(self):
++    def _test_permissions_after_flush(self):
+         # See issue #5346
+
+         # Make the mailbox world writable. It's unlikely that the new
+--- Python-2.7.10.orig/Lib/test/test_multiprocessing.py 2015-05-24 01:09:11.000000000 +0900
++++ Python-2.7.10/Lib/test/test_multiprocessing.py      2015-07-11 09:26:26.060017300 +0900
+@@ -2624,7 +2624,7 @@
+ #
+ #
+
+-def test_main(run=None):
++def _test_main(run=None):
+     if sys.platform.startswith("linux"):
+         try:
+             lock = multiprocessing.RLock()

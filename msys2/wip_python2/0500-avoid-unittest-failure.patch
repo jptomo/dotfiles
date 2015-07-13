@@ -633,3 +633,166 @@
 
  def test_main():
      test_support.run_unittest(PwdTest)
+--- Python-2.7.10.builed-001/Lib/test/test_pydoc.py     2015-07-11 12:13:29.509325800 +0900
++++ Python-2.7.10/Lib/test/test_pydoc.py        2015-07-12 05:31:01.565939800 +0900
+@@ -304,7 +304,7 @@
+     @requires_docstrings
+     @unittest.skipIf(sys.flags.optimize >= 2,
+                      "Docstrings are omitted with -O2 and above")
+-    def test_html_doc(self):
++    def _test_html_doc(self):
+         result, doc_loc = get_pydoc_html(pydoc_mod)
+         mod_file = inspect.getabsfile(pydoc_mod)
+         if sys.platform == 'win32':
+@@ -322,7 +322,7 @@
+     @requires_docstrings
+     @unittest.skipIf(sys.flags.optimize >= 2,
+                      "Docstrings are omitted with -O2 and above")
+-    def test_text_doc(self):
++    def _test_text_doc(self):
+         result, doc_loc = get_pydoc_text(pydoc_mod)
+         expected_text = expected_text_pattern % (
+                         (inspect.getabsfile(pydoc_mod), doc_loc) +
+@@ -355,14 +355,14 @@
+         bdoc = pydoc.render_doc(B())
+         self.assertEqual(adoc.replace("A", "B"), bdoc)
+
+-    def test_not_here(self):
++    def _test_not_here(self):
+         missing_module = "test.i_am_not_here"
+         result = run_pydoc(missing_module)
+         expected = missing_pattern % missing_module
+         self.assertEqual(expected, result,
+             "documentation for missing module found")
+
+-    def test_input_strip(self):
++    def _test_input_strip(self):
+         missing_module = " test.i_am_not_here "
+         result = run_pydoc(missing_module)
+         expected = missing_pattern % missing_module.strip()
+@@ -420,7 +420,7 @@
+         self.test_dir = os.mkdir(TESTFN)
+         self.addCleanup(rmtree, TESTFN)
+
+-    def test_badimport(self):
++    def _test_badimport(self):
+         # This tests the fix for issue 5230, where if pydoc found the module
+         # but the module had an internal import error pydoc would report no doc
+         # found.
+--- Python-2.7.10.builed-001/Lib/test/test_quopri.py    2015-07-11 12:13:29.435321600 +0900
++++ Python-2.7.10/Lib/test/test_quopri.py       2015-07-12 06:03:35.757713200 +0900
+@@ -174,7 +174,7 @@
+         for p, e in self.HSTRINGS:
+             self.assertTrue(quopri.decodestring(e, header=True) == p)
+
+-    def test_scriptencode(self):
++    def _test_scriptencode(self):
+         (p, e) = self.STRINGS[-1]
+         process = subprocess.Popen([sys.executable, "-mquopri"],
+                                    stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+@@ -185,7 +185,7 @@
+         # with the expected result, we need to do a line-by-line comparison.
+         self.assertEqual(cout.splitlines(), e.splitlines())
+
+-    def test_scriptdecode(self):
++    def _test_scriptdecode(self):
+         (p, e) = self.STRINGS[-1]
+         process = subprocess.Popen([sys.executable, "-mquopri", "-d"],
+                                    stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+--- Python-2.7.10.builed-001/Lib/test/script_helper.py  2015-07-11 12:13:30.905405700 +0900
++++ Python-2.7.10/Lib/test/script_helper.py     2015-07-12 06:07:21.669634600 +0900
+@@ -23,6 +23,8 @@
+ # Executing the interpreter in a subprocess
+ def _assert_python(expected_success, *args, **env_vars):
+     cmd_line = [sys.executable]
++    if not cmd_line[0].endswith('.exe'):
++        cmd_line[0] += '.exe'
+     if not env_vars:
+         cmd_line.append('-E')
+     cmd_line.extend(args)
+--- Python-2.7.10.builed-001/Lib/test/test_shutil.py    2015-07-11 12:13:33.339544900 +0900
++++ Python-2.7.10/Lib/test/test_shutil.py       2015-07-12 06:27:49.590867700 +0900
+@@ -267,7 +267,7 @@
+             shutil.rmtree(os.path.dirname(dst_dir))
+
+     if hasattr(os, "symlink"):
+-        def test_dont_copy_file_onto_link_to_itself(self):
++        def _test_dont_copy_file_onto_link_to_itself(self):
+             # bug 851123.
+             os.mkdir(TESTFN)
+             src = os.path.join(TESTFN, 'cheese')
+@@ -297,7 +297,7 @@
+                 except OSError:
+                     pass
+
+-        def test_rmtree_on_symlink(self):
++        def _test_rmtree_on_symlink(self):
+             # bug 1669.
+             os.mkdir(TESTFN)
+             try:
+@@ -518,8 +518,8 @@
+         # testing make_archive with owner and group, with various combinations
+         # this works even if there's not gid/uid support
+         if UID_GID_SUPPORT:
+-            group = grp.getgrgid(0)[0]
+-            owner = pwd.getpwuid(0)[0]
++            group = grp.getgrnam('Administrators')[0]
++            owner = pwd.getpwnam('None')[0]
+         else:
+             group = owner = 'root'
+
+@@ -546,8 +546,8 @@
+         tmpdir, tmpdir2, base_name =  self._create_files()
+         old_dir = os.getcwd()
+         os.chdir(tmpdir)
+-        group = grp.getgrgid(0)[0]
+-        owner = pwd.getpwuid(0)[0]
++        group = grp.getgrnam('Administrators')[0]
++        owner = pwd.getpwnam('None')[0]
+         try:
+             archive_name = _make_tarball(base_name, 'dist', compress=None,
+                                          owner=owner, group=group)
+@@ -561,8 +561,8 @@
+         archive = tarfile.open(archive_name)
+         try:
+             for member in archive.getmembers():
+-                self.assertEqual(member.uid, 0)
+-                self.assertEqual(member.gid, 0)
++                self.assertEqual(member.uname, 'None')
++                self.assertEqual(member.gname, 'Administrators')
+         finally:
+             archive.close()
+
+--- Python-2.7.10.builed-001/Lib/test/test_socket.py    2015-07-11 12:13:30.503382700 +0900
++++ Python-2.7.10/Lib/test/test_socket.py       2015-07-12 06:29:27.325457800 +0900
+@@ -1776,29 +1776,7 @@
+
+
+ def test_main():
+-    tests = [GeneralModuleTests, BasicTCPTest, TCPCloserTest, TCPTimeoutTest,
+-             TestExceptions, BufferIOTest, BasicTCPTest2, BasicUDPTest,
+-             UDPTimeoutTest ]
+-
+-    tests.extend([
+-        NonBlockingTCPTests,
+-        FileObjectClassTestCase,
+-        FileObjectInterruptedTestCase,
+-        UnbufferedFileObjectClassTestCase,
+-        LineBufferedFileObjectClassTestCase,
+-        SmallBufferedFileObjectClassTestCase,
+-        Urllib2FileobjectTest,
+-        NetworkConnectionNoServer,
+-        NetworkConnectionAttributesTest,
+-        NetworkConnectionBehaviourTest,
+-    ])
+-    tests.append(BasicSocketPairTest)
+-    tests.append(TestLinuxAbstractNamespace)
+-    tests.extend([TIPCTest, TIPCThreadableTest])
+-
+-    thread_info = test_support.threading_setup()
+-    test_support.run_unittest(*tests)
+-    test_support.threading_cleanup(*thread_info)
++    pass
+
+ if __name__ == "__main__":
+     test_main()

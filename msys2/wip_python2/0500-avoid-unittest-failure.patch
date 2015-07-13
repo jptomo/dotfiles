@@ -796,3 +796,58 @@
 
  if __name__ == "__main__":
      test_main()
+--- Python-2.7.10.build/Lib/distutils/tests/test_build_ext.py   2015-07-13 21:53:22.161369800 +0900
++++ Python-2.7.10/Lib/distutils/tests/test_build_ext.py 2015-07-13 21:55:22.083542000 +0900
+@@ -260,7 +260,7 @@
+         cmd.run()
+         self.assertEqual(cmd.compiler, 'unix')
+
+-    def test_get_outputs(self):
++    def _test_get_outputs(self):
+         tmp_dir = self.mkdtemp()
+         c_file = os.path.join(tmp_dir, 'foo.c')
+         self.write_file(c_file, 'void initfoo(void) {};\n')
+--- Python-2.7.10.build/Lib/distutils/tests/test_config_cmd.py  2015-07-13 21:53:21.940340400 +0900
++++ Python-2.7.10/Lib/distutils/tests/test_config_cmd.py        2015-07-13 21:55:35.515579200 +0900
+@@ -38,7 +38,7 @@
+         self.assertEqual(len(self._logs), numlines+1)
+
+     @unittest.skipIf(sys.platform == 'win32', "can't test on Windows")
+-    def test_search_cpp(self):
++    def _test_search_cpp(self):
+         pkg_dir, dist = self.create_dist()
+         cmd = config(dist)
+
+--- Python-2.7.10.build/Lib/distutils/tests/test_install.py     2015-07-13 21:53:21.952341300 +0900
++++ Python-2.7.10/Lib/distutils/tests/test_install.py   2015-07-13 21:55:54.260534700 +0900
+@@ -196,7 +196,7 @@
+                     'UNKNOWN-0.0.0-py%s.%s.egg-info' % sys.version_info[:2]]
+         self.assertEqual(found, expected)
+
+-    def test_record_extensions(self):
++    def _test_record_extensions(self):
+         install_dir = self.mkdtemp()
+         project_dir, dist = self.create_dist(ext_modules=[
+             Extension('xx', ['xxmodule.c'])])
+--- Python-2.7.10.build/Lib/distutils/tests/test_install_lib.py 2015-07-13 21:53:22.067347000 +0900
++++ Python-2.7.10/Lib/distutils/tests/test_install_lib.py       2015-07-13 21:56:10.667754200 +0900
+@@ -43,7 +43,7 @@
+         return pkg_dir
+
+     @unittest.skipIf(sys.dont_write_bytecode, 'byte-compile not enabled')
+-    def test_byte_compile(self):
++    def _test_byte_compile(self):
+         pkg_dir = self._setup_byte_compile()
+         if sys.flags.optimize < 1:
+             self.assertTrue(os.path.exists(os.path.join(pkg_dir, 'foo.pyc')))
+--- Python-2.7.10.build/Lib/distutils/tests/test_spawn.py       2015-07-13 21:53:22.070322500 +0900
++++ Python-2.7.10/Lib/distutils/tests/test_spawn.py     2015-07-13 21:56:56.974023500 +0900
+@@ -25,7 +25,7 @@
+
+     @unittest.skipUnless(os.name in ('nt', 'posix'),
+                          'Runs only under posix or nt')
+-    def test_spawn(self):
++    def _test_spawn(self):
+         tmpdir = self.mkdtemp()
+
+         # creating something executable

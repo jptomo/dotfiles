@@ -1,5 +1,4 @@
-# vim:ft=ps1 fenc=cp932 ff=dos ts=2 sw=2 sts=2 fdl=0:
-# 日本語設定
+# cp932
 $OutputEncoding = [Text.Encoding]::Default
 $ENV:LANG = "ja_JP.CP932"
 
@@ -56,7 +55,6 @@ function _reverse_check() {
   }
 }
 
-# Git 管理ディレクトリ
 function git_branch() {
   Process
   {
@@ -72,7 +70,6 @@ function git_branch() {
   }
 }
 
-# Mercurial 管理ディレクトリ
 function hg_branch() {
   Process
   {
@@ -85,8 +82,8 @@ function hg_branch() {
   }
 }
 
-# 現在のディレクトリを返す
-# ただし, $ENV:HOME は ~ にする
+# return current directory
+# with $ENV:HOME to ~
 function _get_pwd() {
   $path = $(Get-Location).Path
   if ($path.IndexOf($ENV:HOME) -eq 0) {
@@ -95,7 +92,7 @@ function _get_pwd() {
   return $path
 }
 
-
+<#
 function prompt {
   Process {
     $git_b = git_branch
@@ -104,32 +101,31 @@ function prompt {
     return "$($git_b)$($hg_b)[$(Get-Date -Format 'yyyy/mm/dd hh:mm:ss')] PS $(_get_pwd)`n> "
   }
 }
+#>
 
 # vim
-$Env:VIM = "<vim path>"
-$Env:VIMRUNTIME = "$Env:VIM\vim74"
+[Environment]::SetEnvironmentVariable("VIM", $null, "User")
+[Environment]::SetEnvironmentVariable("VIMRUNTIME", $null, "User")
+$ENV:Path = "C:\path\to\vim.exe;" + $Env:Path
 Set-Alias -name vi -value vim.exe
-Set-Alias -name vim -value vim.exe
 
 # plink
-Set-Alias -name plink -value "<plink path>"
+#Set-Alias -name plink -value "<plink path>"
 
 # make cert 
-Set-Alias -name makecert -value "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\makecert.exe"
+#Set-Alias -name makecert -value "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\makecert.exe"
 # If you modify this file. Run below command:
 # PS > $cert = Get-ChildItem cert:\CurrentUser\My -codesigning
 # PS > Set-AuthenticodeSignature Profile.ps1 $cert
 
 # Python
-$ENV:PIP_DOWNLOAD_CACHE = "$ENV:TMP\pip"
-$ENV:DISTUTILS_USE_SDK = 1
+#$ENV:DISTUTILS_USE_SDK = 1
 $ENV:PATHEXT += ";.PY"
 
 # SDKs
 <# & {
   $script = "C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\vcvarsall.bat"
   $parameters = "amd64"
-
   $tempFile = [IO.Path]::GetTempFileName()
   cmd.exe /C " `"$script`" $parameters && SET > `"$tempFile`" "
   Get-Content $tempFile | % {
@@ -142,7 +138,6 @@ $ENV:PATHEXT += ";.PY"
 <# & {
   $script = "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd"
   $parameters = "/Release /x64 /win7"
-
   $tempFile = [IO.Path]::GetTempFileName()
   cmd.exe /E:ON /V:ON /T:0E /C " `"$script`" $parameters && SET > `"$tempFile`" "
   Get-Content $tempFile | % {
@@ -155,7 +150,6 @@ $ENV:PATHEXT += ";.PY"
 <# & {
   $script = "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\vcvarsall.bat"
   $parameters = "x86_amd64"
-
   $tempFile = [IO.Path]::GetTempFileName()
   cmd.exe /C " `"$script`" $parameters && SET > `"$tempFile`" "
   Get-Content $tempFile | % {
@@ -165,19 +159,15 @@ $ENV:PATHEXT += ";.PY"
   }
   Remove-Item $tempFile
 } #>
-& cmd /c "COLOR 07"   # 色を戻す
+# & cmd /c "COLOR 07"   # backup color
 
 # ### SetUp PATH ###
-$path = ""
-
-$path += ";$Env:VIM"                             # vim
-$ENV:PATH = $path + ";$ENV:PATH"
-
+#
 # Python
-$ENV:MSSDK = "C:\Program Files\Microsoft SDKs\Windows\v7.1"
-& "~\.local\venv\Scripts\activate.ps1"
+# $ENV:MSSDK = "C:\Program Files\Microsoft SDKs\Windows\v7.1"
+# & "~\.local\venv\Scripts\activate.ps1"
 
-# いろいろ
+# something else
 $cnv = {
   param($path)
 
@@ -186,6 +176,14 @@ $cnv = {
 $ENV:PATH = ($ENV:PATH -split ";" | ? {$_ -ne ''} | % {$_.Trim() -replace "/", "\"}) -join ";"
 $ENV:PATHEXT = ($ENV:PATHEXT -split ";" | ? {$_ -ne ''} | % {&$cnv $_.Trim().ToUpper()}) -join ";"
 
-Set-Location "~\Documents"
+#Set-Location "~\Documents"
 
 Remove-Variable path, cnv
+
+# PowerShell ReadLine
+# see https://github.com/lzybkr/PSReadLine#installation
+#Import-Module PSReadLine
+#Set-PSReadlineOption -EditMode Emacs
+
+# :fenc=cp932 ff=dos:
+# vim:ft=ps1 ts=2 sw=2 sts=2 fdl=0:

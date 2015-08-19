@@ -8,3 +8,4 @@ msys2/**/*.sig
 msys2/**/*/*.log*
 msys2/**/*/src/
 msys2/**/*/pkg/
+.vagrant/

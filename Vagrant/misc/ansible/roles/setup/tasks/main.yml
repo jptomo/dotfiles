@@ -9,10 +9,10 @@
   command: dnf upgrade -y
 
 - name: get tz
-  command: timedatectl | grep 'Time zone'
+  shell: timedatectl | grep 'Time zone'
   register: tz
 
 - name: change tz to JST
   sudo: yes
   command: timedatectl set-timezone Asia/Tokyo
-  when: not tz.stdout.find('Asia/Tokyo') == -1
+  when: tz.stdout.find('Asia/Tokyo') == -1

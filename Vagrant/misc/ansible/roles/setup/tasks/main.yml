@@ -1,18 +1,69 @@
 ---
 
-- name: check-update
+- name: set hostname
+  tags:
+    - setup.init
   sudo: yes
-  command: dnf check-update
+  command: hostnamectl set-hostname fedora --static
 
-- name: update all
+- name: upgrade all packages
+  tags:
+    - setup.update
   sudo: yes
-  command: dnf upgrade -y
+  dnf: name=* state=latest
 
 - name: get tz
+  tags:
+    - setup.init
   shell: timedatectl | grep 'Time zone'
   register: tz
 
 - name: change tz to JST
+  tags:
+    - setup.init
   sudo: yes
   command: timedatectl set-timezone Asia/Tokyo
   when: tz.stdout.find('Asia/Tokyo') == -1
+
+- name: install the 'Development tools' package group
+  tags:
+    - setup.devel
+  sudo: yes
+  dnf: name="@Development tools" state=present
+
+- name: install tmux
+  tags:
+    - setup.devel
+  sudo: yes
+  dnf: name=tmux state=latest
+
+- name: install vim build depends
+  tags:
+    - setup.vim
+  sudo: yes
+  dnf: name={{item}} state=present
+  with_items:
+    - gcc
+    - make
+    - autoconf
+    - ncurses-devel
+    - perl-devel
+    - perl-ExtUtils-Embed
+    - ruby-devel
+    - python-devel
+    - python3-devel
+    - lua-devel
+    - luajit-devel
+    - gtk2-devel
+    - libXt-devel
+
+- command: mkdir ~/misc
+- command: git clone git://github.com/vim/vim.git chdir=~/misc
+- command: git reset --hard "{{vim_ver}}" chdir=~/misc/vim
+- command: mkdir -p "/opt/vim/{{vim_ver}}"
+  sudo: yes
+- command: make autoconf chdir=~/misc/vim/src
+- command: ./configure --prefix="/opt/vim/{{vim_ver}}" --with-features=huge --without-x --disable-gui --enable-multibyte --enable-perlinterp=dynamic --enable-pythoninterp=dynamic --enable-rubyinterp=dynamic --enable-luainterp=dynamic --with-lua-prefix=/usr --with-luajit --enable-gpm --enable-cscope --enable-fontset --enable-fail-if-missinga chdir=~/misc/vim/src
+- command: make chdir=~/misc/vim/src
+- command: make install chdir=~/misc/vim/src
+  sudo: yes

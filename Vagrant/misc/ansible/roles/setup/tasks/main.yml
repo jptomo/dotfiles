@@ -1,25 +1,28 @@
 ---
-
 - name: set hostname
   tags:
+    - setup
     - setup.init
   sudo: yes
   command: hostnamectl set-hostname fedora --static
 
 - name: upgrade all packages
   tags:
+    - setup
     - setup.update
   sudo: yes
   dnf: name=* state=latest
 
 - name: get tz
   tags:
+    - setup
     - setup.init
   shell: timedatectl | grep 'Time zone'
   register: tz
 
 - name: change tz to JST
   tags:
+    - setup
     - setup.init
   sudo: yes
   command: timedatectl set-timezone Asia/Tokyo
@@ -27,18 +30,29 @@
 
 - name: install the 'Development tools' package group
   tags:
+    - setup
     - setup.devel
   sudo: yes
   dnf: name="@Development tools" state=present
 
 - name: install tmux
   tags:
+    - setup
     - setup.devel
   sudo: yes
   dnf: name=tmux state=latest
 
+- name: get tz
+  tags:
+    - setup
+    - setup.vim
+  command: test -f "/opt/vim/{{ vim_ver }}/bin/vim"
+  ignore_errors: yes
+  register: exists_vim
+
 - name: install vim build depends
   tags:
+    - setup
     - setup.vim
   sudo: yes
   dnf: name={{item}} state=present
@@ -56,14 +70,77 @@
     - luajit-devel
     - gtk2-devel
     - libXt-devel
+  when: exists_vim.stdout == 1
 
-- command: mkdir ~/misc
-- command: git clone git://github.com/vim/vim.git chdir=~/misc
-- command: git reset --hard "{{vim_ver}}" chdir=~/misc/vim
-- command: mkdir -p "/opt/vim/{{vim_ver}}"
+- name: create work dir
+  tags:
+    - setup
+    - setup.vim
   sudo: yes
-- command: make autoconf chdir=~/misc/vim/src
-- command: ./configure --prefix="/opt/vim/{{vim_ver}}" --with-features=huge --without-x --disable-gui --enable-multibyte --enable-perlinterp=dynamic --enable-pythoninterp=dynamic --enable-rubyinterp=dynamic --enable-luainterp=dynamic --with-lua-prefix=/usr --with-luajit --enable-gpm --enable-cscope --enable-fontset --enable-fail-if-missinga chdir=~/misc/vim/src
-- command: make chdir=~/misc/vim/src
-- command: make install chdir=~/misc/vim/src
+  file: path="{{work_dir}}" state=directory mode=0777
+  when: exists_vim.rc == 1
+
+- name: clone vim
+  tags:
+    - setup
+    - setup.vim
+  command: git clone git://github.com/vim/vim.git vim
+  args:
+    chdir: "{{ work_dir }}"
+  when: exists_vim.rc == 1
+
+- name: vim change revision
+  tags:
+    - setup
+    - setup.vim
+  command: git reset --hard "{{ vim_ver }}"
+  args:
+    chdir: "{{ work_dir }}/vim"
+  when: exists_vim.rc == 1
+
+- name: vim make autoconf
+  tags:
+    - setup
+    - setup.vim
+  command: make autoconf
+  args:
+    chdir: "{{ work_dir }}/vim/src"
+  when: exists_vim.rc == 1
+
+- name: vim configure
+  tags:
+    - setup
+    - setup.vim
+  command: ./configure --prefix="/opt/vim/{{vim_ver}}" --with-features=huge --without-x --disable-gui --enable-multibyte --enable-perlinterp=dynamic --enable-pythoninterp=dynamic --enable-rubyinterp=dynamic --enable-luainterp=dynamic --with-lua-prefix=/usr --with-luajit --enable-gpm --enable-cscope --enable-fontset --enable-fail-if-missinga
+  args:
+    chdir: "{{ work_dir }}/vim/src"
+  when: exists_vim.rc == 1
+
+- name: vim make
+  tags:
+    - setup
+    - setup.vim
+  command: make
+  args:
+    chdir: "{{ work_dir }}/vim/src"
+  when: exists_vim.rc == 1
+
+- name: vim mkdir install path
+  tags:
+    - setup
+    - setup.vim
   sudo: yes
+  file: path="/opt/vim/{{vim_ver}}" state=directory
+  when: exists_vim.rc == 1
+
+- name: vim make install
+  tags:
+    - setup
+    - setup.vim
+  sudo: yes
+  command: make install
+  args:
+    chdir: "{{ work_dir }}/vim/src"
+  when: exists_vim.rc == 1
+
+# vim:st=2 sts=2 sw=2:

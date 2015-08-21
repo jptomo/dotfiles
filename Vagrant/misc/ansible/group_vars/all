@@ -1,3 +1,4 @@
 # vim: set filetype=yaml:
 ---
+work_dir: /opt/work
 vim_ver: v7.4.827

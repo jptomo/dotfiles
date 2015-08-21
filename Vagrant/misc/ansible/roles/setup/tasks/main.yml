@@ -42,6 +42,13 @@
   sudo: yes
   dnf: name=tmux state=latest
 
+- name: install msmtp
+  tags:
+    - setup
+    - setup.devel
+  sudo: yes
+  dnf: name=msmtp state=latest
+
 - name: create work dir
   tags:
     - setup

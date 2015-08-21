@@ -43,7 +43,7 @@
     - setup.vim
   command: git clone git://github.com/vim/vim.git vim
   args:
-    chdir: "{{ vim_build_dir }}"
+    chdir: "{{ work_dir }}"
   when: exists_vim.rc == 1
 
 - name: change revision

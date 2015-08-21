@@ -14,6 +14,7 @@
   sudo: yes
   dnf: name={{item}} state=present
   with_items:
+    - git
     - gcc
     - make
     - autoconf
@@ -99,5 +100,17 @@
   args:
     chdir: "{{ vim_build_dir }}/src"
   when: exists_vim.rc == 1
+
+- name: create bundle dir
+  tags:
+    - setup
+    - setup.vim
+  file: path="~/.vim/bundle" state=directory
+
+- name: clone neobundle.vim
+  tags:
+    - setup
+    - setup.vim
+  git: repo=https://github.com/Shougo/neobundle.vim.git dest="~/.vim/bundle/neobundle.vim"
 
 # vim:st=2 sts=2 sw=2:

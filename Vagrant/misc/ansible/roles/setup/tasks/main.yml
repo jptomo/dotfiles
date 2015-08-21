@@ -70,7 +70,7 @@
     - luajit-devel
     - gtk2-devel
     - libXt-devel
-  when: exists_vim.stdout == 1
+  when: exists_vim.rc == 1
 
 - name: create work dir
   tags:

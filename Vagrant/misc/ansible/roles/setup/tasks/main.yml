@@ -48,4 +48,51 @@
   sudo: yes
   file: path="{{work_dir}}" state=directory
 
+- name: create misc dir
+  tags:
+    - setup
+  file: path="~/misc" state=directory
+
+- name: check dotfiles existance
+  tags:
+    - setup
+    - setup.vim
+  ignore_errors: yes
+  command: test -d "~/misc/dotfiles"
+  register: exists_dotfiles
+
+- name: clone dotfiles
+  tags:
+    - setup
+    - setup.vim
+  command: git clone git://github.com/jptomo/dotfiles.git dotfiles
+  args:
+    chdir: "~/misc"
+  when: exists_dotfiles.rc == 1
+
+- name: remove origin
+  tags:
+    - setup
+  command: git remote rm origin
+  args:
+    chdir: "~/misc/dotfiles"
+  when: exists_dotfiles.rc == 1
+
+- name: add origin
+  tags:
+    - setup
+  command: git remote add origin git@github.com:jptomo/dotfiles.git
+  args:
+    chdir: "~/misc/dotfiles"
+  when: exists_dotfiles.rc == 1
+
+- name: init rcs
+  tags:
+    - setup
+    - setup.init
+  command: sh setup.sh
+  args:
+    chdir: "~/misc/dotfiles"
+  when: exists_dotfiles.rc == 1
+
 # vim:st=2 sts=2 sw=2:

@@ -8,4 +8,4 @@ if [ ! "`rpm -qa | grep ansible`" ] ; then
 fi
 
 # run ansible-playbook
-ansible-playbook -i /vagrant/misc/ansible/hosts /vagrant/misc/ansible/playbook.yml
+ansible-playbook -i /vagrant/misc/ansible/hosts /vagrant/misc/ansible/playbook_setup.yml

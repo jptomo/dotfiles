@@ -1,4 +1,13 @@
-# vim: set filetype=yaml:
 ---
 work_dir: /opt/work
+
+# vim
 vim_ver: v7.4.827
+vim_build_dir: "{{ work_dir }}/vim"
+vim_prefix: "/opt/vim/{{vim_ver}}"
+
+# python2
+
+# python3
+
+# vim: set filetype=yaml:

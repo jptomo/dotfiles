@@ -1,0 +1,103 @@
+---
+- name: check vim installed
+  tags:
+    - setup
+    - setup.vim
+  command: test -f "{{ vim_prefix }}/bin/vim"
+  ignore_errors: yes
+  register: exists_vim
+
+- name: install build depends
+  tags:
+    - setup
+    - setup.vim
+  sudo: yes
+  dnf: name={{item}} state=present
+  with_items:
+    - gcc
+    - make
+    - autoconf
+    - ncurses-devel
+    - perl-devel
+    - perl-ExtUtils-Embed
+    - ruby-devel
+    - python-devel
+    - python3-devel
+    - lua-devel
+    - luajit-devel
+    - gtk2-devel
+    - libXt-devel
+  when: exists_vim.rc == 1
+
+- name: create work dir
+  tags:
+    - setup
+    - setup.vim
+  sudo: yes
+  file: path="{{vim_build_dir}}" state=directory mode=0777
+  when: exists_vim.rc == 1
+
+- name: clone src
+  tags:
+    - setup
+    - setup.vim
+  command: git clone git://github.com/vim/vim.git vim
+  args:
+    chdir: "{{ vim_build_dir }}"
+  when: exists_vim.rc == 1
+
+- name: change revision
+  tags:
+    - setup
+    - setup.vim
+  command: git reset --hard "{{ vim_ver }}"
+  args:
+    chdir: "{{ vim_build_dir }}"
+  when: exists_vim.rc == 1
+
+- name: make autoconf
+  tags:
+    - setup
+    - setup.vim
+  command: make autoconf
+  args:
+    chdir: "{{ vim_build_dir }}/src"
+  when: exists_vim.rc == 1
+
+- name: configure
+  tags:
+    - setup
+    - setup.vim
+  command: ./configure --prefix="{{vim_prefix}}" --with-features=huge --without-x --disable-gui --enable-multibyte --enable-perlinterp=dynamic --enable-pythoninterp=dynamic --enable-rubyinterp=dynamic --enable-luainterp=dynamic --with-lua-prefix=/usr --with-luajit --enable-gpm --enable-cscope --enable-fontset --enable-fail-if-missinga
+  args:
+    chdir: "{{ vim_build_dir }}/src"
+  when: exists_vim.rc == 1
+
+- name: make
+  tags:
+    - setup
+    - setup.vim
+  command: make
+  args:
+    chdir: "{{ vim_build_dir }}/src"
+  when: exists_vim.rc == 1
+
+- name: mkdir install path
+  tags:
+    - setup
+    - setup.vim
+  sudo: yes
+  file: path="{{vim_prefix}}" state=directory
+  when: exists_vim.rc == 1
+
+- name: make install
+  tags:
+    - setup
+    - setup.vim
+  sudo: yes
+  command: make install
+  args:
+    chdir: "{{ vim_build_dir }}/src"
+  when: exists_vim.rc == 1
+
+# vim:st=2 sts=2 sw=2:

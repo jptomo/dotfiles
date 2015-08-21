@@ -5,7 +5,7 @@ email = quickness.net@gmail.com
 [http]
 ; windows:    /usr/share/ca-certificates/cacert.org/cacert.org.crt
 ; linux mint: /etc/ssl/certs/ca-certificates.crt
-sslCAinfo = /etc/ssl/certs/ca-certificates.crt
+sslCAinfo = /etc/pki/tls/certs/ca-bundle.crt
 
 [sendemail]
 ; windows:    /usr/bin/msmtp.exe

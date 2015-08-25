@@ -1,9 +1,12 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-class MyInstaller < VagrantVbguest::Installers::RedHat
-  def install_dependencies_cmd
-    "dnf install -y #{dependencies}"
+class MyInstaller < VagrantVbguest::Installers::Linux
+  def install(opts=nil, &block)
+    communicate.sudo("dnf check-update -q >> /dev/null 2&>1", opts, &block)
+    communicate.sudo("dnf upgrade -y", opts, &block)
+    communicate.sudo("dnf install -y kernel-devel gcc make perl bzip2", opts, &block)
+    super
   end
 end
 
@@ -60,7 +63,7 @@ Vagrant.configure(2) do |config|
   #
     # Customize the amount of memory on the VM:
     vb.cpus = 4
-    vb.memory = "4096"
+    vb.memory = "8404"  # 8192
     vb.customize ["modifyvm", :id, "--cpuexecutioncap", "100"]
     vb.customize ["modifyvm", :id, "--paravirtprovider", "kvm"]
   end

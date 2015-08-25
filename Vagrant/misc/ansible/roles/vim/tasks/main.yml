@@ -42,9 +42,7 @@
   tags:
     - setup
     - setup.vim
-  command: git clone git://github.com/vim/vim.git vim
-  args:
-    chdir: "{{ work_dir }}"
+  git: repo=git://github.com/vim/vim.git dest="{{vim_build_dir}}"
   when: exists_vim.rc == 1
 
 - name: change revision
@@ -106,11 +104,21 @@
     - setup
     - setup.vim
   file: path="~/.vim/bundle" state=directory
+  when: exists_vim.rc == 1
 
 - name: clone neobundle.vim
   tags:
     - setup
     - setup.vim
-  git: repo=https://github.com/Shougo/neobundle.vim.git dest="~/.vim/bundle/neobundle.vim"
+  git: repo=git://github.com/Shougo/neobundle.vim.git dest="~/.vim/bundle/neobundle.vim"
+  when: exists_vim.rc == 1
+
+- name: init bundles
+  tags:
+    - setup
+    - setup.vim
+  command: "{{ vim_prefix }}/bin/vim -N -u NONE -i NONE -V1 -e -s --cmd \"set encoding=utf-8\" --cmd \"set termencoding=utf-8\" --cmd \"source ~/.vimrc\" --cmd NeoBundleInstall! --cmd qall!"
+  ignore_errors: yes
+  when: exists_vim.rc == 1
 
 # vim:st=2 sts=2 sw=2:

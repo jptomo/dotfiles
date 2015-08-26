@@ -30,55 +30,77 @@
     - libXt-devel
   when: exists_vim.rc == 1
 
+- name: clear work dir
+  tags:
+    - setup
+    - setup.vim
+  sudo: yes
+  file: >-
+    path="{{vim_build_dir}}"
+    state=absent
+  when: exists_vim.rc == 1
+
 - name: create work dir
   tags:
     - setup
     - setup.vim
   sudo: yes
-  file: path="{{vim_build_dir}}" state=directory mode=0777
+  file: >-
+    path="{{vim_build_dir}}"
+    state=directory mode=0777
   when: exists_vim.rc == 1
 
 - name: clone src
   tags:
     - setup
     - setup.vim
-  git: repo=git://github.com/vim/vim.git dest="{{vim_build_dir}}"
-  when: exists_vim.rc == 1
-
-- name: change revision
-  tags:
-    - setup
-    - setup.vim
-  command: git reset --hard "{{ vim_ver }}"
-  args:
-    chdir: "{{ vim_build_dir }}"
+  git: >-
+    repo=https://github.com/vim/vim.git
+    dest="{{vim_build_dir}}"
+    version="{{vim_ver}}"
+    force=yes
   when: exists_vim.rc == 1
 
 - name: make autoconf
   tags:
     - setup
     - setup.vim
-  command: make autoconf
-  args:
-    chdir: "{{ vim_build_dir }}/src"
+  command: >-
+    make autoconf
+    chdir="{{vim_build_dir}}/src"
   when: exists_vim.rc == 1
 
 - name: configure
   tags:
     - setup
     - setup.vim
-  command: ./configure --prefix="{{vim_prefix}}" --with-features=huge --without-x --disable-gui --enable-multibyte --enable-perlinterp=dynamic --enable-pythoninterp=dynamic --enable-rubyinterp=dynamic --enable-luainterp=dynamic --with-lua-prefix=/usr --with-luajit --enable-gpm --enable-cscope --enable-fontset --enable-fail-if-missinga
-  args:
-    chdir: "{{ vim_build_dir }}/src"
+  command: >-
+    ./configure
+      --prefix="{{vim_prefix}}"
+      --with-features=huge
+      --without-x
+      --disable-gui
+      --enable-multibyte
+      --enable-perlinterp=dynamic
+      --enable-pythoninterp=dynamic
+      --enable-rubyinterp=dynamic
+      --enable-luainterp=dynamic
+      --with-lua-prefix=/usr
+      --with-luajit
+      --enable-gpm
+      --enable-cscope
+      --enable-fontset
+      --enable-fail-if-missinga
+    chdir="{{vim_build_dir}}/src"
   when: exists_vim.rc == 1
 
 - name: make
   tags:
     - setup
     - setup.vim
-  command: make
-  args:
-    chdir: "{{ vim_build_dir }}/src"
+  command: >-
+    make
+    chdir="{{vim_build_dir}}/src"
   when: exists_vim.rc == 1
 
 - name: mkdir install path
@@ -86,7 +108,9 @@
     - setup
     - setup.vim
   sudo: yes
-  file: path="{{vim_prefix}}" state=directory
+  file: >-
+    path="{{vim_prefix}}"
+    state=directory
   when: exists_vim.rc == 1
 
 - name: make install
@@ -94,30 +118,42 @@
     - setup
     - setup.vim
   sudo: yes
-  command: make install
-  args:
-    chdir: "{{ vim_build_dir }}/src"
+  command: >-
+    make install
+    chdir="{{vim_build_dir}}/src"
   when: exists_vim.rc == 1
 
 - name: create bundle dir
   tags:
     - setup
     - setup.vim
-  file: path="~/.vim/bundle" state=directory
+  file: >-
+    path="~/.vim/bundle"
+    state=directory
   when: exists_vim.rc == 1
 
 - name: clone neobundle.vim
   tags:
     - setup
     - setup.vim
-  git: repo=git://github.com/Shougo/neobundle.vim.git dest="~/.vim/bundle/neobundle.vim"
+  git: >-
+    repo=https://github.com/Shougo/neobundle.vim.git
+    dest="~/.vim/bundle/neobundle.vim"
+    force=yes
   when: exists_vim.rc == 1
 
 - name: init bundles
   tags:
     - setup
     - setup.vim
-  command: "{{ vim_prefix }}/bin/vim -N -u NONE -i NONE -V1 -e -s --cmd \"set encoding=utf-8\" --cmd \"set termencoding=utf-8\" --cmd \"source ~/.vimrc\" --cmd NeoBundleInstall! --cmd qall!"
+  command: >-
+    {{ vim_prefix }}/bin/vim
+      -N -u NONE -i NONE -V1 -e -s
+      --cmd \"set encoding=utf-8\"
+      --cmd \"set termencoding=utf-8\"
+      --cmd \"source ~/.vimrc\"
+      --cmd NeoBundleInstall!
+      --cmd qall!
   ignore_errors: yes
   when: exists_vim.rc == 1
 

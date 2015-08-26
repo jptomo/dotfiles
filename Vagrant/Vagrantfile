@@ -5,8 +5,13 @@ class MyInstaller < VagrantVbguest::Installers::Linux
   def install(opts=nil, &block)
     communicate.sudo("dnf check-update -q >> /dev/null 2&>1", opts, &block)
     communicate.sudo("dnf upgrade -y", opts, &block)
-    communicate.sudo("dnf install -y kernel-devel gcc make perl bzip2", opts, &block)
+    communicate.sudo("dnf install -y kernel-devel-`uname -r` gcc make perl bzip2", opts, &block)
     super
+  end
+
+  def installer
+    @installer ||= File.join(mount_point, 'VBoxLinuxAdditions.run')
+    @installer = 'KERN_DIR=/usr/src/kernels/`rpm -qa | grep kernel-devel | sort -r | head -n 1 | sed -e "s/kernel-devel-//"` ' + @installer
   end
 end
 

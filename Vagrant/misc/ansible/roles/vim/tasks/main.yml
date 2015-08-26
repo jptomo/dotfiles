@@ -76,21 +76,21 @@
     - setup.vim
   command: >-
     ./configure
-      --prefix="{{vim_prefix}}"
-      --with-features=huge
-      --without-x
-      --disable-gui
-      --enable-multibyte
-      --enable-perlinterp=dynamic
-      --enable-pythoninterp=dynamic
-      --enable-rubyinterp=dynamic
-      --enable-luainterp=dynamic
-      --with-lua-prefix=/usr
-      --with-luajit
-      --enable-gpm
-      --enable-cscope
-      --enable-fontset
-      --enable-fail-if-missinga
+    --prefix="{{vim_prefix}}"
+    --with-features=huge
+    --without-x
+    --disable-gui
+    --enable-multibyte
+    --enable-perlinterp=dynamic
+    --enable-pythoninterp=dynamic
+    --enable-rubyinterp=dynamic
+    --enable-luainterp=dynamic
+    --with-lua-prefix=/usr
+    --with-luajit
+    --enable-gpm
+    --enable-cscope
+    --enable-fontset
+    --enable-fail-if-missinga
     chdir="{{vim_build_dir}}/src"
   when: exists_vim.rc == 1
 
@@ -142,18 +142,35 @@
     force=yes
   when: exists_vim.rc == 1
 
+- name: init vimproc
+  tags:
+    - setup
+    - setup.vim
+  command: >-
+    {{ vim_prefix }}/bin/vim
+    -N -U NONE -i NONE -V1 -e -s
+    --cmd "set encoding=utf-8"
+    --cmd "set termencoding=utf-8"
+    --cmd "set runtimepath+=~/.vim/bundle/neobundle.vim/"
+    --cmd "call neobundle#begin(expand('~/.vim/bundle/'))"
+    --cmd "NeoBundle 'Shougo/vimproc.vim', {'build': {'others' : 'make'}}"
+    --cmd "NeoBundleInstall!"
+    --cmd "qall!"
+  ignore_errors: yes
+  when: exists_vim.rc == 1
+
 - name: init bundles
   tags:
     - setup
     - setup.vim
   command: >-
     {{ vim_prefix }}/bin/vim
-      -N -u NONE -i NONE -V1 -e -s
-      --cmd \"set encoding=utf-8\"
-      --cmd \"set termencoding=utf-8\"
-      --cmd \"source ~/.vimrc\"
-      --cmd NeoBundleInstall!
-      --cmd qall!
+    -N -U NONE -i NONE -V1 -e -s
+    --cmd "set encoding=utf-8"
+    --cmd "set termencoding=utf-8"
+    --cmd "source ~/.vimrc"
+    --cmd "NeoBundleInstall!"
+    --cmd "qall!"
   ignore_errors: yes
   when: exists_vim.rc == 1
 

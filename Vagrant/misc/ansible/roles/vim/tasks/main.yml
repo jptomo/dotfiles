@@ -154,6 +154,7 @@
     --cmd "set runtimepath+=~/.vim/bundle/neobundle.vim/"
     --cmd "call neobundle#begin(expand('~/.vim/bundle/'))"
     --cmd "NeoBundle 'Shougo/vimproc.vim', {'build': {'others' : 'make'}}"
+    --cmd "call neobundle#end()"
     --cmd "NeoBundleInstall!"
     --cmd "qall!"
   ignore_errors: yes

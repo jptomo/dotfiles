@@ -1,0 +1,104 @@
+---
+- name: check dotfiles existance
+  tags:
+    - setup
+    - setup.vim
+  ignore_errors: yes
+  command: test -d "~/misc/dotfiles"
+  register: exists_dotfiles
+
+- name: clone dotfiles
+  tags:
+    - setup
+    - setup.vim
+  git: repo=https://github.com/jptomo/dotfiles.git dest="~/misc/dotfiles"
+  when: exists_dotfiles.rc == 1
+
+- name: remove origin
+  tags:
+    - setup
+  command: git remote rm origin
+  args:
+    chdir: "~/misc/dotfiles"
+  when: exists_dotfiles.rc == 1
+
+- name: add origin
+  tags:
+    - setup
+  command: git remote add origin git@github.com:jptomo/dotfiles.git
+  args:
+    chdir: "~/misc/dotfiles"
+  when: exists_dotfiles.rc == 1
+
+- name: init rcs
+  tags:
+    - setup
+    - setup.init
+  command: sh setup.sh
+  args:
+    chdir: "~/misc/dotfiles"
+  when: exists_dotfiles.rc == 1
+
+- name: create bundle dir
+  tags:
+    - setup
+    - setup.vim
+  file: >-
+    path="~/.vim/bundle"
+    state=directory
+  when: exists_vim.rc == 1
+
+- name: clone neobundle.vim
+  tags:
+    - setup
+    - setup.vim
+  git: >-
+    repo=https://github.com/Shougo/neobundle.vim.git
+    dest="~/.vim/bundle/neobundle.vim"
+    force=yes
+  when: exists_vim.rc == 1
+
+- name: init vimproc
+  tags:
+    - setup
+    - setup.vim
+  command: >-
+    {{ vim_prefix }}/bin/vim
+    -N -U NONE -i NONE -V1 -e -s
+    --cmd "set encoding=utf-8"
+    --cmd "set termencoding=utf-8"
+    --cmd "set runtimepath+=~/.vim/bundle/neobundle.vim/"
+    --cmd "call neobundle#begin(expand('~/.vim/bundle/'))"
+    --cmd "NeoBundle 'Shougo/vimproc.vim', {'build': {'others' : 'make'}}"
+    --cmd "call neobundle#end()"
+    --cmd "NeoBundleInstall!"
+    --cmd "qall!"
+  ignore_errors: yes
+  when: exists_vim.rc == 1
+
+- name: init bundles
+  tags:
+    - setup
+    - setup.vim
+  command: >-
+    {{ vim_prefix }}/bin/vim
+    -N -U NONE -i NONE -V1 -e -s
+    --cmd "set encoding=utf-8"
+    --cmd "set termencoding=utf-8"
+    --cmd "source ~/.vimrc"
+    --cmd "NeoBundleInstall!"
+    --cmd "qall!"
+  ignore_errors: yes
+  when: exists_vim.rc == 1
+
+- name: add path
+  tags:
+    - setup
+    - setup.vim
+  command: >-
+    sed -i -e
+    's!^#export PATH="$VIM:$PATH"$!export PATH="/opt/vim/v7.4.827/bin:$PATH"!'
+    ~/.bash.include
+  #when: exists_vim.rc == 1
+
+# vim:st=2 sts=2 sw=2:

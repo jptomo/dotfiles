@@ -46,7 +46,6 @@
   file: >-
     path="~/.vim/bundle"
     state=directory
-  when: exists_vim.rc == 1
 
 - name: clone neobundle.vim
   tags:
@@ -56,25 +55,27 @@
     repo=https://github.com/Shougo/neobundle.vim.git
     dest="~/.vim/bundle/neobundle.vim"
     force=yes
-  when: exists_vim.rc == 1
 
-- name: init vimproc
+- name: clone vimproc.vim
+  tags:
+    - setup
+    - setup.vim
+  git: >-
+    repo=https://github.com/Shougo/vimproc.vim.git
+    dest="~/.vim/bundle/vimproc.vim"
+    force=yes
+
+- stat: path="~/.vim/bundle/vimproc.vim/autoload/vimproc_linux64.so"
+  register: stat_vimproc_linux64_so
+
+- name: make vimproc.vim
   tags:
     - setup
     - setup.vim
   command: >-
-    {{ vim_prefix }}/bin/vim
-    -N -U NONE -i NONE -V1 -e -s
-    --cmd "set encoding=utf-8"
-    --cmd "set termencoding=utf-8"
-    --cmd "set runtimepath+=~/.vim/bundle/neobundle.vim/"
-    --cmd "call neobundle#begin(expand('~/.vim/bundle/'))"
-    --cmd "NeoBundle 'Shougo/vimproc.vim', {'build': {'others' : 'make'}}"
-    --cmd "call neobundle#end()"
-    --cmd "NeoBundleInstall!"
-    --cmd "qall!"
-  ignore_errors: yes
-  when: exists_vim.rc == 1
+    make
+    chdir="~/.vim/bundle/vimproc.vim"
+  when: not stat_vimproc_linux64_so.stat.exists
 
 - name: init bundles
   tags:

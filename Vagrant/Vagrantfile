@@ -3,7 +3,7 @@
 
 class MyInstaller < VagrantVbguest::Installers::Linux
   def install(opts=nil, &block)
-    communicate.sudo("dnf check-update -q >> /dev/null 2&>1", opts, &block)
+    communicate.sudo("dnf check-update -q >> /dev/null 2>&1", opts, &block)
     communicate.sudo("dnf upgrade -y", opts, &block)
     communicate.sudo("dnf install -y kernel-devel-`uname -r` gcc make perl bzip2", opts, &block)
     super

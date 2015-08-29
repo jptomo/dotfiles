@@ -1,11 +1,9 @@
 ---
-- name: check vim installed
+- stat: path="{{ vim_prefix }}/bin/vim"
+  register: stat_vim_bin
   tags:
     - setup
     - setup.vim
-  command: test -f "{{ vim_prefix }}/bin/vim"
-  ignore_errors: yes
-  register: exists_vim
 
 - name: install build depends
   tags:
@@ -28,7 +26,7 @@
     - luajit-devel
     - gtk2-devel
     - libXt-devel
-  when: exists_vim.rc == 1
+  when: not stat_vim_bin.stat.exists
 
 - name: clear work dir
   tags:
@@ -38,7 +36,7 @@
   file: >-
     path="{{vim_build_dir}}"
     state=absent
-  when: exists_vim.rc == 1
+  when: not stat_vim_bin.stat.exists
 
 - name: create work dir
   tags:
@@ -48,7 +46,7 @@
   file: >-
     path="{{vim_build_dir}}"
     state=directory mode=0777
-  when: exists_vim.rc == 1
+  when: not stat_vim_bin.stat.exists
 
 - name: clone src
   tags:
@@ -59,7 +57,7 @@
     dest="{{vim_build_dir}}"
     version="{{vim_ver}}"
     force=yes
-  when: exists_vim.rc == 1
+  when: not stat_vim_bin.stat.exists
 
 - name: make autoconf
   tags:
@@ -68,7 +66,7 @@
   command: >-
     make autoconf
     chdir="{{vim_build_dir}}/src"
-  when: exists_vim.rc == 1
+  when: not stat_vim_bin.stat.exists
 
 - name: configure
   tags:
@@ -92,7 +90,7 @@
     --enable-fontset
     --enable-fail-if-missinga
     chdir="{{vim_build_dir}}/src"
-  when: exists_vim.rc == 1
+  when: not stat_vim_bin.stat.exists
 
 - name: make
   tags:
@@ -101,7 +99,7 @@
   command: >-
     make
     chdir="{{vim_build_dir}}/src"
-  when: exists_vim.rc == 1
+  when: not stat_vim_bin.stat.exists
 
 - name: mkdir install path
   tags:
@@ -111,7 +109,7 @@
   file: >-
     path="{{vim_prefix}}"
     state=directory
-  when: exists_vim.rc == 1
+  when: not stat_vim_bin.stat.exists
 
 - name: make install
   tags:
@@ -121,6 +119,6 @@
   command: >-
     make install
     chdir="{{vim_build_dir}}/src"
-  when: exists_vim.rc == 1
+  when: not stat_vim_bin.stat.exists
 
 # vim:st=2 sts=2 sw=2:

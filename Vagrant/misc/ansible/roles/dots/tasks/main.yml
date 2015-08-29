@@ -67,6 +67,9 @@
 
 - stat: path="~/.vim/bundle/vimproc.vim/autoload/vimproc_linux64.so"
   register: stat_vimproc_linux64_so
+  tags:
+    - setup
+    - setup.vim
 
 - name: make vimproc.vim
   tags:
@@ -96,10 +99,20 @@
   tags:
     - setup
     - setup.vim
-  command: >-
+    - tmp
+  shell: >-
     sed -i -e
-    's!^#export PATH="$VIM:$PATH"$!export PATH="/opt/vim/v7.4.827/bin:$PATH"!'
+    's!^#export PATH="$VIM:$PATH"$!export PATH="{{vim_prefix}}/bin:$PATH"!'
     ~/.bash.include
-  #when: exists_vim.rc == 1
+
+- name: update path
+  tags:
+    - setup
+    - setup.vim
+    - tmp
+  shell: >-
+    sed -i -e
+    's!^export PATH="/opt/vim/.\+/bin:$PATH"$!export PATH="{{vim_prefix}}/bin:$PATH"!'
+    ~/.bash.include
 
 # vim:st=2 sts=2 sw=2:

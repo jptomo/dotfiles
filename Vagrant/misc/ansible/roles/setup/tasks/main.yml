@@ -4,7 +4,7 @@
     - setup
     - setup.init
   sudo: yes
-  command: hostnamectl set-hostname fedora --static
+  command: hostnamectl set-hostname {{hostname}} --static
 
 - name: upgrade all packages
   tags:

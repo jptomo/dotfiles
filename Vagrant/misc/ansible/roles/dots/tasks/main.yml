@@ -1,4 +1,27 @@
 ---
+- name: create .ssh dir
+  tags:
+    - setup
+    - setup.dots
+  file: >-
+    path="~/.ssh"
+    state=directory
+
+- stat: path="~/.ssh/id_rsa"
+  register: stat_ssh_id_rsa
+  tags:
+    - setup
+    - setup.dots
+
+- name: create .ssh/id_rsa
+  tags:
+    - setup
+    - setup.dots
+  command: >-
+    ssh-keygen -t rsa -b 4096 -P "" -C "{{hostname}} {{email}}" -f ~/.ssh/id_rsa
+    chdir="~/.ssh"
+  when: not stat_ssh_id_rsa.stat.exists
+
 - stat: path="~/misc/dotfiles"
   register: stat_dotfiles
   tags:

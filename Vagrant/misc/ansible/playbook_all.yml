@@ -6,3 +6,6 @@
     - setup
     - vim
     - dots
+    - ocaml
+
+# vim:st=2 sts=2 sw=2:

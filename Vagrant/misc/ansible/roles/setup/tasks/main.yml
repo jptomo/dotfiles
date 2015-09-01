@@ -10,6 +10,7 @@
   tags:
     - setup
     - setup.update
+    - ocaml
   sudo: yes
   dnf: name=* state=latest
 

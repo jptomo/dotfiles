@@ -29,6 +29,9 @@
 #source "$HOME/.nvm/nvm.sh"
 #source "$HOME/.nvm/bash_completion"
 
+### Ocaml
+#eval `opam config env`
+
 # Linux IM
 #export GTK_IM_MODULE=ibus
 #export XMODIFIERS=@im=ibus

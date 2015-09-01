@@ -9,8 +9,8 @@ _latest=`git ls-remote --tags ${_repourl} \
     | sed -e 's/.\+\t//g' \
     | grep 'refs/tags' \
     | sed -e 's/refs\/tags\///' \
-    | grep 'v[0-9]-[0-9]-[0-9]\+' | sort -r | head -n 1`
-pkgver=`printf ${_latest} | sed -e 's/v//' | sed -e 's/-/./g'`
+    | grep 'v[0-9]\.[0-9]\.[0-9]\+' | sort -r | head -n 1`
+pkgver=`printf ${_latest} | sed -e 's/v//' `
 _versiondir="${pkgname}`printf $pkgver | sed -e 's/.[0-9]\+$//' | sed -e 's/\.//'`"
 
 # main settings
@@ -60,7 +60,7 @@ prepare() {
     mv ${_workdir} ${_workdir}_`date +%Y`_`date +%m%d`_`date +%H%M`_`date +%S`
   fi
 
-  git clone -q --depth 1 ${_repourl} ${pkgname}-${pkgver}
+  git clone -q --depth 1 -b ${_latest} ${_repourl} ${pkgname}-${pkgver}
 
   if [ -d ${_workdir}/.git ] ; then
     rm -fr ${_workdir}/.git

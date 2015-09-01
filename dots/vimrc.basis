@@ -1,6 +1,6 @@
 " vim:se ft=vim:
 " 文字色／背景色
-colo default
+colo slate
 
 " ウィンドウ表示関係
 se number       " 行番号表示

@@ -29,4 +29,12 @@
     - ocaml
   command: opam switch {{ocaml_ver}}
 
+- name: add opam config env
+  tags:
+    - ocaml
+  shell: >-
+    sed -i -e
+    's/^#eval `opam config env`$/eval `opam config env`/'
+    ~/.bash.include
+
 # vim:st=2 sts=2 sw=2:

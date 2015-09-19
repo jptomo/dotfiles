@@ -4,7 +4,7 @@ email: "quickness.net@gmail.com"
 work_dir: "/opt/work"
 
 # vim
-vim_ver: "v7.4.843"
+vim_ver: "v7.4.873"
 vim_build_dir: "{{ work_dir }}/vim"
 vim_prefix: "/opt/vim/{{vim_ver}}"
 

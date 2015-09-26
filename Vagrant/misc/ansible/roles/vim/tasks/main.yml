@@ -89,7 +89,6 @@
   tags:
     - vim
   command: >-
-  command: >-
     make
     chdir="{{vim_build_dir}}/src"
   when: not stat_vim_bin.stat.exists

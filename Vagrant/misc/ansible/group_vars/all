@@ -4,15 +4,33 @@ email: "quickness.net@gmail.com"
 work_dir: "/opt/work"
 
 # vim
-vim_ver: "v7.4.873"
-vim_build_dir: "{{ work_dir }}/vim"
-vim_prefix: "/opt/vim/{{vim_ver}}"
+vim:
+  name: "vim"
+  ver: "v7.4.873"
+vim_build_dir: "{{ work_dir }}/{{vim.name}}"
+vim_prefix: "/opt/{{vim.name}}/{{vim.ver}}"
 
 # python2
+python2:
+  name: "python2"
+  ver: "2.7.10"
+  bin_ver: "2.7"
+python2_build_dir: "{{ work_dir }}/{{python2.name}}"
+python2_src: "{{ work_dir }}/{{python2.name}}/Python-2.7.10.tgz"
+python2_src_dir: "{{ work_dir }}/{{python2.name}}/Python-2.7.10"
+python2_prefix: "/opt/{{python2.name}}/{{python2.ver}}"
 
 # python3
+python3:
+  name: "python3"
+  ver: "3.5.0"
+  bin_ver: "3.5"
+python3_build_dir: "{{ work_dir }}/{{python3.name}}"
+python3_src: "{{ work_dir }}/{{python3.name}}/Python-3.5.0.tgz"
+python3_src_dir: "{{ work_dir }}/{{python3.name}}/Python-3.5.0"
+python3_prefix: "/opt/{{python3.name}}/{{python3.ver}}"
 
 # ocaml
 ocaml_ver: "4.02.3"
 
-# vim: set filetype=yaml:
+# vim:ft=yaml st=2 sts=2 sw=2:

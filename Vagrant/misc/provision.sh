@@ -4,8 +4,13 @@
 if [ ! "`rpm -qa | grep ansible`" ] ; then
     sudo dnf check-update
     sudo dnf upgrade -y
-    sudo dnf install -y ansible
+    sudo dnf install -y git ansible
+    hash -r
 fi
 
 # run ansible-playbook
-ansible-playbook -i /vagrant/misc/ansible/hosts /vagrant/misc/ansible/playbook_setup.yml
+pushd ~/
+    mkdir misc
+    git clone https://github.com/jptomo/dotfiles.git misc/dotfiles
+    ansible-playbook -i ~/misc/ansible/hosts ~/misc/ansible/playbook_setup.yml
+popd

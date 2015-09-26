@@ -32,8 +32,8 @@ Directories
   ├── ansible:  build up work space of fedora
   ├── dots:     dotfiles
   ├── misc
+  │   ├── Vagrant:        Vagrant of fedora
   │   ├── brew-Formulas:  homebrew fomulas
   │   ├── emacs:          emacs setup files
   │   └── mlterm:         mlterm config files
-  ├── msys2:    Msys2 build script
-  └── Vagrant:  Vagrant of fedora
+  └── msys2:    Msys2 build script

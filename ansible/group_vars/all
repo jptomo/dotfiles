@@ -12,23 +12,15 @@ vim_prefix: "/opt/{{vim.name}}/{{vim.ver}}"
 
 # python2
 python2:
-  name: "python2"
   ver: "2.7.10"
   bin_ver: "2.7"
-python2_build_dir: "{{ work_dir }}/{{python2.name}}"
-python2_src: "{{ work_dir }}/{{python2.name}}/Python-2.7.10.tgz"
-python2_src_dir: "{{ work_dir }}/{{python2.name}}/Python-2.7.10"
-python2_prefix: "/opt/{{python2.name}}/{{python2.ver}}"
+  src_hash: "eda8ce6eec03e74991abb5384170e7c65fcd7522e409b8e83d7e6372add0f12a"
 
 # python3
 python3:
-  name: "python3"
   ver: "3.5.0"
   bin_ver: "3.5"
-python3_build_dir: "{{ work_dir }}/{{python3.name}}"
-python3_src: "{{ work_dir }}/{{python3.name}}/Python-3.5.0.tgz"
-python3_src_dir: "{{ work_dir }}/{{python3.name}}/Python-3.5.0"
-python3_prefix: "/opt/{{python3.name}}/{{python3.ver}}"
+  src_hash: "584e3d5a02692ca52fce505e68ecd77248a6f2c99adf9db144a39087336b0fe0"
 
 # ocaml
 ocaml_ver: "4.02.3"

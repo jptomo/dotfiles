@@ -6,7 +6,6 @@
     - setup
     - vim
     - ocaml
-    - python2
-    - python3
+    - python
 
 # vim:st=2 sts=2 sw=2:

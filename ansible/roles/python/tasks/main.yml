@@ -1,37 +1,27 @@
 ---
-
 - name: cmmi python2
   tags:
     - python2
-  include: cmmi.yml
+  include: vars.yml
   vars:
-    python_prefix: "/opt/python2/{{python2.ver}}"
-    python_bin_ver: "{{python2.bin_ver}}"
-    python_build_dir: "{{ work_dir }}/python2"
-    python_src_url: "https://www.python.org/ftp/python/{{python2.ver}}/Python-{{python2.ver}}.tgz"
-    python_src_hash: "{{python2.src_hash}}"
-    python_src: "{{ work_dir }}/python2/Python-{{python2.ver}}.tgz"
-    python_src_dir: "{{ work_dir }}/python2/Python-2.7.10"
+    python_ver: "{{python2_ver}}"
+    python_bin_ver: "{{python2_bin_ver}}"
+    python_src_hash: "{{python2_src_hash}}"
     python_configure: >-
       ./configure
-      --prefix="/opt/python2/{{python2.ver}}"
+      --prefix="/opt/python/{{python2_ver}}"
       --enable-unicode=ucs4
 
 - name: cmmi python3
   tags:
     - python3
-  include: cmmi.yml
+  include: vars.yml
   vars:
-    python_prefix: "/opt/python3/{{python3.ver}}"
-    python_bin_ver: "{{python3.bin_ver}}"
-    python_build_dir: "{{ work_dir }}/python3"
-    python_src_url: "https://www.python.org/ftp/python/{{python3.ver}}/Python-{{python3.ver}}.tgz"
-    python_src_hash: "{{python3.src_hash}}"
-    python_src: "{{ work_dir }}/python3/Python-{{python3.ver}}.tgz"
-    python_src_dir: "{{ work_dir }}/python3/Python-3.5.0"
+    python_ver: "{{python3_ver}}"
+    python_bin_ver: "{{python3_bin_ver}}"
+    python_src_hash: "{{python3_src_hash}}"
     python_configure: >-
       ./configure
-      --prefix="{{python_prefix}}"
-      --enable-unicode=ucs4
+      --prefix="/opt/python/{{python3_ver}}"
 
 # vim:st=2 sts=2 sw=2:

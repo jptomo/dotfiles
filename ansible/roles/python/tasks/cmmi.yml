@@ -28,17 +28,17 @@
     - expat-devel
   when: not stat_python_bin.stat.exists
 
-- name: clear work dir
+- name: clear old src dir
   sudo: yes
   file: >-
-    path="{{python_build_dir}}"
+    path="{{python_src_dir}}"
     state=absent
   when: not stat_python_bin.stat.exists
 
 - name: create work dir
   sudo: yes
   file: >-
-    path="{{python_build_dir}}"
+    path="{{work_dir}}/python"
     state=directory mode=0777
   when: not stat_python_bin.stat.exists
 
@@ -52,7 +52,7 @@
 - name: unarchive
   unarchive: >-
     src="{{python_src}}"
-    dest="{{python_build_dir}}"
+    dest="{{work_dir}}/python"
   when: not stat_python_bin.stat.exists
 
 - name: configure

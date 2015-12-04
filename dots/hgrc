@@ -10,11 +10,8 @@ diff3.args = -m $local $base $other > $output
 color =
 ;pip install diff-highlight
 diff_highlight =
-info = ~/.local/lib/Mercurial/MercurialInfoExtension.py
 eol =
 mq =
-hgshelve = ~/.local/lib/Mercurial/MercurialShelveExtension.py
-;pager =
 progress =
 rebase =
 record =

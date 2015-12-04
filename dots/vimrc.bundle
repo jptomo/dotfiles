@@ -47,8 +47,11 @@ NeoBundleLazy 'nvie/vim-flake8', {'autoload': {'filetypes': ['python']}}
 NeoBundleLazy 'keitheis/vim-plim', {'autoload': {'filetypes': ['plim']}}
 
 " JavaScript
-NeoBundleLazy 'JavaScript-syntax', {'autoload': {'filetypes': ['javascript']}}
-NeoBundleLazy 'pangloss/vim-javascript', {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
+NeoBundleLazy 'jason0x43/vim-js-indent', {'autoload': {'filetypes': ['javascript', 'typescript']}}
+
+" TypeScript
+NeoBundleLazy 'leafgarland/typescript-vim', {'autoload': {'filetypes': ['typescript']}}
 
 " CoffeeScript
 NeoBundleLazy 'kchmck/vim-coffee-script', {'autoload': {'filetypes': ['coffee']}}

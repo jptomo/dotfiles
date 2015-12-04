@@ -14,4 +14,4 @@ so ~/.vimrc.bundle
 so ~/.vimrc.encodings
 so ~/.vimrc.filetypes
 so ~/.vimrc.basis
-so ~/.vimrc.completion
+"so ~/.vimrc.completion

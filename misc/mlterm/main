@@ -63,3 +63,5 @@ bg_color=white
 # 背景画像(透過処理含む)の輝度調整(百分率)
 #brightness=80
 #--------------------
+
+daemon_mode=blend

@@ -41,9 +41,13 @@ setup
 .. code-block:: console
 
    $ git clone git@github.com:jptomo/dotfiles.git
-   $ cd dotfiles
+   $ cp -r dotfiles/misc/mlterm ~/.mlterm
+   $ export PATH="/opt/mlterm/3.6.0/bin:$PATH"
    $ sudo cp misc/mlterm.desktop /usr/share/applications/
-   $ cp -r misc/mlterm ~/.mlterm
+   $ cat > ~/.manpath
+   MANDATORY_MANPATH /opt/mlterm/3.6.0/share/man
+   MANPATH_MAP  /opt/mlterm/3.6.0/bin /opt/mlterm/3.6.0/share/man
+   MANDB_MAP /opt/mlterm/3.6.0/share/man /var/cache/man/opt/mlterm
 
 Directories
 ===========

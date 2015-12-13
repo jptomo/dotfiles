@@ -10,9 +10,16 @@ dotfiles
 
 .. code-block:: console
 
-   $ git clone git@github.com:jptomo/dotfiles.git
-   $ cd dotfiles
    $ bash setup.sh
+
+ansible
+-------
+
+.. code-block:: console
+
+   $ sudo dnf install ansible python-dnf
+   $ ansible-playbook ansible/playbook_all.yml -i ansible/hosts -t setup -K
+   $ ansible-playbook ansible/playbook_all.yml -i ansible/hosts -t vim,python2,python3,ocaml -K
 
 mlterm
 ------
@@ -40,8 +47,7 @@ setup
 
 .. code-block:: console
 
-   $ git clone git@github.com:jptomo/dotfiles.git
-   $ cp -r dotfiles/misc/mlterm ~/.mlterm
+   $ cp -r misc/mlterm ~/.mlterm
    $ export PATH="/opt/mlterm/3.6.0/bin:$PATH"
    $ sudo cp misc/mlterm.desktop /usr/share/applications/
    $ cat > ~/.manpath

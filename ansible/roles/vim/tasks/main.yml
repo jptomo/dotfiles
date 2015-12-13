@@ -50,7 +50,7 @@
   git: >-
     repo=https://github.com/vim/vim.git
     dest="{{vim_build_dir}}"
-    version="{{vim_ver}}"
+    version="{{vim.ver}}"
     force=yes
   when: not stat_vim_bin.stat.exists
 
@@ -81,7 +81,7 @@
     --enable-gpm
     --enable-cscope
     --enable-fontset
-    --enable-fail-if-missinga
+    --enable-fail-if-missing
     chdir="{{vim_build_dir}}/src"
   when: not stat_vim_bin.stat.exists
 

@@ -14,7 +14,7 @@ pkgver=`printf ${_latest} | sed -e 's/v//' `
 _versiondir="${pkgname}`printf $pkgver | sed -e 's/.[0-9]\+$//' | sed -e 's/\.//'`"
 
 # main settings
-pkgrel=1
+pkgrel=8
 arch=('i686' 'x86_64')
 license=('custom:vim')
 url="http://www.vim.org"

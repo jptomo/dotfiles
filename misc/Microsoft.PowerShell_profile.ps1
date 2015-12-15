@@ -118,19 +118,24 @@ $ENV:PATHEXT += ";.PY"
 #
 # ### SetUp PATH ###
 
-# Mingw64
-$ENV:MSYSTEM = "MINGW64"
-$ENV:MSYSCON = "path\to\Cmder.exe"
-$ENV:PATH += ";C:\msys64\mingw64\lib;C:\msys64\mingw64\bin"
-$ENV:MINGW_MOUNT_POINT = "C:\msys64\mingw64"
-$ENV:PKG_CONFIG_PATH = "${MINGW_MOUNT_POINT}\lib\pkgconfig;${MINGW_MOUNT_POINT}\share\pkgconfig"
-$ENV:ACLOCAL_PATH = "${MINGW_MOUNT_POINT}\share\aclocal;C:\msys64\usr\share\aclocal"
+# ### SetUp PATH ###
 
 # VS2015
 #Import-Module WintellectPowerShell
 #Invoke-CmdScript -script "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat"
 # adb
 #$ENV:Path = "C:\Path\to\Android\sdk\platform-tools;" + $Env:Path
+
+# Mingw64
+Function Initialize-MinGW64()
+{
+    $ENV:MSYSTEM = "MINGW64"
+    $ENV:MSYSCON = "path\to\Cmder.exe"
+    $ENV:PATH += ";C:\msys64\mingw64\lib;C:\msys64\mingw64\bin"
+    $ENV:MINGW_MOUNT_POINT = "C:\msys64\mingw64"
+    $ENV:PKG_CONFIG_PATH = "${MINGW_MOUNT_POINT}\lib\pkgconfig;${MINGW_MOUNT_POINT}\share\pkgconfig"
+    $ENV:ACLOCAL_PATH = "${MINGW_MOUNT_POINT}\share\aclocal;C:\msys64\usr\share\aclocal"
+}
 
 # something else
 $ENV:PATH = [String]::Join(';', ($ENV:PATH -split ';' | ? {$_ -ne ''} | % {$_.Trim() -replace '/', '\'}))

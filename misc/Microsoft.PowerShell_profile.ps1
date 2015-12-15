@@ -133,14 +133,8 @@ $ENV:ACLOCAL_PATH = "${MINGW_MOUNT_POINT}\share\aclocal;C:\msys64\usr\share\aclo
 #$ENV:Path = "C:\Path\to\Android\sdk\platform-tools;" + $Env:Path
 
 # something else
-$cnv = {
-    param($path)
-
-    return $path
-}
-$ENV:PATH = ($ENV:PATH -split ";" | ? {$_ -ne ''} | % {$_.Trim() -replace "/", "\"}) -join ";"
-$ENV:PATHEXT = ($ENV:PATHEXT -split ";" | ? {$_ -ne ''} | % {&$cnv $_.Trim().ToUpper()}) -join ";"
-Remove-Variable cnv
+$ENV:PATH = [String]::Join(';', ($ENV:PATH -split ';' | ? {$_ -ne ''} | % {$_.Trim() -replace '/', '\'}))
+$ENV:PATHEXT = [String]::Join(';', ($ENV:PATHEXT -split ';' | ? {$_ -ne ''} | % { $_.Trim().ToUpper() }))
 
 #Import-Module Pscx
 
@@ -155,10 +149,12 @@ Remove-Variable cnv
 
 Set-Alias -Name ngen -Value (Join-Path ([System.Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory()) ngen.exe)
 [AppDomain]::CurrentDomain.GetAssemblies() |
-    where { ( $_.Location ) -and `
-            -not $_.Location.Contains("PSReadLine.dll") -and `
-            -not $_.Location.Contains("Pscx3") -and `
-            -not $_.Location.Contains("LibGit2Sharp.dll") } |
+    where { ( $_.Location ) `
+            -and -not $_.Location.Contains("PSReadLine.dll") `
+            -and -not $_.Location.Contains("PSReadline.resources.dll") `
+            -and -not $_.Location.Contains("Pscx3") `
+            -and -not $_.Location.Contains("LibGit2Sharp.dll") `
+            } |
     sort {Split-path $_.location -leaf} |
     %{
         $Name = (Split-Path $_.location -leaf)

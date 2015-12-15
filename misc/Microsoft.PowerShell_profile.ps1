@@ -129,6 +129,8 @@ $ENV:ACLOCAL_PATH = "${MINGW_MOUNT_POINT}\share\aclocal;C:\msys64\usr\share\aclo
 # VS2015
 #Import-Module WintellectPowerShell
 #Invoke-CmdScript -script "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat"
+# adb
+#$ENV:Path = "C:\Path\to\Android\sdk\platform-tools;" + $Env:Path
 
 # something else
 $cnv = {
@@ -149,3 +151,23 @@ Remove-Variable cnv
 # see https://github.com/lzybkr/PSReadLine#installation
 #Import-Module PSReadLine
 #Set-PSReadlineOption -EditMode Emacs
+
+
+Set-Alias -Name ngen -Value (Join-Path ([System.Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory()) ngen.exe)
+[AppDomain]::CurrentDomain.GetAssemblies() |
+    where { ( $_.Location ) -and `
+            -not $_.Location.Contains("PSReadLine.dll") -and `
+            -not $_.Location.Contains("Pscx3") -and `
+            -not $_.Location.Contains("LibGit2Sharp.dll") } |
+    sort {Split-path $_.location -leaf} |
+    %{
+        $Name = (Split-Path $_.location -leaf)
+        if ([System.Runtime.InteropServices.RuntimeEnvironment]::FromGlobalAccessCache($_))
+        {
+            # Write-Host "Already GACed: $Name"
+        }else
+        {
+            Write-Host -ForegroundColor Yellow "NGENing      : $Name"
+            ngen $_.location | %{"`t$_"}
+         }
+      }

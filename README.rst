@@ -28,7 +28,7 @@ build on Fedora 23
 
 .. code-block:: console
 
-   $ sudo dnf install libXt-devel cairo-devel gdk-pixbuf2-devel
+   $ sudo dnf install libXt-devel cairo-devel gdk-pixbuf2-devel fribidi-devel gtk3-devel
    $ curl -O http://netix.dl.sourceforge.net/project/mlterm/01release/mlterm-3.6.0/mlterm-3.6.0.tar.gz
    $ tar xf mlterm-3.6.0.tar.gz
    $ cd mlterm-3.6.0
@@ -37,7 +37,6 @@ build on Fedora 23
    > --enable-fcitx \
    > --enable-optimize-redrawing \
    > --with-gtk=3.0 \
-   > --with-type-engines=cairo \
    > --with-scrollbars=sample,extra,pixmap_engine
    $ make
    $ sudo mkdir -p /opt/mlterm/3.6.0

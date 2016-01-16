@@ -1,18 +1,18 @@
 " vim: ft=vim:
 
 if has('mac')
-    let s:hb_opt = expand("~/.homebrew/opt/")
-    let $PERL_DLL = s:hb_opt . "perl/lib/5.20.1/darwin-thread-multi-2level/CORE/libperl.dylib"
-    let $PYTHON_DLL = s:hb_opt . "python/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib"
-    let $PYTHON3_DLL = s:hb_opt . "python3/Frameworks/Python.framework/Versions/3.4/lib/libpython3.4.dylib"
-    let $RUBY_DLL = s:hb_opt . "ruby/lib/libruby.2.2.0.dylib"
-    let $LUA_DLL = s:hb_opt . "lua/lib/liblua.5.2.3.dylib"
+    let s:hb_opt = expand('~/.homebrew/opt/')
+    let $PERL_DLL = s:hb_opt . 'perl/lib/5.20.1/darwin-thread-multi-2level/CORE/libperl.dylib'
+    let $PYTHON_DLL = s:hb_opt . 'python/Frameworks/Python.framework/Versions/2.7/lib/libpython2.7.dylib'
+    let $PYTHON3_DLL = s:hb_opt . 'python3/Frameworks/Python.framework/Versions/3.4/lib/libpython3.4.dylib'
+    let $RUBY_DLL = s:hb_opt . 'ruby/lib/libruby.2.2.0.dylib'
+    let $LUA_DLL = s:hb_opt . 'lua/lib/liblua.5.2.3.dylib'
 endif
 
-for fext in ["bundle", "encodings", "filetypes", "basis", "local"]
-  let s:fpath = "~/.vimrc." . fext
-  if getftype(expand(s:fpath)) == "file"
-      \ || getftype(expand(s:fpath)) == "link"
-    execute 'source ' .  s:fpath
-  endif
+for fext in ['bundle', 'encodings', 'filetypes', 'basis']
+  execute 'source ~/.vimrc.' . fext
 endfor
+
+if getftype(expand('~/.vimrc.local')) == 'file'
+  execute 'source ~/.vimrc.local'
+endif

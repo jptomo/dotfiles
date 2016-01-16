@@ -46,7 +46,6 @@
   get_url: >-
     url="{{python_src_url}}"
     dest="{{python_src}}"
-    sha256sum="{{python_src_hash}}"
   when: not stat_python_bin.stat.exists
 
 - name: unarchive

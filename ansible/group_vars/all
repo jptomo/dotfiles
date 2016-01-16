@@ -13,12 +13,10 @@ vim_prefix: "/opt/{{vim.name}}/{{vim.ver}}"
 # python2
 python2_ver: "2.7.11"
 python2_bin_ver: "2.7"
-python2_src_hash: "82929b96fd6afc8da838b149107078c02fa1744b7e60999a8babbc0d3fa86fc6"
 
 # python3
 python3_ver: "3.5.1"
 python3_bin_ver: "3.5"
-python3_src_hash: "687e067d9f391da645423c7eda8205bae9d35edc0c76ef5218dcbe4cc770d0d7"
 
 # ocaml
 ocaml_ver: "4.02.3"

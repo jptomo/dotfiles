@@ -5,7 +5,10 @@ se guifont=Migu\ 2M\ 11
 se clipboard=unnamedplus
 se guioptions-=T
 
-if has('gui_macvim')
+if has('win32')
+    se guifont=MyricaM_M:h12:cSHIFTJIS
+    se clipboard=unnamed
+elseif has('gui_macvim')
     se backspace=indent,eol,start
     se antialias
     se guifont=Migu\ 2M:h12

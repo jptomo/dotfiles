@@ -9,9 +9,11 @@ if has('mac')
     let $LUA_DLL = s:hb_opt . 'lua/lib/liblua.5.2.3.dylib'
 endif
 
-for fext in ['bundle', 'encodings', 'filetypes', 'basis']
-  execute 'source ~/.vimrc.' . fext
-endfor
+so ~/.vimrc.bundle
+so ~/.vimrc.encodings
+so ~/.vimrc.filetypes
+so ~/.vimrc.basis
+" so ~/.vimrc.completion
 
 if getftype(expand('~/.vimrc.local')) == 'file'
   execute 'source ~/.vimrc.local'

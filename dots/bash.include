@@ -2,6 +2,8 @@
 #PS1="\$(git_branch)\$(hg_branch)[@\h \W]\$ "
 
 ### vim
+unset VIM
+unset VIMRUNTIME
 #mkdir -p ~/.vim/bundle
 #git clone git://github.com/Shougo/neobundle.vim.git ~/.vim/bundle/neobundle.vim
 #_vim="/opt/vim/v7-4-692"

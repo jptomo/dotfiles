@@ -99,14 +99,15 @@ se hlsearch     " 検索文字をハイライト表示
 nmap <silent> <C-O> :NERDTreeToggle<CR>
 let g:NERDTreeShowHidden = 0
 let g:NERDTreeIgnore=[
-\   '\.svn',
-\   '\.pyc',
-\   '\.hg',
-\   '\.git',
+\   '\.svn$',
+\   '\.pyc$',
+\   '\.hg$',
+\   '\.git$',
 \   '__pycache__',
 \   '.egg-info',
 \]
 let g:NERDTreeDirArrows = 0
+let g:NERDTreeShowHidden=1
 
 " ### flake8 ###
 "let g:flake8_ignore='E501,E241'

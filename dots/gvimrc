@@ -6,7 +6,7 @@ se clipboard=unnamedplus
 se guioptions-=T
 
 if has('win32')
-    se guifont=MyricaM_M:h12:cSHIFTJIS
+    se guifont=Myrica_M:h12:cSHIFTJIS
     se clipboard=unnamed
 elseif has('gui_macvim')
     se backspace=indent,eol,start

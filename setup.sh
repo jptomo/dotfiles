@@ -11,8 +11,7 @@ DOT_FILES=( \
     vimrc gvimrc vimrc.completion vimrc.bundle vimrc.encodings \
     vimrc.basis vimrc.completion vimrc.filetypes \
     gemrc \
-    bashrc bash.alias \
-    bash.locale bash.include \
+    bashrc bash.alias bash.include \
 )
 
 # バックアップディレクトリの作成

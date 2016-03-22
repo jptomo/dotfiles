@@ -1,8 +1,3 @@
-# locale
-[[ -f ~/.bash.locale ]] && . ~/.bash.locale
-export TERM="xterm-256color"
-export SHELL="/bin/bash"
-
 umask 022
 
 # "." コマンドでシェルスクリプトを実行するときは
@@ -19,8 +14,6 @@ PS1="[@\h \W]\$ " # この辺は好み
 #RPROMPT="\t" # 右側に時間を表示する
 #setopt transient_rprompt # 右側まで入力がきたら時間を消す
 #setopt prompt_subst # 便利なプロント
-
-export EDITOR=vim # エディタはvim
 
 # 補完
 #autoload -U compinit # 強力な補完機能
@@ -63,4 +56,3 @@ fi
 # 設定ファイルのinclude
 [ -f ~/.bash.alias ] && . ~/.bash.alias
 [ -f ~/.bash.include ] && . ~/.bash.include
-export PATH=".:$PATH"

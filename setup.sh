@@ -5,13 +5,12 @@
 DOT_FILES=( \
     gitconfig gitignore gitconfig.include\
     hgrc hgeol hgignore hgrc.include\
+    bashrc bash.alias bash.include \
     zshrc zsh.alias \
     zsh_profile zsh.mode zsh.locale \
-    tmux.conf inputrc \
     vimrc gvimrc vimrc.completion vimrc.bundle vimrc.encodings \
-    vimrc.basis vimrc.completion vimrc.filetypes \
-    gemrc \
-    bashrc bash.alias bash.include \
+    vimrc.basis vimrc.filetypes \
+    tmux.conf inputrc gemrc \
 )
 
 # バックアップディレクトリの作成

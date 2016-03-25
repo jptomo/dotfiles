@@ -1,3 +1,5 @@
+[ -f /etc/bashrc ] && source /etc/bashrc
+
 umask 022
 
 # "." コマンドでシェルスクリプトを実行するときは

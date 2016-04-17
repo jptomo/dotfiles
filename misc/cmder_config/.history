@@ -1,0 +1,607 @@
+C:\msys64\usr\bin\bash.exe -li
+C:\msys64\usr\bin\bash.exe -li
+start C:\msys64\usr\bin\bash.exe -li
+start /?
+drw
+ls
+start /B C:\msys64\usr\bin\bash.exe -li
+exit
+ipconfig
+exit
+ls
+dir /w
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+C:\Windows\System32\cmd.exe /E:ON /V:ON /T:0E /K "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /Release /x64
+exit
+"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /Release /x64
+exit
+"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /Release /x64
+COLOR /?
+COLOR 02
+COLOR 08
+COLOR 0F
+COLOR 07
+exit
+hoge
+vc
+cl
+exit
+hoge
+COLOR /?
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+exit
+cd venv344\Lib\
+ls
+dir /w
+gendef -- libopenblas.dll > libopenblas.def
+gendef.exe -- libopenblas.dll > libopenblas.def
+path
+exit
+hoge
+COLOR /?
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+exit
+C:\Python\3.4.4.amd64\python.exe -V
+C:\Python\3.4.4.amd64\python.exe -m venv -h
+C:\Python\3.4.4.amd64\python.exe -m venv --copies --clear venv344
+.\venv344\Scripts\python.exe -V
+.\venv344\Scripts\python.exe -m pip install setuptools pip
+.\venv344\Scripts\python.exe -m pip install -U setuptools pip
+.\venv344\Scripts\python.exe -m pip install -U numpy pandas
+.\venv344\Scripts\python.exe -m pip install -U scipy
+.\venv344\Scripts\python.exe -m pip install -U psycopg2
+.\venv344\Scripts\python.exe -m pip install -U jupyter
+.\venv344\Scripts\jupyter-notebook.exe --help
+.\venv344\Scripts\jupyter-notebook.exe --ip=0.0.0.0 --port=8888 --no-browser
+.\venv344\Scripts\python.exe -m pip install -U cython nose tempita
+cd scipy\
+ls
+dir /w
+..\venv344\Scripts\python.exe -V
+..\venv344\Scripts\python.exe setup.py --help
+echo %Path%
+echo "hoge;%Path%
+echo "hoge;%Path%"
+echoPath=;%Path%
+set Path=%Path%
+set Path=C:\msys64\mingw64\bin;%Path%
+Path
+..\venv344\Scripts\python.exe setup.py config
+lib.exe
+gendef.exe
+exit
+Path
+lib.exe
+gendef.exe
+cd venv344\
+cd ..
+cd scipy\
+..\venv344\Scripts\python.exe setup.py config
+exit
+.\venv344\Scripts\python.exe -m pip install -U cython nose tempita
+cd scipy\
+..\venv344\Scripts\python.exe -V
+..\venv344\Scripts\python.exe setup.py --help
+echo %Path%
+echo "hoge;%Path%
+echo "hoge;%Path%"
+echoPath=;%Path%
+set Path=%Path%
+set Path=C:\msys64\mingw64\bin;%Path%
+Path
+..\venv344\Scripts\python.exe setup.py config
+lib.exe
+gendef.exe
+cd venv344\Lib\
+gendef.exe -- libopenblas.dll > libopenblas.def
+rm libopenblas.def 
+del libopenblas.def 
+lib.exe /MACHINE:x64 /DEF:libopenblas.def /OUT:libopenblas.lib
+dir /w
+del libopenblas.lib
+del libopenblas.exp
+ls
+vim libopenblas.def 
+gendef.exe - libopenblas.a > libopenblas.def
+gendef.exe - libopenblas.dll.a > libopenblas.def
+gendef.exe - libopenblas.dll > libopenblas.def
+lib.exe /MACHINE:x64 /DEF:libopenblas.def /OUT:openblas.lib
+exit
+ping 192.168.1.1
+ipconfig
+exit
+exit
+exit
+type git
+which git
+git
+git --version
+git -V
+ls
+exit
+exit
+:q
+exit
+ls
+exit
+:q
+vim "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.Cmd" 
+exit
+git
+git --version
+git -V
+ls
+exit
+:q
+"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /Release /x64
+exit
+exit
+git -V
+ls
+less Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+exit
+ls
+pwd
+ls -lht
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+ls -lht
+pwd
+sl
+ls
+exit
+git -V
+less Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim misc\cmd\which.bat 
+which ls
+ls
+echo path
+Path
+.\misc\cmd\which.bat which
+alias which=D:\tomo\Documents\misc\cmd\which.bat
+alias which='D:\tomo\Documents\misc\cmd\which.bat $*'
+which which
+vim Applications\cmder_mini_v1.2.9\config\aliases 
+exit
+which which
+alise which
+alias.bat which
+alias hoge
+exit
+exit
+C:\Python\3.4.4.amd64\python.exe -m venv --clear venv
+.\venv\Scripts\python.exe -m pip install -U setuptools pip
+.\venv\Scripts\python.exe -m pip install -U numpy
+.\venv\Scripts\python.exe -m pip install -U cython nose tempita
+"C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd" /Release /x64
+.\venv\Scripts\python.exe -m pip install -U Pyramid
+exit
+git -V
+ls
+less Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+exit
+ls
+pwd
+ls -lht
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+ls -lht
+sl
+ls
+exit
+git -V
+less Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim misc\cmd\which.bat 
+which ls
+echo path
+.\misc\cmd\which.bat which
+alias which=D:\tomo\Documents\misc\cmd\which.bat
+alias which='D:\tomo\Documents\misc\cmd\which.bat $*'
+which which
+vim Applications\cmder_mini_v1.2.9\config\aliases 
+exit
+which which
+alise which
+alias.bat which
+alias hoge
+exit
+cd bld_scipy\
+pwd
+less ..\Applications\cmder_mini_v1.2.9\vendor\init.bat 
+less C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd
+less "C:\Program Files\Microsoft SDKs\Windows\v7.1\Bin\SetEnv.cmd"
+echo %CD%
+git help clone
+git clone -h
+SET HOGE=hoge fuga
+echo %HOGE%
+SET HOGE=
+ls
+ls venv\
+IF EXISTS .\venv ECHO 'hoge
+IF EXISTS .\venv ECHO 'hoge'
+IF EXISTS .\venv ( ECHO 'hoge' )
+IF EXIST .\venv ( ECHO 'hoge' )
+IF EXIST .\venv ECHO 'hoge'
+.\build.bat 
+SET Path=some;%Path%
+setlocal
+SET Path=hoge;some;%Path%
+endlocal
+Path
+\
+.\build.bat
+ECHO %MyScipyVer
+ECHO %TMP%
+git -V
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim misc\cmd\which.bat 
+which ls
+echo path
+Path
+.\misc\cmd\which.bat which
+alias which=D:\tomo\Documents\misc\cmd\which.bat
+alias which='D:\tomo\Documents\misc\cmd\which.bat $*'
+vim Applications\cmder_mini_v1.2.9\config\aliases 
+less Applications\cmder_mini_v1.2.9\vendor\init.bat 
+which bash
+which which
+mkdir bld_scipy
+cd bld_scipy\
+dir /w
+type git
+which git
+touch build.bat
+ls
+vim build.bat 
+less ..\Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim ..\Applications\cmder_mini_v1.2.9\vendor\init.bat 
+cd ..
+RD /S /Q bld_scipy\
+RD /S /Q venv\
+exit
+cl
+exit
+less ..\Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim ..\Applications\cmder_mini_v1.2.9\vendor\init.bat 
+cd ..
+RD /S /Q bld_scipy\
+RD /S /Q venv\
+.\venv344\Scripts\python.exe -m pip install -U numpy pandas
+.\venv344\Scripts\python.exe -m pip install -U http://www.lfd.uci.edu/~gohlke/pythonlibs/th4jbnf9/scipy-0.17.0-cp34-none-win_amd64.whl
+.\venv344\Scripts\python.exe -m pip install -U http://www.lfd.uci.edu/~gohlke/pythonlibs/th4jbnf9/scipy-0.17.0-cp34-none-win_amd64.whl#egg=scipy
+which wget
+which curl
+curl -O http://www.lfd.uci.edu/~gohlke/pythonlibs/th4jbnf9/scipy-0.17.0-cp34-none-win_amd64.whl
+less scipy-0.17.0-cp34-none-win_amd64.whl 
+del scipy-0.17.0-cp34-none-win_amd64.whl 
+ls D:\tomo\Downloads\scipy-0.17.0-cp34-none-win_amd64.whl 
+.\venv344\Scripts\python.exe -m pip install -U numpy pandas matplotlib
+.\venv344\Scripts\python.exe -m pip install -U numpy pandas matplotlib sympy
+cl
+.\venv344\Scripts\python.exe
+C:\Python\3.4.4.amd64\python.exe -m venv --copies --clear venv344
+.\venv344\Scripts\python.exe -m pip install -U setuptools pip
+.\venv344\Scripts\python.exe -m pip install -U D:\tomo\Downloads\numpy-1.11.0+mkl-cp34-cp34m-win_amd64.whl
+.\venv344\Scripts\python.exe -m pip install -U pandas matplotlib sympy jupyter
+.\venv344\Scripts\python.exe -m pip install -U D:\tomo\Downloads\scipy-0.17.0-cp34-none-win_amd64.whl
+.\venv344\Scripts\python.exe -m pip install -U scikit-learn
+.\venv344\Scripts\jupyter-notebook --ip=0.0.0.0 --port=8888 --no-browser
+RD /S /Q venv344\
+C:\Python\3.5.1.amd64\python.exe -m venv --copies --clear venv351
+.\venv351\Scripts\python.exe -m pip install -U setuptools pip
+.\venv351\Scripts\python.exe -m pip install -U D:\tomo\Downloads\numpy-1.11.0+mkl-cp35-cp35m-win_amd64.whl
+.\venv351\Scripts\python.exe -m pip install -U pandas matplotlib sympy jupyter
+.\venv351\Scripts\python.exe -m pip install -U D:\tomo\Downloads\scipy-0.17.0-cp35-none-win_amd64.whl
+.\venv351\Scripts\python.exe -m pip install -U scikit-learn
+.\venv351\Scripts\jupyter-notebook --ip=0.0.0.0 --port=8888 --no-browser
+.\venv351\Scripts\jupyter-notebook --port=8888 --no-browser
+ls
+RD /S /Q venv351\
+exit
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+exit
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+exit
+.\venv351\Scripts\python.exe -m pip install -U scikit-learn
+.\venv351\Scripts\jupyter-notebook --ip=0.0.0.0 --port=8888 --no-browser
+.\venv351\Scripts\jupyter-notebook --port=8888 --no-browser
+RD /S /Q venv351\
+exit
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+C:
+D:
+.\pyvenv351\Scripts\python.exe -m pip install -U pip wheel
+.\pyvenv351\Scripts\python.exe -m pip install -U Downloads\psycopg2-2.6.1.win-amd64-py3.5.exe 
+.\pyvenv351\Scripts\python.exe -m setuptools
+.\pyvenv351\Scripts\python.exe -m easy_install
+.\pyvenv351\Scripts\python.exe -m easy_install Downloads\psycopg2-2.6.1.win-amd64-py3.5.exe 
+.\pyvenv351\Scripts\python.exe -m easy_install file://D:/tomo/Downloads/psycopg2-2.6.1.win-amd64-py3.5.exe 
+RD /S /Q pyvenv351\
+.\pyvenv351\Scripts\python.exe -m pip install -U setuptools pip
+.\pyvenv351\Scripts\python.exe -m pip install -U file://D:/tomo/Downloads/psycopg2-2.6.1.win-amd64-py3.5.exe 
+.\pyvenv351\Scripts\python.exe -m pip install -U -I file://D:/tomo/Downloads/psycopg2-2.6.1.win-amd64-py3.5.exe 
+.\pyvenv351\Scripts\python.exe -m pip install -U -I file://D:/tomo/Downloads/psycopg2-2.6.1.win-amd64-py3.5.exe#egg=psycopg2
+.\pyvenv351\Scripts\python.exe -m pip install--help
+.\pyvenv351\Scripts\python.exe -m pip install --help
+.\pyvenv351\Scripts\python.exe -m pip install -U -I --egg file://D:/tomo/Downloads/psycopg2-2.6.1.win-amd64-py3.5.exe#egg=psycopg2
+.\pyvenv351\Scripts\python.exe -m pip install-U wheel
+.\pyvenv351\Scripts\python.exe -m pip install -U wheel
+.\pyvenv351\Scripts\python.exe -m wheel -h
+.\pyvenv351\Scripts\python.exe -m wheel convert Downloads\psycopg2-2.6.1.win-amd64-py3.5
+.\pyvenv351\Scripts\python.exe -m wheel convert Downloads\psycopg2-2.6.1.win-amd64-py3.5.exe 
+ls Downloads\
+ls psycopg2-2.6.1-cp35-none-win_amd64.whl 
+.\pyvenv351\Scripts\python.exe -m pip install -U psycopg2-2.6.1-cp35-none-win_amd64.whl 
+.\pyvenv351\Scripts\python.exe -m wheel install Downloads\psycopg2-2.6.1.win-amd64-py3.5
+.\pyvenv351\Scripts\python.exe -m wheel install Downloads\psycopg2-2.6.1.win-amd64-py3.5.exe 
+RD /S /Q pyvenv351
+DEL psycopg2-2.6.1-cp35-none-win_amd64.whl 
+cd Downloads\
+cd ..\..\Downloads\
+C:\Python\3.5.1.amd64\python.exe -m venv --clear pyvenv351
+.\pyvenv\Scripts\python.exe -m pip install setuptools pip wheel
+.\pyvenv351\Scripts\python.exe -m pip install setuptools pip wheel
+.\pyvenv351\Scripts\python.exe -m wheel convert Downloads\psycopg2-2.6.1.win-amd64-py3.5.exe
+.\pyvenv351\Scripts\python.exe -m pip install -U setuptools pip wheel
+ls
+RD /S /Q psycopg2-2.6.1.win-amd64-py3.5
+.\pyvenv351\Scripts\python.exe -m wheel convert psycopg2-2.6.1.win-amd64-py3.5.exe
+.\pyvenv351\Scripts\python.exe -m pip install psycopg2-2.6.1.win-amd64-py3.5.whl
+.\pyvenv351\Scripts\python.exe -m pip install psycopg2-2.6.1-cp35-none-win_amd64.whl 
+.\pyvenv351\Scripts\python.exe -m pip install pyreadline ipython
+.\pyvenv351\Scripts\python.exe -m ipython
+.\pyvenv351\Scripts\ipython.e
+.\pyvenv351\Scripts\ipython.exe
+exit
+.\pyvenv351\Scripts\python.exe -m ipython
+.\pyvenv351\Scripts\ipython.e
+.\pyvenv351\Scripts\ipython.exe
+C:\Python\3.5.1.amd64\python.exe -m venv --clear pyvenv351
+.\pyvenv351\Scripts\python.exe -m pip install -U setuptools pip wheel
+.\pyvenv351\Scripts\python.exe -m pip install -U zope.interface
+.\pyvenv351\Scripts\python.exe -m pip install -U zope.component
+RD /S /Q pyvenv351
+ls
+C:\Python\3.4.4.amd64\python.exe -m venv --clear pyvenv344
+.\pyvenv344\Scripts\python.exe -m pip install -U setuptools pip wheel
+.\pyvenv344\Scripts\python.exe -m pip install -U zope.component
+RD /S /Q pyvenv344\
+exit
+RD /S /Q pyvenv344\
+ls C:\Python\
+cd misc\
+cd venvs\
+ls
+C:\Python\3.5.1.amd64\python.exe -m venv --copies --clear pyvenv351
+RD /?
+RD /S /Q pyvenv351
+C:\Python\3.5.1.amd64\python.exe -m venv --copies --clear pyvenv351-Sphinx
+.\pyvenv351-Sphinx\Scripts\python.exe -V
+.\pyvenv351-Sphinx\Scripts\python.exe -m pip install -U setuptools pip wheel pip-tools
+cd /d D:\
+cd /d D:\tomo\Documents\github-pages\
+D:\tomo\Documents\misc\venvs\pyvenv351-Sphinx\Scripts\pip-sync.exe 
+exit
+D:\tomo\Documents\misc\venvs\pyvenv351-Sphinx\Scripts\pip-sync.exe 
+ls misc\v
+ls misc\venvs\
+cd misc\
+cd venvs\
+ls
+C:\Python\3.5.1.amd64\python.exe -m venv --copies --clear pyvenv351
+.\pyvenv351\Scripts\python.exe -m pip install -U setuptools pip wheel pip-tools pyreadline
+.\pyvenv351\Scripts\python.exe -m pip install -U D:\tomo\Downloads\numpy-1.11.0+mkl-cp35-cp35m-win_amd64.whl 
+.\pyvenv351\Scripts\python.exe -m pip install -U pandas matplotlib sympy jupyter Pillow
+exit
+cd misc\venvs\p
+cd misc\venvs\
+.\pyvenv351\Scripts\python.exe -m pip install -U D:\tomo\Downloads\scipy-0.17.0-cp35-none-win_amd64.whl 
+.\pyvenv351\Scripts\python.exe -m pip install -Uscikit-learn
+.\pyvenv351\Scripts\python.exe -m pip install -U scikit-learn
+exit
+.\misc\venvs\pyvenv351\Scripts\python.exe
+exit
+Path
+exit
+Path
+exit
+exit
+exit
+ls
+Path
+exit
+Path
+exit
+Path
+exit
+Path
+MKLINK /?
+cd Applications\cmder_mini_v1.2.9\vendor\
+cd ..
+cd config\
+ls
+mv user-startup.cmd user-startup.cmd.bak 
+MKLINK user-startup.cmd D:\tomo\Documents\_init.cmd 
+exit
+Path
+ls
+exit
+vim
+exit
+.\misc\venvs\pyvenv351\Scripts\python.exe
+exit
+Path
+exit
+Path
+exit
+start Applications\cmder_mini_v1.2.9\vendor\init.bat 
+ls
+vim _init.bat
+less Applications\cmder_mini_v1.2.9\vendor\init.bat 
+del _init.bat 
+less Applications\cmder_mini_v1.2.9\config\user-startup.cmd 
+vim _init.cmd
+exit
+exit
+vim _init.cmd 
+exit
+hoge
+ls
+ls
+exit
+ls
+exit
+exit
+dir /w
+ls
+exit
+exit
+start Applications\cmder_mini_v1.2.9\vendor\init.bat 
+ls
+vim _init.bat
+del _init.bat 
+less Applications\cmder_mini_v1.2.9\config\user-startup.cmd 
+vim _init.cmd
+exit
+which python
+python.exe 
+jupyter-notebook.exe --help
+jupyter-notebook.exe --port=8888 --no-browser --notebook-dir=\\X220\Public\jupyter
+CD /D \\X220
+python
+less Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim _init.cmd 
+exit
+ls Dropbox\Documents\
+exit
+less _init.cmd 
+exit
+exit
+exit
+dir /w
+ls
+exit
+exit
+start Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim _init.bat
+del _init.bat 
+less Applications\cmder_mini_v1.2.9\config\user-startup.cmd 
+vim _init.cmd
+exit
+which python
+python.exe 
+jupyter-notebook.exe --help
+jupyter-notebook.exe --port=8888 --no-browser --notebook-dir=\\X220\Public\jupyter
+CD /D \\X220
+less Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim _init.cmd 
+ls Applications\
+ls ..
+ls ..\Downloads\
+vim Applications\cmder_mini_v1.2.9\config\aliases 
+chcp
+ls Dropbox\Documents\
+chcp 65001
+chcp 932
+dir /w Dropbox\Documents\
+CD /D Z:\
+cd /d d:\tomo\Documents\
+python
+cd /d Z:\
+cd jupyter\
+ls
+jupyter-notebook.exe --port=8888 --no-browser --notebook-dir=Z:\jupyter
+exit
+python
+exit
+ls ..\Downloads\
+vim Applications\cmder_mini_v1.2.9\config\aliases 
+chcp
+ls Dropbox\Documents\
+chcp 65001
+chcp 932
+dir /w Dropbox\Documents\
+CD /D Z:\
+cd /d d:\tomo\Documents\
+python
+cd /d Z:\
+cd jupyter\
+jupyter-notebook.exe --port=8888 --no-browser --notebook-dir=Z:\jupyter
+exit
+python
+exit
+python.exe -m pip install -U flake8
+flake8
+mkdir ex-data
+cd ex
+cd ex-data\
+ls
+touch queue.py
+vim queue.py 
+mv queue.py ex_queue.py
+less ex_queue.py 
+touch ex_as1_ex5.py
+vim ex_queue.py 
+python.exe ex_as1_ex5.py 
+python.exe -m cProfile -s time ex_as1_ex5.py 
+vim ex_as1_ex5.py 
+jupyter-notebook.exe --port=8888 --no-browser --notebook-dir=\\X220\Public\jupyter
+CD /D \\X220
+less Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim Applications\cmder_mini_v1.2.9\vendor\init.bat 
+vim _init.cmd 
+ls Applications\
+ls ..
+ls ..\Downloads\
+vim Applications\cmder_mini_v1.2.9\config\aliases 
+chcp
+ls Dropbox\Documents\
+chcp 65001
+chcp 932
+dir /w Dropbox\Documents\
+CD /D Z:\
+cd /d d:\tomo\Documents\
+python
+cd /d Z:\
+cd jupyter\
+jupyter-notebook.exe --port=8888 --no-browser --notebook-dir=Z:\jupyter
+exit
+python
+exit
+cd ex-data\
+python queue.py 
+ls
+python 
+python ex_queue.py 
+less ex_as1_ex5.py 
+python.exe -m cProfile -s time ex_as1_ex5.py
+python.exe -m cProfile --help
+python.exe -m cProfile -s time ex_as1_ex5.py -o ex_as1_ex5.log
+cd /d C:\Users\tomo\
+MKLINK dotfiles D:\tomo\Documents\misc\dotfiles
+exit
+python.exe -m cProfile --help
+python.exe -m cProfile -s time ex_as1_ex5.py -o ex_as1_ex5.log
+cd Applications\cmder_mini_v1.2.9
+ls con
+ls config
+cd config\
+del user-startup.cmd
+mv user-startup.cmd.bak user-startup.cmd
+ls
+cd ..
+mv config config.bak
+MKLINK /?
+MKLINK /J config D:\tomo\Documents\misc\dotfiles\misc\cmder_config
+exit
+exit
+cd
+pwd
+exit
+ls
+exit

@@ -1,13 +1,25 @@
+# vim:ft=gitconfig noet:
+
+[include]
+	path = ~/misc/dotfiles/dots/gitconfig
+
+[core]
+	attributesfile = ~/misc/dotfiles/dots/gitattributes
+	excludesfile = ~/misc/dotfiles/dots/gitignore
+
 [user]
-name = Tomohiro Nakamura
-email = quickness.net@gmail.com
+	name = Tomohiro Nakamura
+	email = quickness.net@gmail.com
 
 [http]
-; windows:    /usr/ssl/certs/ca-bundle.crt
-; linux mint: /etc/ssl/certs/ca-certificates.crt
-sslCAinfo = /etc/pki/tls/certs/ca-bundle.crt
+	; windows:    /usr/ssl/certs/ca-bundle.crt
+	; linux mint: /etc/ssl/certs/ca-certificates.crt
+	sslCAinfo = /ssl/certs/ca-bundle.crt
 
 [sendemail]
-; windows:    /bin/msmtp.exe
-; linux mint: /usr/bin/msmtp
-smtpserver = /bin/msmtp.exe
+	; windows:    /bin/msmtp.exe
+	; linux mint: /usr/bin/msmtp
+	smtpserver = /mingw64/bin/msmtp.exe
+
+[credential]
+	helper = wincred

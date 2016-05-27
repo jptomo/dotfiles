@@ -118,8 +118,6 @@ $ENV:PATHEXT += ";.PY"
 #
 # ### SetUp PATH ###
 
-# ### SetUp PATH ###
-
 # VS2015
 #Import-Module WintellectPowerShell
 #Invoke-CmdScript -script "C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\Tools\VsDevCmd.bat"

@@ -1,49 +1,37 @@
-#!/usr/bin/env bash
+#! /usr/bin/env bash
 # dotfile を $HOME にコピーする
 
 # コピー対象のファイル一覧
-DOT_FILES=( \
-    gitconfig gitignore gitconfig.include\
-    hgrc hgeol hgignore hgrc.include\
-    bashrc bash.alias bash.include \
-    zshrc zsh.alias \
-    zsh_profile zsh.mode zsh.locale \
-    vimrc gvimrc vimrc.completion vimrc.bundle vimrc.encodings \
-    vimrc.basis vimrc.filetypes \
-    tmux.conf inputrc gemrc \
-)
+my_link_files=(bashrc bash.alias \
+               gvimrc vimrc.completion \
+               vimrc.bundle vimrc.encodings \
+               vimrc.basis vimrc.filetypes \
+               tmux.conf inputrc gemrc)
+my_copy_files=(gitconfig hgrc vimrc bash.include)
 
 # バックアップディレクトリの作成
 printf "### 現在のファイルの"
 echo   "バックアップディレクトリを作成します。"
-CURDIR=$(cd $(dirname $0); pwd)
-BAKDIR="backup/$(date +%Y%m%d%H%M%S)"
-echo "mkdir -p \"$CURDIR/$BAKDIR\""
-mkdir -p "$CURDIR/$BAKDIR"
+my_curdir=$(cd $(dirname $0); pwd)
+my_bakdir="backup/$(date +%Y%m%d%H%M%S)"
+echo "mkdir -p \"$my_curdir/$my_bakdir\""
+mkdir -p "$my_curdir/$my_bakdir"
 
 # ファイルの移動
-echo -e "\n### ファイルのコピー"
-for file in "${DOT_FILES[@]}" ; do
-    # ファイルチェック
-    test "${file: -7}" = "include" ; INCLUDE_FLG=$?
-    test -f "$HOME/.$file" ; EXIST_FLG=$?
-    FLG_SUM=$(expr $INCLUDE_FLG + $EXIST_FLG)
-    if [ $FLG_SUM -eq 0 ] ; then
-        # ファイル名が include で終わり
-        # かつ、そのファイルが $HOME に
-        # 存在しない場合
+echo -e "\n### ファイルのリンク or コピー"
+for file in "${my_link_files[@]}" ; do
+    mv "$HOME/.$file" "$my_curdir/$my_bakdir"
+    ln -s "$my_curdir/dots/$file" "$HOME/.$file"
+    echo "$file を \$HOME にリンクしました。"
+done
+
+for file in "${my_copy_files[@]}" ; do
+    test -f "$HOME/.$file" ; exist_flg=$?
+    if [ $exist_flg -eq 0 ] ; then
         printf "指定された $file は \$HOME に"
         echo   "存在するため、コピーされませんでした。"
-    elif [ $INCLUDE_FLG -eq 0 ] ; then
-        # ファイル名が include で終わる
-        # ファイルについてはシンボリックリンク
-        # ではなくファイルコピーとする
-        cp "$CURDIR/dots/$file" "$HOME/.$file"
-        echo "$file を \$HOME にコピーしました。"
     else
-        # その他の場合はファイルをコピーする
-        mv "$HOME/.$file" "$CURDIR/$BAKDIR"
-        ln -s "$CURDIR/dots/$file" "$HOME/.$file"
-        echo "$file を \$HOME にリンクしました。"
+        cp "$my_curdir/dots/$file" "$HOME/.$file"
+        echo "$file を \$HOME にコピーしました。"
     fi
 done

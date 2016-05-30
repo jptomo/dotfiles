@@ -1,48 +1,25 @@
 # vim:ft=gitconfig noet:
 
+[include]
+	path = ~/Documents/misc/dotfiles/misc/git/gitconfig
+
 [core]
-	symlinks = false
-	autocrlf = false
-	pager =
-	abbrev = 12
+	attributesfile = ~/Documents/misc/dotfiles/misc/git/gitattributes
+	excludesfile = ~/Documents/misc/dotfiles/misc/git/gitignore
 
-[color]
-	ui = true
-
-[status]
-	short = true
-	branch = true
-
-[pack]
-	packSizeLimit = 2g
-
-[help]
-	format = man
-
-[blame]
-	date = short
-
-[log]
-	date = iso
-
-[format]
-	pretty = format:%C(yellow)%h %C(green)%cd %C(blue)%an%C(red)%d %C(reset)%s%n
+[user]
+	name = Tomohiro Nakamura
+	email = quickness.net@gmail.com
 
 [http]
-	sslVerify = true
+	; windows:    /usr/ssl/certs/ca-bundle.crt
+	; linux mint: /etc/ssl/certs/ca-certificates.crt
+	sslCAinfo = /ssl/certs/ca-bundle.crt
 
-[tig "bind"]
-	generic = g move-first-line
-	generic = G move-last-line
-	generic = ^F move-page-down
-	generic = ^B move-page-up
+[sendemail]
+	; windows:    /bin/msmtp.exe
+	; linux mint: /usr/bin/msmtp
+	smtpserver = /mingw64/bin/msmtp.exe
 
-[alias]
-	co = checkout
-	ci = commit
-	st = status
-	id = log -1 HEAD^ --pretty=format:"%H%n"
-	di = diff --color-words
-	diffw = diff --color-words
-	gl = log --graph
-	graph = log --graph
+[credential]
+	helper = wincred

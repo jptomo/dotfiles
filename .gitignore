@@ -1,3 +1,4 @@
+backup/
 msys2/**/*.tar.xz
 msys2/**/*.tar.gz
 msys2/**/*.tar.bz2

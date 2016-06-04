@@ -12,8 +12,8 @@
 	email = quickness.net@gmail.com
 
 [http]
-	; windows:    /usr/ssl/certs/ca-bundle.crt
-	; linux mint: /etc/ssl/certs/ca-certificates.crt
+	; windows: /ssl/certs/ca-bundle.crt
+	; linux: /etc/ssl/certs/ca-bundle.crt
 	sslCAinfo = /ssl/certs/ca-bundle.crt
 
 [sendemail]

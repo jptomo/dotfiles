@@ -12,8 +12,6 @@ if [[ $TMUX = "" ]]; then
     export PATH="$_path:$PATH"
     unset _path
 fi
-# TMUX の場合先頭から .: を削除
-[[ $TMUX != "" ]] && PATH="${PATH:2}"
 
 # alias
 alias ls='ls -hF --time-style=+%Y/%m/%d\ %H:%M:%S'

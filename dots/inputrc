@@ -1,7 +1,7 @@
 Control-l: clear-screen
 
-# チルダをタブにより展開
-set expand-tilde on
+# チルダをタブにより展開しない
+set expand-tilde off
 
 # 日本語関係
 set input-meta on

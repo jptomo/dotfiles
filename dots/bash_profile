@@ -1,6 +1,10 @@
-# .bash_profile
+# vim:ft=sh noet:
+export EDITOR=vim
+export PAGER=less
+export PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
+export HGENCODING=utf-8
+export PATH=~/.local/bin:~/.local/sbin:/usr/local/sbin:/sbin:$PATH
 
-# Get the aliases and functions
-if [ -f ~/.bashrc ]; then
-    . ~/.bashrc
+if [ -z "$TMUX" -a -f ~/.bashrc ] ; then
+	. ~/.bashrc
 fi

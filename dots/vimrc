@@ -1,5 +1,8 @@
 " vim: ft=vim:
 
+" 基本的に bash のスクリプトを操作するので
+let g:is_bash=1
+
 if has('mac')
     let s:hb_opt = expand('~/.homebrew/opt/')
     let $PERL_DLL = s:hb_opt . 'perl/lib/5.20.1/darwin-thread-multi-2level/CORE/libperl.dylib'

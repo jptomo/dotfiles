@@ -2,14 +2,9 @@
 # dotfile を $HOME にコピーする
 
 # コピー対象のファイル一覧
-my_link_files=(bashrc bash.alias \
-               gvimrc vimrc.completion \
-               vimrc.bundle vimrc.encodings \
-               vimrc.basis vimrc.filetypes \
-               tmux.conf inputrc gemrc)
-my_copy_files=(gitconfig hgrc vimrc bash.include)
+my_link_files=(bashrc bash_profile gemrc tmux.conf)
+my_copy_files=(bash.local gitconfig hgrc vimrc gvimrc inputrc)
 
-# バックアップディレクトリの作成
 printf "### 現在のファイルの"
 echo   "バックアップディレクトリを作成します。"
 my_curdir=$(cd $(dirname $0); pwd)
@@ -17,14 +12,14 @@ my_bakdir="backup/$(date +%Y%m%d%H%M%S)"
 echo "mkdir -p \"$my_curdir/$my_bakdir\""
 mkdir -p "$my_curdir/$my_bakdir"
 
-# ファイルの移動
-echo -e "\n### ファイルのリンク or コピー"
+echo -e "\n### ファイルのリンク"
 for file in "${my_link_files[@]}" ; do
     mv "$HOME/.$file" "$my_curdir/$my_bakdir"
     ln -s "$my_curdir/dots/$file" "$HOME/.$file"
     echo "$file を \$HOME にリンクしました。"
 done
 
+echo -e "\n### ファイルのコピー"
 for file in "${my_copy_files[@]}" ; do
     test -f "$HOME/.$file" ; exist_flg=$?
     if [ $exist_flg -eq 0 ] ; then

@@ -1,7 +1,9 @@
 " vim: ft=vim:
 
+let s:dotmisc = expand('~/Documents/misc/dotfiles/misc/vim/')
+
 " 基本的に bash のスクリプトを操作するので
-let g:is_bash=1
+let g:is_bash = 1
 
 if has('mac')
     let s:hb_opt = expand('~/.homebrew/opt/')
@@ -12,12 +14,20 @@ if has('mac')
     let $LUA_DLL = s:hb_opt . 'lua/lib/liblua.5.2.3.dylib'
 endif
 
-so ~/.vimrc.bundle
-so ~/.vimrc.encodings
-so ~/.vimrc.filetypes
-so ~/.vimrc.basis
-" so ~/.vimrc.completion
+" completion は必要に応じて追加
+for s:fname in [
+\       'bundle',
+\       'encodings',
+\       'filetypes',
+\       'basis'
+\       ]
+    if exists('s:fpath')
+        unlet s:fpath
+    endif
+    let s:fpath = s:dotmisc . s:fname
+    exe 'so ' . s:fpath
+endfor
 
 if getftype(expand('~/.vimrc.local')) == 'file'
-  execute 'source ~/.vimrc.local'
+  so ~/.vimrc.local
 endif

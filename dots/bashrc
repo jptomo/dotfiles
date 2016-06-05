@@ -62,4 +62,4 @@ git_branch() {
 }
 
 # 設定ファイルのinclude
-[ -f ~/.bash.local ] && . ~/.bash.local
+[ -f ~/.bashrc.local ] && . ~/.bashrc.local

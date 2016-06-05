@@ -22,4 +22,5 @@
 	smtpserver = /mingw64/bin/msmtp.exe
 
 [credential]
-	helper = wincred
+	helper = store --file ~/.git-credentials
+	helper = cache --timeout=300

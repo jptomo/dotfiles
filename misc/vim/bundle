@@ -50,6 +50,10 @@ NeoBundleLazy 'keitheis/vim-plim', {'autoload': {'filetypes': ['plim']}}
 NeoBundleLazy 'jelera/vim-javascript-syntax', {'autoload': {'filetypes': ['javascript']}}
 NeoBundleLazy 'jason0x43/vim-js-indent', {'autoload': {'filetypes': ['javascript', 'typescript']}}
 
+" Jinja2
+NeoBundleLazy 'Glench/Vim-Jinja2-Syntax', {'autoload': {'filetypes': ['jinja']}}
+
+
 " TypeScript
 NeoBundleLazy 'leafgarland/typescript-vim', {'autoload': {'filetypes': ['typescript']}}
 

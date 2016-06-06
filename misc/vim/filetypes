@@ -22,6 +22,7 @@ endfunction
 
 " register filetype
 au BufRead,BufNewFile *.coffee se filetype=coffee
+au BufRead,BufNewFile *.jinja2 se filetype=jinja
 au BufRead,BufNewFile *.plm se filetype=plim
 
 " some filetype settings
@@ -37,6 +38,7 @@ au FileType twig call SettingForPython()
 au FileType ruby call SettingForRuby()
 au FileType sh call SettingForPython()
 au FileType ini call SettingForPython()
+au FileType jinja setlocal ts=2 sts=2 sw=2 tw=0
 au FileType cfg call SettingForPython()
 au FileType html call SettingForHTML()
 au FileType htmldjango call SettingForHTML()

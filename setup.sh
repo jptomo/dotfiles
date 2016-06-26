@@ -3,7 +3,7 @@
 
 # コピー対象のファイル一覧
 my_link_files=(bashrc bash_profile gemrc)
-my_copy_files=(bashrc.local gitconfig hgrc vimrc gvimrc inputrc tmux.conf)
+my_copy_files=(bashrc.local gitconfig hgrc vimrc inputrc tmux.conf)
 
 printf "### 現在のファイルの"
 echo   "バックアップディレクトリを作成します。"

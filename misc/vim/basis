@@ -104,10 +104,11 @@ let g:NERDTreeIgnore=[
 \   '\.hg$',
 \   '\.git$',
 \   '__pycache__',
-\   '.egg-info',
-\   '.cache',
-\   '.idea',
-\   '.ipynb_checkpoints',
+\   '\.egg-info',
+\   '\.cache',
+\   '\.idea',
+\   '\.ipynb_checkpoints',
+\   '\.tox',
 \]
 let g:NERDTreeDirArrows = 0
 let g:NERDTreeShowHidden=1

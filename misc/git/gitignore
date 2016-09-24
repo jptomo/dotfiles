@@ -1,3 +1,4 @@
 *.pyc
 .hg
 .svn
+venv/

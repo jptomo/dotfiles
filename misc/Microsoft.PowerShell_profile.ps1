@@ -137,14 +137,11 @@ Function Initialize-MinGW64()
 $ENV:PATH = [String]::Join(';', ($ENV:PATH -split ';' | ? {$_ -ne ''} | % {$_.Trim() -replace '/', '\'}))
 $ENV:PATHEXT = [String]::Join(';', ($ENV:PATHEXT -split ';' | ? {$_ -ne ''} | % { $_.Trim().ToUpper() }))
 
-if(Get-Module -Name Pscx){
-    Import-Module Pscx
-}
-
 # PowerShell ReadLine
 # see https://github.com/lzybkr/PSReadLine#installation
 if($host.Name -eq 'ConsoleHost')
 {
+    Import-Module Pscx
     Import-Module PSReadline
     Set-PSReadlineOption -EditMode Emacs
 }
@@ -154,9 +151,9 @@ Set-Alias -Name ngen -Value (Join-Path ([System.Runtime.InteropServices.RuntimeE
     where { ( $_.Location ) `
             -and -not $_.Location.Contains("blahblahblah") `
             -and -not $_.Location.Contains("PSReadLine.dll") `
-            #-and -not $_.Location.Contains("Pscx.Core.dll") `
-            #-and -not $_.Location.Contains("Pscx.dll") `
-            #-and -not $_.Location.Contains("SevenZipSharp.dll") `
+            -and -not $_.Location.Contains("Pscx.Core.dll") `
+            -and -not $_.Location.Contains("Pscx.dll") `
+            -and -not $_.Location.Contains("SevenZipSharp.dll") `
             } |
     sort {Split-path $_.location -leaf} |
     % {

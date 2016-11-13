@@ -1,8 +1,10 @@
 # cp932
 #
+# Init(Admin):
+#   > Install-Module -Scope CurrentUser -Name Pscx -RequiredVersion 3.2.1.0 -AllowClobber
 # Init:
-#   Install-Module -Scope CurrentUser -Name Pscx -AllowClobber
-#   Install-Module -Scope CurrentUser -Name posh-git -AllowClobber
+#   > Install-Module -Scope CurrentUser -Name posh-git -Force -AllowClobber
+#   > Install-Module -Scope CurrentUser -Name Pscx -Force -AllowClobber
 #
 
 # Load posh-git example profile

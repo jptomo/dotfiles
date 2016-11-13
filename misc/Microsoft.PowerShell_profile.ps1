@@ -105,7 +105,6 @@ Function Global:Prompt {
 # vim
 [Environment]::SetEnvironmentVariable("VIM", $null, "User")
 [Environment]::SetEnvironmentVariable("VIMRUNTIME", $null, "User")
-$ENV:Path = "C:\path\to\vim.exe;" + $Env:Path
 Set-Alias -name vi -value vim.exe
 
 # plink
@@ -141,14 +140,13 @@ $ENV:PATHEXT = [String]::Join(';', ($ENV:PATHEXT -split ';' | ? {$_ -ne ''} | % 
 
 #Import-Module Pscx
 
-#Import-Module PoshUtil
-#Import-Module PoshGit2
-
 # PowerShell ReadLine
 # see https://github.com/lzybkr/PSReadLine#installation
-#Import-Module PSReadLine
-#Set-PSReadlineOption -EditMode Emacs
-
+if ($host.Name -eq 'ConsoleHost')
+{
+    Import-Module PSReadline
+    Set-PSReadlineOption -EditMode Emacs
+}
 
 Set-Alias -Name ngen -Value (Join-Path ([System.Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory()) ngen.exe)
 [AppDomain]::CurrentDomain.GetAssemblies() |

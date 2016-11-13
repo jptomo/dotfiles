@@ -1,4 +1,8 @@
 # cp932
+#
+# Install:
+#   Install-Module -Scope CurrentUser -Name Pscx -RequiredVersion 3.2.1.0 -AllowClobber
+#
 $OutputEncoding = [Text.Encoding]::Default
 $ENV:LANG = "ja_JP.CP932"
 
@@ -17,12 +21,9 @@ Function which()
     {
         $cmd = Get-Command $name
         $def = $cmd.Definition
-        IF ($cmd.CommandType -ne 'Alias')
-        {
+        if($cmd.CommandType -ne 'Alias'){
             Write-Host $def
-        }
-        Else
-        {
+        }else{
             Write-Host "(Alias) $def"
         }
     }
@@ -43,11 +44,11 @@ function _reverse_check() {
     {
         $_path = $(Convert-Path -Path $path)
         $_root = $(Join-Path (Split-Path -Path $_path -Qualifier) '\')
-        if (Test-Path (Join-Path $_path $dir_name)) {
+        if(Test-Path (Join-Path $_path $dir_name)){
             return $TRUE;
-        } elseif ($_root -eq $_path) {
+        }elseif($_root -eq $_path){
             return $FALSE;
-        } else {
+        }else{
             $_parent = Split-Path -Path $_path -Parent
             _reverse_check $_parent $dir_name
         }
@@ -57,14 +58,13 @@ function _reverse_check() {
 function git_branch() {
     Process
     {
-        if (-Not (_reverse_check $PWD.Path '.git'))
-        {
+        if(-not (_reverse_check $PWD.Path '.git')){
             return
         }
 
         git branch 2>$null |
-        ? { -not [System.String]::IsNullOrEmpty($_.Split()[0]) } |
-        % { $bn = $_.Split()[1]
+            ?{-not [System.String]::IsNullOrEmpty($_.Split()[0])} |
+            %{$bn = $_.Split()[1]
                 Write-Output "(git:$bn) " }
     }
 }
@@ -72,12 +72,11 @@ function git_branch() {
 function hg_branch() {
     Process
     {
-        if (-Not (_reverse_check $PWD.Path '.hg'))
-        {
+        if(-not (_reverse_check $PWD.Path '.hg')){
             return
         }
 
-        hg branch 2>$null | % { Write-Output "(hg:$_) " }
+        hg branch 2>$null | %{Write-Output "(hg:$_) "}
     }
 }
 
@@ -85,7 +84,7 @@ function hg_branch() {
 # with $ENV:HOME to ~
 function _get_pwd() {
     $path = $(Get-Location).Path
-    if ($path.IndexOf($ENV:HOME) -eq 0) {
+    if($path.IndexOf($ENV:HOME) -eq 0){
         $path = Join-Path '~' ($PWD.ProviderPath.Remove(0, ($ENV:HOME).Length))
     }
     return $path
@@ -138,11 +137,13 @@ Function Initialize-MinGW64()
 $ENV:PATH = [String]::Join(';', ($ENV:PATH -split ';' | ? {$_ -ne ''} | % {$_.Trim() -replace '/', '\'}))
 $ENV:PATHEXT = [String]::Join(';', ($ENV:PATHEXT -split ';' | ? {$_ -ne ''} | % { $_.Trim().ToUpper() }))
 
-#Import-Module Pscx
+if(Get-Module -Name Pscx){
+    Import-Module Pscx
+}
 
 # PowerShell ReadLine
 # see https://github.com/lzybkr/PSReadLine#installation
-if ($host.Name -eq 'ConsoleHost')
+if($host.Name -eq 'ConsoleHost')
 {
     Import-Module PSReadline
     Set-PSReadlineOption -EditMode Emacs
@@ -151,20 +152,22 @@ if ($host.Name -eq 'ConsoleHost')
 Set-Alias -Name ngen -Value (Join-Path ([System.Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory()) ngen.exe)
 [AppDomain]::CurrentDomain.GetAssemblies() |
     where { ( $_.Location ) `
+            -and -not $_.Location.Contains("blahblahblah") `
             -and -not $_.Location.Contains("PSReadLine.dll") `
-            -and -not $_.Location.Contains("PSReadline.resources.dll") `
-            -and -not $_.Location.Contains("Pscx3") `
-            -and -not $_.Location.Contains("LibGit2Sharp.dll") `
+            #-and -not $_.Location.Contains("Pscx.Core.dll") `
+            #-and -not $_.Location.Contains("Pscx.dll") `
+            #-and -not $_.Location.Contains("SevenZipSharp.dll") `
             } |
     sort {Split-path $_.location -leaf} |
-    %{
+    % {
         $Name = (Split-Path $_.location -leaf)
         if ([System.Runtime.InteropServices.RuntimeEnvironment]::FromGlobalAccessCache($_))
         {
-            # Write-Host "Already GACed: $Name"
-        }else
+            #Write-Host "Already GACed: $Name"
+        }
+        else
         {
             Write-Host -ForegroundColor Yellow "NGENing      : $Name"
             ngen $_.location | %{"`t$_"}
-         }
+        }
       }

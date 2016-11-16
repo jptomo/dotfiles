@@ -50,5 +50,6 @@ au FileType css call SettingForHTML()
 au FileType rst call SettingForRST()
 au FileType coffee call SettingForHTML()
 au FileType go compiler go
+au FileType yaml setlocal ts=2 sts=2 sw=2 tw=0
 
 au FileType * se formatoptions-=ro

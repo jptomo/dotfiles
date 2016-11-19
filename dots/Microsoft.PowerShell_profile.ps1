@@ -5,21 +5,19 @@
 # Init:
 #   > Install-Module -Name posh-git -Scope CurrentUser -Force -AllowClobber
 #   > Install-Module -Name Pscx -Scope CurrentUser -Force -AllowClobber
-#   > Install-Module -Name WintellectPowerShell -Scope CurrentUser -Force -AllowClobber
 #
 
-# Load posh-git example profile
-. "$HOME\Documents\WindowsPowerShell\Modules\posh-git\profile.example.ps1"
+#. "$HOME\Documents\WindowsPowerShell\Modules\posh-git\profile.example.ps1"
+. "$HOME\misc\dotfiles\misc\Microsoft.PowerShell_profile.ps1"
 
 # vim ÇÃê›íË
-#$_vimPath = "$HOME\Documents\Application\vim80-kaoriya-win64-8.0.0039-20161016"
-#$ENV:Path = "$_vimPath;" + $Env:Path
-#Set-Alias -name vim -value "$_vimPath\vim.exe"
+#$ENV:Path = "$HOME\Documents\Application\vim80-kaoriya-win64-8.0.0039-20161016;$Env:Path"
+#Set-Alias -Name vim -Value some
+#Remove-Item Alias:vim
 
-#Import-Module WintellectPowerShell
-#Invoke-CmdScript -script "C:\Program Files (x86)\Microsoft Visual C++ Build Tools\vcbuildtools.bat" amd64
+Set-Alias -Name grep -Value Select-String
 
-. "$HOME\misc\dotfiles\misc\Microsoft.PowerShell_profile.ps1"
+#Import-VisualStudioVars -VisualStudioVersion 2015 -Architecture amd64
 
 Function Global:Prompt {
     $realLASTEXITCODE = $LASTEXITCODE

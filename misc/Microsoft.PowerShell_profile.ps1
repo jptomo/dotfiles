@@ -136,6 +136,21 @@ if($host.Name -eq 'ConsoleHost')
             }
         }
     }
+
+    Function ConvertTo-TextWinToLinux(){
+        Param([string]$text)
+
+        Process {
+            $utf8_ = [System.Text.Encoding]::UTF8
+            $sjis_ = [System.Text.Encoding]::GetEncoding('Shift-JIS')
+            $converted_ = $sjis_.GetString(
+                [System.Text.Encoding]::Convert(
+                    $utf8_,
+                    $sjis_,
+                    $utf8_.GetBytes($text)))
+            return $converted_.Replace([System.Environment]::NewLine, '\n')
+        }
+    }
 }
 
 Set-Alias -Name ngen -Value (Join-Path ([System.Runtime.InteropServices.RuntimeEnvironment]::GetRuntimeDirectory()) ngen.exe)

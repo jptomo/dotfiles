@@ -89,6 +89,22 @@ if($host.Name -eq 'ConsoleHost')
         return $path
     }
 
+    Remove-Item Alias:cd
+    Function cd() {
+        Param(
+            [Parameter(Mandatory = $false, Position = 0)]
+            [string]$Path
+            )
+
+        Process {
+            if([string]::IsNullOrEmpty("$Path")){
+                Pscx\Set-LocationEx -Path $HOME
+            }else{
+                Pscx\Set-LocationEx -Path $Path
+            }
+        }
+    }
+
     Function env(){
         Process {Get-ChildItem ENV:}
     }

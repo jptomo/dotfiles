@@ -36,7 +36,7 @@ if($host.Name -eq 'ConsoleHost')
     Import-Module PSReadline
     Set-PSReadlineOption -EditMode Emacs
 
-    function _reverse_check(){
+    Function _reverse_check(){
         Param(
             $path,
             $dir_name
@@ -57,7 +57,7 @@ if($host.Name -eq 'ConsoleHost')
         }
     }
 
-    function git_branch(){
+    Function git_branch(){
         Process
         {
             if(-not (_reverse_check $PWD.Path '.git')){
@@ -71,7 +71,7 @@ if($host.Name -eq 'ConsoleHost')
         }
     }
 
-    function hg_branch(){
+    Function hg_branch(){
         Process
         {
             if(-not (_reverse_check $PWD.Path '.hg')){
@@ -84,12 +84,19 @@ if($host.Name -eq 'ConsoleHost')
 
     # return current directory
     # with $ENV:HOME to ~
-    function _get_pwd(){
+    Function _get_pwd(){
         $path = $(Get-Location).Path
         if($path.IndexOf($ENV:HOME) -eq 0){
             $path = Join-Path '~' ($PWD.ProviderPath.Remove(0, ($ENV:HOME).Length))
         }
         return $path
+    }
+
+    Function Get-SortedCommand() {
+        Process
+        {
+            Return Get-Command | sort { $_.Source, $_.CommandType, $_.Name} | select Source, Name, CommandType, Version
+        }
     }
 
     Remove-Item Alias:cd
@@ -137,21 +144,6 @@ if($host.Name -eq 'ConsoleHost')
             }else{
                 New-Item $filename -itemType File
             }
-        }
-    }
-
-    Function ConvertTo-TextWinToLinux(){
-        Param([string]$text)
-
-        Process {
-            $utf8_ = [System.Text.Encoding]::UTF8
-            $sjis_ = [System.Text.Encoding]::GetEncoding('Shift-JIS')
-            $converted_ = $sjis_.GetString(
-                [System.Text.Encoding]::Convert(
-                    $utf8_,
-                    $sjis_,
-                    $utf8_.GetBytes($text)))
-            return $converted_.Replace([System.Environment]::NewLine, '\n')
         }
     }
 }

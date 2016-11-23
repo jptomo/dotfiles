@@ -2,6 +2,7 @@
 export EDITOR=vim
 export PAGER=less
 export PROMPT_COMMAND='echo -ne "\033]0;${HOSTNAME%%.*}:${PWD/$HOME/~}\007"'
+export MY_GIT_DIFF_ENC=UTF-8
 export HGENCODING=utf-8
 export PATH=~/.local/bin:~/.local/sbin:/usr/local/sbin:/sbin:$PATH
 

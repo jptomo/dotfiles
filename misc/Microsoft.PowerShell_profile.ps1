@@ -11,6 +11,9 @@ $ENV:LANG = "ja_JP.CP932"
 [Environment]::SetEnvironmentVariable("VIMRUNTIME", $null, "User")
 Set-Alias -name vi -value vim.exe
 
+# git diffw
+Set-Item -Path ENV:\MY_GIT_DIFF_ENC -Value CP932
+
 # plink
 #Set-Alias -name plink -value "<plink path>"
 
